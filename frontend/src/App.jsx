@@ -1,33 +1,17 @@
 import "./styles/reset.css";
 import "./styles/App.scss";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Search from "./pages/Search";
 
 function App() {
-  const [recipeData, setRecipeData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const getRecipeData = () => {
-      axios
-        .get(
-          `https://api.edamam.com/api/recipes/v2?type=public&q="bread"&app_id=${
-            import.meta.env.VITE_APP_ID_CF
-          }&app_key=${import.meta.env.VITE_APP_KEY_CF}`
-        )
-        .then((response) => {
-          setRecipeData(response.data.hits);
-          setIsLoading(true);
-        });
-    };
-    getRecipeData();
-  }, []);
-
   return (
-    <div>
-      <p>CookBuddy</p>
-      {isLoading ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+      </Routes>
+    </Router>
   );
 }
 
