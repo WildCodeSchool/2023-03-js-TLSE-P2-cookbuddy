@@ -8,7 +8,7 @@ FONTS
 
 $font-family--main: "Inter", sans-serif;
 
-@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Grandstander:wght@400;500;600;700&display=swap");
 
 $font-family--accent: "Grandstander", sans-serif;
 
@@ -1052,5 +1052,41 @@ button {
   }
 }
 
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 576px) {
+  .container {
+    max-width: 540px;
+    padding: 1rem;
+  }
+}
 @media screen and (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    width: 960px;
+    padding: 2rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1140px;
+    padding: 2rem;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 1320px;
+    padding: 2rem;
+  }
 }
