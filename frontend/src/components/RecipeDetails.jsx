@@ -14,8 +14,8 @@ function RecipeDetails({ data }) {
         <img src={data.image} alt="Recipe illustration" />
       </div>
       <div className="recipe-description">
-        <h2>{data.label}</h2>
-        <div>
+        <h2 className="recipe-label">{data.label}</h2>
+        <div className="recipe-infos">
           <p>
             <i className="bi bi-fire" />{" "}
             {numberRounded(data.totalNutrients.ENERC_KCAL.quantity)}{" "}
@@ -25,7 +25,7 @@ function RecipeDetails({ data }) {
             <i className="bi bi-bookmarks-fill" /> {data.mealType}
           </p>
           <p>
-            <i className="bi bi-clock-history" /> {data.totalTime}
+            <i className="bi bi-clock-history" /> {data.totalTime} minutes
           </p>
         </div>
         <div>
