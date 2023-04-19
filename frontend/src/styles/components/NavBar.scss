@@ -1,0 +1,28 @@
+@import "../App.scss";
+
+img.logo {
+  position: absolute;
+  width: 160px;
+  height: 58px;
+  left: 10px;
+  top: 15px;
+}
+
+button.dark-mode {
+  @extend %action-button;
+  @extend %action-button--sm;
+  @extend %action-button--grey--border;
+  &:hover {
+    color: #fff;
+    background-color: $color--grey--700;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 30px;
+  top: 20px;
+}

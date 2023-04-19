@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import NavBar from "@components/NavBar";
 
 export default function Home() {
   const [recipeData, setRecipeData] = useState();
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <div>
+      <NavBar />
       <p>CookBuddy</p>
 
       {isLoaded ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
