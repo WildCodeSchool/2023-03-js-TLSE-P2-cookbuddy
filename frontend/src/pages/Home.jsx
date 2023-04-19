@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import RecipeDetails from "../components/RecipeDetails";
 
 export default function Home() {
   const [recipeData, setRecipeData] = useState();
@@ -9,9 +10,9 @@ export default function Home() {
     const getRecipeData = () => {
       axios
         .get(
-          `https://api.edamam.com/api/recipes/v2?type=public&q="bread"&app_id=${
-            import.meta.env.VITE_APP_ID_CF
-          }&app_key=${import.meta.env.VITE_APP_KEY_CF}`
+          `https://api.edamam.com/api/recipes/v2?type=public&q="pizza"&app_id=${
+            import.meta.env.VITE_APP_ID_JB
+          }&app_key=${import.meta.env.VITE_APP_KEY_JB}&imageSize=LARGE`
         )
         .then((response) => {
           setRecipeData(response.data.hits);
@@ -23,9 +24,11 @@ export default function Home() {
 
   return (
     <div>
-      <p>CookBuddy</p>
-
-      {isLoaded ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
+      {isLoaded ? (
+        <RecipeDetails data={recipeData[5].recipe} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
