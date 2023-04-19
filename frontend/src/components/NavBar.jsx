@@ -4,7 +4,7 @@ import "../styles/components/NavBar.scss";
 export default function NavBar() {
   return (
     <div className="header-container">
-      <nav>
+      <div className="navbar">
         <img
           className="logo"
           src="./src/assets/logo-color-full.svg"
@@ -13,7 +13,7 @@ export default function NavBar() {
         <button className="dark-mode" type="button">
           <i className="bi bi-moon-fill" />
         </button>
-      </nav>
+      </div>
     </div>
   );
 }
