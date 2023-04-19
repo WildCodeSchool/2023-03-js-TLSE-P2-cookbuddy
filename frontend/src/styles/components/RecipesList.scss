@@ -1,0 +1,11 @@
+@import "../App.scss";
+
+.recipe-list {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+  > * {
+    flex-basis: calc(50% - 6px);
+  }
+}

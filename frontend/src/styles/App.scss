@@ -89,6 +89,11 @@ body {
   font-feature-settings: "tnum" on, "lnum" on;
   font-family: $font-family--main;
   color: $color--grey--900;
+  box-sizing: border-box !important;
+}
+
+* {
+  box-sizing: border-box !important;
 }
 
 /*

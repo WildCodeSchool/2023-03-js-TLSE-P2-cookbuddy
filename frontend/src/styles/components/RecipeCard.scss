@@ -1,0 +1,44 @@
+@import "../App.scss";
+
+.recipe-card {
+  @include shadow--xs();
+  border: 1px solid $color--grey--200;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .thumbnail {
+    width: 100%;
+    height: 128px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .details {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    h3 {
+      @extend %text--lg;
+      font-weight: 500;
+      color: $color--grey--800;
+    }
+    .recipe-infos {
+      color: $color--grey--500;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      li {
+        display: flex;
+        gap: 8px;
+        &.meal-type {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
