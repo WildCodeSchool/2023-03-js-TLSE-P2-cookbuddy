@@ -25,7 +25,7 @@ export default function Home() {
     <div>
       <p>CookBuddy</p>
 
-      {isLoading ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
+      {isLoaded ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
     </div>
   );
 }
