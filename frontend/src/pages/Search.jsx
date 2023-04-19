@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function Search() {
   const [recipeData, setRecipeData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const getRecipeData = () => {
@@ -15,7 +15,7 @@ export default function Search() {
         )
         .then((response) => {
           setRecipeData(response.data.hits);
-          setIsLoading(true);
+          setIsLoaded(true);
         });
     };
     getRecipeData();
@@ -28,7 +28,7 @@ export default function Search() {
       </nav>
       <main>
         <div className="container">
-          {isLoading ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
+          {isLoaded ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
         </div>
       </main>
     </>
