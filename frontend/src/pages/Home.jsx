@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [recipeData, setRecipeData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const getRecipeData = () => {
@@ -15,7 +15,7 @@ export default function Home() {
         )
         .then((response) => {
           setRecipeData(response.data.hits);
-          setIsLoading(true);
+          setIsLoaded(true);
         });
     };
     getRecipeData();
