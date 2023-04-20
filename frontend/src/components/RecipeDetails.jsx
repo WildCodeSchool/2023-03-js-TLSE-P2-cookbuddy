@@ -56,21 +56,35 @@ function RecipeDetails({ data }) {
             {data.totalNutrients.PROCNT.unit}
           </p>
         </div>
-        <h2 className="ingredientsTitle">Ingredients</h2>
-        <ul>
+        <div className="ingredients-header">
+          <h2 className="ingredients-title">Ingredients</h2>
+          <div className="yield-selector">
+            <button type="button" className="remove">
+              <i className="bi bi-dash-lg" />
+            </button>
+            <input type="number" value={data.yield} />
+            <button type="button" className="add">
+              <i className="bi bi-plus-lg" />
+            </button>
+          </div>
+        </div>
+        <ul className="ingredients-list">
           {data.ingredients.map((ingredient) => (
             <li key={ingredient.id}>
-              <label htmlFor={ingredient.id}>
-                <input
-                  className="checkmark"
-                  type="checkbox"
-                  id={ingredient.id}
-                  name={ingredient.food}
-                />
-                {truncateNumber(ingredient.quantity)}{" "}
-                {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
-                {ingredient.food}
-              </label>
+              <div className="input-checkbox input-checkbox--md">
+                <label htmlFor={ingredient.id}>
+                  <input
+                    className="checkmark"
+                    type="checkbox"
+                    id={ingredient.id}
+                    name={ingredient.food}
+                  />
+                  <div className="checkbox" />
+                  {truncateNumber(ingredient.quantity)}{" "}
+                  {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
+                  {ingredient.food}
+                </label>
+              </div>
             </li>
           ))}
         </ul>
@@ -116,6 +130,7 @@ RecipeDetails.propTypes = {
         unit: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
+    yield: PropTypes.number.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
 };

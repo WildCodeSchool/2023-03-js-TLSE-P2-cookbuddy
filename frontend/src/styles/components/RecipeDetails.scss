@@ -24,7 +24,7 @@
     }
   }
   .recipe-description {
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     background-color: $color--white;
     border-radius: 20px;
     z-index: 2;
@@ -44,7 +44,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: 8px;
-      padding: 1rem 0;
+      margin: 1rem 0;
 
       p {
         flex-basis: calc(50% - 8px / 2);
@@ -55,6 +55,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: 8px;
+      margin: 2rem 0;
       p {
         @extend %text--sm;
         justify-content: center;
@@ -68,21 +69,93 @@
         flex-basis: calc(50% - 8px / 2);
       }
     }
-    .ingredientsTitle {
-      @extend %title--xs;
-      font-weight: 500;
-      font-family: $font-family--main;
-      color: $color--grey--900;
-      padding: 1rem 0;
+    .ingredients-header {
+      margin: 2rem 0 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .ingredients-title {
+        @extend %title--xs;
+        font-weight: 500;
+        font-family: $font-family--main;
+        color: $color--grey--900;
+      }
+      .yield-selector {
+        display: inline-flex;
+        align-items: stretch;
+        justify-content: center;
+        border: 1px solid $color--grey--300;
+        border-radius: 50px;
+
+        @include shadow--xs();
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+        input {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 8px 12px;
+          // background: $color--white;
+          border: 1px solid transparent;
+          width: 3rem;
+          text-align: center;
+          outline: none;
+          @extend .text--md;
+          color: $color--grey--500;
+          border-right: 1px solid $color--grey--300;
+          &:focus {
+            z-index: 1;
+            color: $color--grey--900;
+            border: 1px solid $color--primary--300;
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05),
+              0px 0px 0px 4px $color--primary--100;
+          }
+          &:disabled {
+            background-color: $color--grey--50;
+          }
+        }
+
+        button {
+          @extend %action-button--sm;
+          color: $color--grey--700;
+          text-decoration: none;
+          border: none;
+          border-right: 1px solid $color--grey--300;
+          background-color: $color--white;
+          width: 3rem;
+
+          &:focus {
+            z-index: 1;
+          }
+
+          &:hover {
+            background: $color--grey--50;
+            background-color: $color--primary--600;
+            color: $color--white;
+          }
+
+          &:first-child {
+            border-radius: 50px 0 0 50px;
+          }
+          &:last-of-type {
+            border-right: none;
+            border-radius: 0 50px 50px 0;
+          }
+        }
+      }
     }
-    ul {
+    .ingredients-list {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      li {
-        @extend %text--md;
-        color: $color--grey--700;
-      }
     }
   }
 }

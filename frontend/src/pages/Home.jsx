@@ -11,9 +11,9 @@ export default function Home() {
       axios
         .get(
           `https://api.edamam.com/api/recipes/v2?type=public&q="pizza"&app_id=${
-            import.meta.env.VITE_APP_ID_JB
+            import.meta.env.VITE_APP_ID_CF
           }&app_key=${
-            import.meta.env.VITE_APP_KEY_JB
+            import.meta.env.VITE_APP_KEY_CF
           }&time=1%2B&imageSize=LARGE`
         )
         .then((response) => {
