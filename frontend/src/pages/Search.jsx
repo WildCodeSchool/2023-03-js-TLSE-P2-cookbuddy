@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Footer from "../components/Footer";
 
 export default function Search() {
   const [recipeData, setRecipeData] = useState();
@@ -31,6 +32,7 @@ export default function Search() {
           {isLoaded ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
         </div>
       </main>
+      <Footer />
     </>
   );
 }
