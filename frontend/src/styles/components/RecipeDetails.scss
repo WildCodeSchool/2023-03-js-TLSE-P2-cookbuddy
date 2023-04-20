@@ -2,6 +2,8 @@
 
 .recipe-details {
   position: relative;
+  display: flex;
+  flex-direction: column;
   button.close {
     @extend %action-button--lg;
     @extend %action-button--grey--border;
@@ -158,4 +160,26 @@
       gap: 8px;
     }
   }
+}
+
+@media screen and (min-width: 768px) {
+  .recipe-container {
+    background-color: black;
+    padding: 10vh;
+    display: flex;
+    .recipe-details {
+      flex-direction: row;
+      align-items: center;
+      .thumbnail {
+        height: 100vh;
+      }
+      .recipe-description {
+        height: 100%;
+      }
+
+      
+      
+    }
+  }
+  
 }
