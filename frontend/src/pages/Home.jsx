@@ -6,7 +6,6 @@ export default function Home() {
   const [recipeData, setRecipeData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-
   useEffect(() => {
     const getRecipeData = () => {
       axios
