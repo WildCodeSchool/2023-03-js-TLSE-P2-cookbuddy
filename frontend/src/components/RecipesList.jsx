@@ -1,14 +1,28 @@
+import PropTypes from "prop-types";
 import "../styles/components/RecipesList.scss";
 import "../styles/App.scss";
 import RecipeCard from "./RecipeCard";
 
-export default function RecipesList({ data }) {
+export default function RecipesList({ data, listClass = "home" }) {
+  console.log(data);
   return (
-    <div className="recipe-list">
-      <RecipeCard data={data[0].recipe} />
-      <RecipeCard data={data[1].recipe} />
-      <RecipeCard data={data[2].recipe} />
-      <RecipeCard data={data[4].recipe} />
+    <div className={`recipe-list ${listClass}`}>
+      {data.map((recipe) => (
+        <RecipeCard data={recipe.recipe} key={recipe.recipe.url} />
+      ))}
     </div>
   );
 }
+RecipesList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      recipe: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        mealType: PropTypes.arrayOf(PropTypes.string).isRequired,
+        totalTime: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired
+  ).isRequired,
+};

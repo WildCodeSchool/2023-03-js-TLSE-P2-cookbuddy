@@ -15,7 +15,9 @@ export default function RecipeCard({ data }) {
         <ul className="recipe-infos">
           <li className="meal-type">
             <i className="bi bi-bookmark-fill" />
-            {data.mealType}
+            {data.mealType.length > 1
+              ? data.mealType.join(", ")
+              : data.mealType}
           </li>
           <li>
             <i className="bi bi-clock-history" />
@@ -26,6 +28,7 @@ export default function RecipeCard({ data }) {
             {caloriesRounded} calories
           </li>
         </ul>
+        <button type="button">See the recipe</button>
       </div>
     </article>
   );
@@ -34,7 +37,7 @@ RecipeCard.propTypes = {
   data: PropTypes.shape({
     label: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    mealType: PropTypes.string.isRequired,
+    mealType: PropTypes.arrayOf(PropTypes.string).isRequired,
     totalTime: PropTypes.number.isRequired,
     calories: PropTypes.number.isRequired,
   }).isRequired,
