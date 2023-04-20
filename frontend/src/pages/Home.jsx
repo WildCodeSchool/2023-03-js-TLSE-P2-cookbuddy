@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import RecipesList from "../components/RecipesList";
 
+import "../styles/Home.scss";
+
 export default function Home() {
   const [recipesData, setRecipesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -56,6 +58,7 @@ export default function Home() {
       <main>
         <div className="container">
           <section id="chef-suggestion">
+            <h2>Chef’s suggestions</h2>
             {isLoaded ? (
               <RecipesList data={recipesData} listClass="home" />
             ) : (
