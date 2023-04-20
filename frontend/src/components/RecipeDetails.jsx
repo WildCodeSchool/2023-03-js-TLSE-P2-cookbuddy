@@ -5,6 +5,9 @@ function RecipeDetails({ data }) {
   function numberRounded(num) {
     return Math.round(num);
   }
+  function truncateNumber(num) {
+    return Number.isInteger(num) ? num.toString() : num.toFixed(2);
+  }
   return (
     <div className="recipe-details">
       <button className="close" type="button">
@@ -27,34 +30,47 @@ function RecipeDetails({ data }) {
           <p>
             <i className="bi bi-clock-history" /> {data.totalTime} minutes
           </p>
+          <p>
+            <i className="bi bi-globe-americas" /> {data.cuisineType}
+          </p>
         </div>
-        <div>
-          <article>
+        <div className="recipe-nutrients">
+          <p>
             {data.totalNutrients.FAT.label}{" "}
             {numberRounded(data.totalNutrients.FAT.quantity)}
             {data.totalNutrients.PROCNT.unit}
-          </article>
-          <article>
+          </p>
+          <p>
             {data.totalNutrients.PROCNT.label}{" "}
             {numberRounded(data.totalNutrients.PROCNT.quantity)}
             {data.totalNutrients.PROCNT.unit}
-          </article>
-          <article>
+          </p>
+          <p>
             {data.totalNutrients.CHOCDF.label}{" "}
             {numberRounded(data.totalNutrients.CHOCDF.quantity)}
             {data.totalNutrients.PROCNT.unit}
-          </article>
-          <article>
+          </p>
+          <p>
             {data.totalNutrients.FIBTG.label}{" "}
             {numberRounded(data.totalNutrients.FIBTG.quantity)}
             {data.totalNutrients.PROCNT.unit}
-          </article>
+          </p>
         </div>
-        <h2>Ingredients</h2>
+        <h2 className="ingredientsTitle">Ingredients</h2>
         <ul>
           {data.ingredients.map((ingredient) => (
-            <li>
-              {ingredient.quantity} {ingredient.measure} {ingredient.food}
+            <li key={ingredient.id}>
+              <label htmlFor={ingredient.id}>
+                <input
+                  className="checkmark"
+                  type="checkbox"
+                  id={ingredient.id}
+                  name={ingredient.food}
+                />
+                {truncateNumber(ingredient.quantity)}{" "}
+                {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
+                {ingredient.food}
+              </label>
             </li>
           ))}
         </ul>
@@ -71,6 +87,7 @@ RecipeDetails.propTypes = {
     image: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     mealType: PropTypes.string.isRequired,
+    cuisineType: PropTypes.string.isRequired,
     totalTime: PropTypes.number.isRequired,
     totalNutrients: PropTypes.shape({
       ENERC_KCAL: PropTypes.shape({

@@ -7,7 +7,7 @@
     @extend %action-button--grey--border;
     width: 44px;
     height: 44px;
-    position: absolute;
+    position: fixed;
     right: 1rem;
     top: 1rem;
     background-color: $color--white;
@@ -30,19 +30,59 @@
     z-index: 2;
     position: relative;
     .recipe-label {
-    @extend %title--sm;
-    font-weight: 500;  
-    font-family: $font-family--accent;
-    color: $color--grey--900;    
+      @extend %title--sm;
+      font-weight: 500;
+      font-family: $font-family--accent;
+      color: $color--grey--900;
     }
     .recipe-infos {
-    @extend %text--sm;
-    color: $color--grey--400;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    padding: 1rem 0 1rem 0;
+      @extend %text--sm;
+      color: $color--grey--400;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 1rem 0;
+
+      p {
+        flex-basis: calc(50% - 8px / 2);
+      }
+    }
+    .recipe-nutrients {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      p {
+        @extend %text--sm;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 16px;
+        background: $color--primary--100;
+        border-radius: 41px;
+        color: $color--primary--900;
+        font-weight: 500;
+        text-align: center;
+        flex-basis: calc(50% - 8px / 2);
+      }
+    }
+    .ingredientsTitle {
+      @extend %title--xs;
+      font-weight: 500;
+      font-family: $font-family--main;
+      color: $color--grey--900;
+      padding: 1rem 0;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      li {
+        @extend %text--md;
+        color: $color--grey--700;
+      }
     }
   }
 }
