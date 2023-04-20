@@ -4,7 +4,6 @@ import "../styles/App.scss";
 import RecipeCard from "./RecipeCard";
 
 export default function RecipesList({ data, listClass = "home" }) {
-  console.log(data);
   return (
     <div className={`recipe-list ${listClass}`}>
       {data.map((recipe) => (
@@ -14,6 +13,7 @@ export default function RecipesList({ data, listClass = "home" }) {
   );
 }
 RecipesList.propTypes = {
+  listClass: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       recipe: PropTypes.shape({
@@ -25,4 +25,8 @@ RecipesList.propTypes = {
       }).isRequired,
     }).isRequired
   ).isRequired,
+};
+
+RecipesList.defaultProps = {
+  listClass: "home",
 };
