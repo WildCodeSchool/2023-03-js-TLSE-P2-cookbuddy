@@ -1,4 +1,4 @@
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/components/Footer.scss";
 import "../styles/App.scss";
 

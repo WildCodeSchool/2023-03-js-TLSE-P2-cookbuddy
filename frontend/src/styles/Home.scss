@@ -1,0 +1,12 @@
+@import "./App.scss";
+
+#chef-suggestion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  h2 {
+    @extend %title--xs;
+    font-weight: 500;
+    font-family: $font-family--accent;
+  }
+}
