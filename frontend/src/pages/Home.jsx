@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import RecipesList from "../components/RecipesList";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [recipesData, setRecipesData] = useState([]);
@@ -64,6 +65,7 @@ export default function Home() {
           </section>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
