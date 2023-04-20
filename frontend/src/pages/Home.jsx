@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import RecipesList from "../components/RecipesList";
+import Footer from "../components/Footer";
 
 import "../styles/Home.scss";
 
@@ -67,6 +68,7 @@ export default function Home() {
           </section>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
