@@ -4,24 +4,30 @@ import RecipesList from "../components/RecipesList";
 
 export default function Home() {
   const [recipesData, setRecipesData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const today = new Date();
   const time = today.getHours();
 
   let mealSearchType;
-  if (time > 0 && time <= 10) {
-    mealSearchType = "Breakfast";
-  } else if (time > 10 && time <= 14) {
-    mealSearchType = "Lunch";
-  } else if (time > 14 && time <= 16) {
-    mealSearchType = "Teatime";
-  } else if (time > 16 && time <= 18) {
-    mealSearchType = "Snack";
-  } else if (time > 18 && time <= 22) {
-    mealSearchType = "Dinner";
-  } else {
-    mealSearchType = "Lunch";
+  switch (true) {
+    case time > 0 && time <= 10:
+      mealSearchType = "Breakfast";
+      break;
+    case time > 10 && time <= 14:
+      mealSearchType = "Lunch";
+      break;
+    case time > 14 && time <= 16:
+      mealSearchType = "Teatime";
+      break;
+    case time > 16 && time <= 18:
+      mealSearchType = "Snack";
+      break;
+    case time > 18 && time <= 22:
+      mealSearchType = "Dinner";
+      break;
+    default:
+      mealSearchType = "Lunch";
   }
 
   useEffect(() => {
@@ -36,7 +42,7 @@ export default function Home() {
         )
         .then((response) => {
           setRecipesData(response.data.hits.splice(0, 6));
-          setIsLoading(true);
+          setIsLoaded(true);
         });
     };
     getRecipesData();
@@ -50,7 +56,7 @@ export default function Home() {
       <main>
         <div className="container">
           <section id="chef-suggestion">
-            {isLoading ? (
+            {isLoaded ? (
               <RecipesList data={recipesData} listClass="home" />
             ) : (
               <p>Loading...</p>
