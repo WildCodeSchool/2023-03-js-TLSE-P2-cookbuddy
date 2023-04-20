@@ -58,22 +58,22 @@ function RecipeDetails({ data }) {
             </p>
           </div>
           <div className="ingredients-header">
-          <h2 className="ingredients-title">Ingredients</h2>
+            <h2 className="ingredients-title">Ingredients</h2>
             <div className="yield-selector">
-            <button type="button" className="remove">
-              <i className="bi bi-dash-lg" />
-            </button>
-            <input type="number" value={data.yield} />
-            <button type="button" className="add">
-              <i className="bi bi-plus-lg" />
-            </button>
+              <button type="button" className="remove">
+                <i className="bi bi-dash-lg" />
+              </button>
+              <input type="number" value={data.yield} />
+              <button type="button" className="add">
+                <i className="bi bi-plus-lg" />
+              </button>
+            </div>
           </div>
-        </div>
-        <ul className="ingredients-list">
+          <ul className="ingredients-list">
             {data.ingredients.map((ingredient) => (
               <li key={ingredient.id}>
                 <div className="input-checkbox input-checkbox--md">
-                <label htmlFor={ingredient.id}>
+                  <label htmlFor={ingredient.id}>
                     <input
                       className="checkmark"
                       type="checkbox"
@@ -81,12 +81,12 @@ function RecipeDetails({ data }) {
                       name={ingredient.food}
                     />
                     <div className="checkbox" />
-                  {truncateNumber(ingredient.quantity)}{" "}
+                    {truncateNumber(ingredient.quantity)}{" "}
                     {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
                     {ingredient.food}
                   </label>
                 </div>
-            </li>
+              </li>
             ))}
           </ul>
         </div>
