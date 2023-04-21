@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Footer from "../components/Footer";
 
 export default function Search() {
   const [recipeData, setRecipeData] = useState();
@@ -10,8 +11,8 @@ export default function Search() {
       axios
         .get(
           `https://api.edamam.com/api/recipes/v2?type=public&q="bread"&app_id=${
-            import.meta.env.VITE_APP_ID_CF
-          }&app_key=${import.meta.env.VITE_APP_KEY_CF}`
+            import.meta.env.VITE_APP_ID_JC
+          }&app_key=${import.meta.env.VITE_APP_KEY_JC}`
         )
         .then((response) => {
           setRecipeData(response.data.hits);
@@ -31,6 +32,7 @@ export default function Search() {
           {isLoaded ? <p>{recipeData[0].recipe.label}</p> : <p>Loading...</p>}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

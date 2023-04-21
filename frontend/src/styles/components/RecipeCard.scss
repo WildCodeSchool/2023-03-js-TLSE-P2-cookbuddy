@@ -1,0 +1,126 @@
+@import "../App.scss";
+
+.recipe-card {
+  @include shadow--xs();
+  border: 1px solid $color--grey--200;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+
+  .thumbnail {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .details {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    h3 {
+      @extend %text--lg;
+      font-weight: 500;
+      color: $color--grey--800;
+      text-transform: capitalize;
+    }
+    .recipe-infos {
+      color: $color--grey--500;
+      display: flex;
+      gap: 8px;
+      li {
+        display: flex;
+        gap: 8px;
+        &.meal-type {
+          text-transform: capitalize;
+        }
+      }
+    }
+    button {
+      @extend %action-button;
+      @extend %action-button--sm;
+      @extend %action-button--primary--solid;
+      display: none;
+    }
+  }
+}
+
+.recipe-list.home {
+  .recipe-card {
+    flex-direction: column;
+
+    .thumbnail {
+      width: 100%;
+      height: 25vh;
+    }
+    .details {
+      .recipe-infos {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.recipe-list.search {
+  .recipe-card {
+    flex-direction: row;
+
+    .thumbnail {
+      flex-basis: calc(100% / 5 * 2);
+      height: 100%;
+    }
+    .details {
+      flex-basis: calc(100% / 5 * 3);
+      .recipe-infos {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .recipe-list.home {
+    .recipe-card {
+      flex-direction: row;
+
+      .thumbnail {
+        flex-basis: calc(100% / 5 * 2);
+        height: 100%;
+      }
+      .details {
+        flex-basis: calc(100% / 5 * 3);
+        .recipe-infos {
+          flex-direction: column;
+        }
+        button {
+          display: inline-flex;
+          justify-self: end;
+        }
+      }
+    }
+  }
+  .recipe-list.search {
+    .recipe-card {
+      display: inline;
+      // flex-direction: column;
+
+      .thumbnail {
+        flex-basis: inherit;
+        width: 100%;
+        height: 20vh;
+      }
+      .details {
+        .recipe-infos {
+          flex-direction: column;
+        }
+        button {
+          display: inline-flex;
+          justify-self: end;
+        }
+      }
+    }
+  }
+}
