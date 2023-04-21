@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
 
@@ -58,6 +59,7 @@ export default function Home() {
       </header>
       <main>
         <div className="container">
+          <DishTypes />
           <section id="chef-suggestion">
             <h2>Chef’s suggestions</h2>
             {isLoaded ? (

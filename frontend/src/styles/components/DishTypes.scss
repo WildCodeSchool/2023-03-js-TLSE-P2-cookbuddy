@@ -1,0 +1,48 @@
+@import "../App.scss";
+
+.dish-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 12px;
+  max-width: 100%;
+  overflow: hidden;
+  h2 {
+    @extend %title--xs;
+    font-family: $font-family--accent;
+    font-weight: 500;
+    color: $color--grey--700;
+  }
+  .dish-types-container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .dish-types {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+    &::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dish-container {
+    .dish-types-container {
+      width: 100%;
+      .dish-types {
+        width: 100%;
+        display: flex;
+        overflow-x: initial;
+        gap: 10px;
+      }
+    }
+  }
+}
