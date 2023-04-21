@@ -1,24 +1,27 @@
 @import "../App.scss";
 
-.container {
-  max-width: 100%;
-}
-
-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-  width: 80px;
-  height: 80px;
-  p {
-    display: none;
-  }
-}
-
 .dish-container {
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    width: 25vw;
+    height: 25vw;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 25vw;
+    p {
+      display: none;
+    }
+    img {
+      width: 60%;
+    }
+  }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -62,7 +65,7 @@ button {
   background: transparent;
 }
 @media screen and (min-width: 768px) {
-  .container {
+  .dish-container {
     .dish-types-container {
       width: 100%;
     }
@@ -75,7 +78,7 @@ button {
     .btntxt {
         flex: 1;
       .dsktxt {
-        color: white;
+        color: $color--white;
       }
       .mbltxt{
           display: none;
@@ -86,10 +89,11 @@ button {
       width: initial;
       height: 80px;
       width: 100%;
-    }
-    img {
-      height: 40px;
-      width: 40px;
+      max-width: initial;
+      img {
+        height: 40px;
+        width: 40px;
+      }
     }
   }
 }

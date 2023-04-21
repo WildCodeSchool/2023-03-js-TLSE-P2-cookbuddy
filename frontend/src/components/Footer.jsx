@@ -7,7 +7,9 @@ export default function Footer() {
     <footer>
       <div className="footer-container">
         <Link to="/" className="logo" />
-        <div className="wild">Made with ❤️ in Toulouse</div>
+        <div className="wild">
+          Made with <i className="bi bi-balloon-heart-fill" /> in Toulouse
+        </div>
         <div id="edamam-badge" data-color="badge" />
       </div>
     </footer>

@@ -39,9 +39,9 @@ export default function Home() {
       axios
         .get(
           `https://api.edamam.com/api/recipes/v2?type=public&app_id=${
-            import.meta.env.VITE_APP_ID_JC
+            import.meta.env.VITE_APP_ID_CF
           }&app_key=${
-            import.meta.env.VITE_APP_KEY_JC
+            import.meta.env.VITE_APP_KEY_CF
           }&mealType=${mealSearchType}&time=1%2B&imageSize=LARGE&random=true`
         )
         .then((response) => {
@@ -57,14 +57,9 @@ export default function Home() {
       <header>
         <p>CookBuddy</p>
       </header>
-      <div>
-        <div className="container">
-          <DishTypes />
-        </div>
-        {isLoaded ? <p>{recipesData[0].recipe.label}</p> : <p>Loading...</p>}
-      </div>
       <main>
         <div className="container">
+          <DishTypes />
           <section id="chef-suggestion">
             <h2>Chef’s suggestions</h2>
             {isLoaded ? (
