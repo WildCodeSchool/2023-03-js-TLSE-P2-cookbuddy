@@ -62,7 +62,7 @@ export default function Home() {
         <div className="container">
           <DishTypes />
           <section id="chef-suggestion">
-            <h2>Chef’s suggestions</h2>
+            <h2>Chef's suggestions</h2>
             {isLoaded ? (
               <RecipesList data={recipesData} listClass="home" />
             ) : (
