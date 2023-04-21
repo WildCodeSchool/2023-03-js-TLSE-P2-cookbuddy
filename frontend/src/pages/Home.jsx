@@ -5,6 +5,7 @@ import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
 
 import "../styles/Home.scss";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   const [recipesData, setRecipesData] = useState([]);
@@ -55,13 +56,13 @@ export default function Home() {
   return (
     <>
       <header>
-        <p>CookBuddy</p>
+        <NavBar />
       </header>
       <main>
         <div className="container">
           <DishTypes />
           <section id="chef-suggestion">
-            <h2>Chef’s suggestions</h2>
+            <h2>Chef's suggestions</h2>
             {isLoaded ? (
               <RecipesList data={recipesData} listClass="home" />
             ) : (
