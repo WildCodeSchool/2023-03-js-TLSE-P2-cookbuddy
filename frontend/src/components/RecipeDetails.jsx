@@ -1,12 +1,14 @@
 import "../styles/components/RecipeDetails.scss";
 import PropTypes from "prop-types";
+import IngredientListItem from "./IngredientListItem";
+import RecipeNutrientFat from "./RecipeNutrientFat";
+import RecipeNutrientCarbs from "./RecipeNutrientCarbs";
+import RecipeNutrientProtein from "./RecipeNutrientProtein";
+import RecipeNutrientFiber from "./RecipeNutrientFiber";
 
 function RecipeDetails({ data }) {
   function numberRounded(num) {
     return Math.round(num);
-  }
-  function truncateNumber(num) {
-    return Number.isInteger(num) ? num.toString() : num.toFixed(2);
   }
   return (
     <div className="recipe-container">
@@ -35,27 +37,14 @@ function RecipeDetails({ data }) {
               <i className="bi bi-globe-americas" /> {data.cuisineType}
             </p>
           </div>
-          <div className="recipe-nutrients">
-            <p>
-              {data.totalNutrients.FAT.label}{" "}
-              {numberRounded(data.totalNutrients.FAT.quantity)}
-              {data.totalNutrients.PROCNT.unit}
-            </p>
-            <p>
-              {data.totalNutrients.PROCNT.label}{" "}
-              {numberRounded(data.totalNutrients.PROCNT.quantity)}
-              {data.totalNutrients.PROCNT.unit}
-            </p>
-            <p>
-              {data.totalNutrients.CHOCDF.label}{" "}
-              {numberRounded(data.totalNutrients.CHOCDF.quantity)}
-              {data.totalNutrients.PROCNT.unit}
-            </p>
-            <p>
-              {data.totalNutrients.FIBTG.label}{" "}
-              {numberRounded(data.totalNutrients.FIBTG.quantity)}
-              {data.totalNutrients.PROCNT.unit}
-            </p>
+          <div className="recipe-nutrients-container">
+            <h2>Nutrition</h2>
+            <div className="recipe-nutrients">
+              <RecipeNutrientFat data={data.totalNutrients.FAT} />
+              <RecipeNutrientProtein data={data.totalNutrients.PROCNT} />
+              <RecipeNutrientCarbs data={data.totalNutrients.CHOCDF} />
+              <RecipeNutrientFiber data={data.totalNutrients.FIBTG} />
+            </div>
           </div>
           <div className="ingredients-header">
             <h2 className="ingredients-title">Ingredients</h2>
@@ -71,28 +60,16 @@ function RecipeDetails({ data }) {
           </div>
           <ul className="ingredients-list">
             {data.ingredients.map((ingredient) => (
-              <li key={ingredient.id}>
-                <div className="input-checkbox input-checkbox--md">
-                  <label htmlFor={ingredient.id}>
-                    <input
-                      className="checkmark"
-                      type="checkbox"
-                      id={ingredient.id}
-                      name={ingredient.food}
-                    />
-                    <div className="checkbox" />
-                    {truncateNumber(ingredient.quantity)}{" "}
-                    {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
-                    {ingredient.food}
-                  </label>
-                </div>
-              </li>
+              <IngredientListItem key={ingredient.id} ingredient={ingredient} />
             ))}
           </ul>
+          <button
+            className="action-button--xl action-button--full recipe-instructions"
+            type="button"
+          >
+            Discover the instructions <i className="bi bi-box-arrow-up-right" />
+          </button>
         </div>
-        <button className="action-button--xl action-button--full" type="button">
-          Discover the instructions <i className="bi bi-box-arrow-up-right" />
-        </button>
       </div>
     </div>
   );
