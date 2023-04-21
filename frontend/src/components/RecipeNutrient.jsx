@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function RecipeNutrientFiber({ data }) {
+function RecipeNutrient({ data }) {
   function numberRounded(num) {
     return Math.round(num);
   }
@@ -11,11 +11,11 @@ function RecipeNutrientFiber({ data }) {
     </p>
   );
 }
-RecipeNutrientFiber.propTypes = {
+RecipeNutrient.propTypes = {
   data: PropTypes.shape({
     label: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
     unit: PropTypes.string.isRequired,
   }).isRequired,
 };
-export default RecipeNutrientFiber;
+export default RecipeNutrient;

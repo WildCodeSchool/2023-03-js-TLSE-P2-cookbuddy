@@ -1,10 +1,7 @@
 import "../styles/components/RecipeDetails.scss";
 import PropTypes from "prop-types";
 import IngredientListItem from "./IngredientListItem";
-import RecipeNutrientFat from "./RecipeNutrientFat";
-import RecipeNutrientCarbs from "./RecipeNutrientCarbs";
-import RecipeNutrientProtein from "./RecipeNutrientProtein";
-import RecipeNutrientFiber from "./RecipeNutrientFiber";
+import RecipeNutrient from "./RecipeNutrient";
 
 function RecipeDetails({ data }) {
   function numberRounded(num) {
@@ -40,10 +37,10 @@ function RecipeDetails({ data }) {
           <div className="recipe-nutrients-container">
             <h2>Nutrition</h2>
             <div className="recipe-nutrients">
-              <RecipeNutrientFat data={data.totalNutrients.FAT} />
-              <RecipeNutrientProtein data={data.totalNutrients.PROCNT} />
-              <RecipeNutrientCarbs data={data.totalNutrients.CHOCDF} />
-              <RecipeNutrientFiber data={data.totalNutrients.FIBTG} />
+              <RecipeNutrient data={data.totalNutrients.FAT} />
+              <RecipeNutrient data={data.totalNutrients.PROCNT} />
+              <RecipeNutrient data={data.totalNutrients.CHOCDF} />
+              <RecipeNutrient data={data.totalNutrients.FIBTG} />
             </div>
           </div>
           <div className="ingredients-header">
