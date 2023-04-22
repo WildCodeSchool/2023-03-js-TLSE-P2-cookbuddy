@@ -10,12 +10,12 @@ footer {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 1rem;
+  padding: 2rem 1rem;
   display: flex;
   align-items: center;
   color: $color--grey--400;
   justify-content: space-between;
-  gap: 8px;
+  gap: 1rem;
   flex-direction: column;
   .logo {
     display: block;
@@ -36,6 +36,7 @@ footer {
   .footer-container {
     max-width: 720px;
     flex-direction: row;
+    padding: 1rem;
   }
 }
 
