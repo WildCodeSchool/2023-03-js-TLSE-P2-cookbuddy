@@ -8,7 +8,7 @@ export default function NavBar() {
         <div className="navbar">
           <img
             className="logo"
-            src="./src/assets/logo-color-full.svg"
+            src="assets/logo/logo-color-full.svg"
             alt="logo Cook Buddy"
           />
 
