@@ -2,11 +2,10 @@ import "../styles/components/RecipeDetails.scss";
 import PropTypes from "prop-types";
 import IngredientListItem from "./IngredientListItem";
 import RecipeNutrient from "./RecipeNutrient";
+import RecipePageButton from "./RecipePageButton";
+import RecipeInfos from "./RecipeInfos";
 
 function RecipeDetails({ data }) {
-  function numberRounded(num) {
-    return Math.round(num);
-  }
   return (
     <div className="recipe-container">
       <div className="recipe-details">
@@ -18,22 +17,12 @@ function RecipeDetails({ data }) {
         </div>
         <div className="recipe-description">
           <h2 className="recipe-label">{data.label}</h2>
-          <div className="recipe-infos">
-            <p>
-              <i className="bi bi-fire" />{" "}
-              {numberRounded(data.totalNutrients.ENERC_KCAL.quantity)}{" "}
-              {data.totalNutrients.ENERC_KCAL.unit}
-            </p>
-            <p>
-              <i className="bi bi-bookmarks-fill" /> {data.mealType}
-            </p>
-            <p>
-              <i className="bi bi-clock-history" /> {data.totalTime} minutes
-            </p>
-            <p>
-              <i className="bi bi-globe-americas" /> {data.cuisineType}
-            </p>
-          </div>
+          <RecipeInfos
+            data={data.totalNutrients.ENERC_KCAL}
+            mealType={data.mealType}
+            totalTime={data.totalTime}
+            cuisineType={data.cuisineType}
+          />
           <div className="recipe-nutrients-container">
             <h2>Nutrition</h2>
             <div className="recipe-nutrients">
@@ -60,12 +49,7 @@ function RecipeDetails({ data }) {
               <IngredientListItem key={ingredient.id} ingredient={ingredient} />
             ))}
           </ul>
-          <button
-            className="action-button--xl action-button--full recipe-instructions"
-            type="button"
-          >
-            Discover the instructions <i className="bi bi-box-arrow-up-right" />
-          </button>
+          <RecipePageButton data={data.url} />
         </div>
       </div>
     </div>
@@ -74,10 +58,11 @@ function RecipeDetails({ data }) {
 
 RecipeDetails.propTypes = {
   data: PropTypes.shape({
+    url: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    mealType: PropTypes.string.isRequired,
-    cuisineType: PropTypes.string.isRequired,
+    mealType: PropTypes.arrayOf(PropTypes.string).isRequired,
+    cuisineType: PropTypes.arrayOf(PropTypes.string).isRequired,
     totalTime: PropTypes.number.isRequired,
     totalNutrients: PropTypes.shape({
       ENERC_KCAL: PropTypes.shape({
