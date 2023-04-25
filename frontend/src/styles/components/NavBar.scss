@@ -53,10 +53,8 @@ button.dark-mode {
   display: flex;
   justify-content: center;
   align-items: center;
-margin-top: -21px;
-
+  margin-top: -21px;
 }
-
 
 .filter {
   @extend %action-button;
@@ -111,7 +109,7 @@ margin-top: -21px;
     position: relative;
   }
 
-.search-container {
+  .search-container {
     width: 100%;
     z-index: 1;
     margin-top: -21px;
