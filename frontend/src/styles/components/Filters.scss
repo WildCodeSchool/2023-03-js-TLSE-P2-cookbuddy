@@ -1,0 +1,154 @@
+@import "../App.scss";
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding-top: 20vh;
+
+  overflow-y: scroll;
+
+  .modal__filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $color--grey--900;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .modal__container {
+    background-color: $color--white;
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+    .mobile-drag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.25rem 0 0.875rem 0;
+      &::after {
+        content: "";
+        height: 6px;
+        width: 100px;
+        display: block;
+        background-color: $color--grey--200;
+        border-radius: 5px;
+      }
+    }
+    .filters__container {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      .input--search-bar {
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 21 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.1777 12.9299C16.1661 11.5841 16.75 9.92275 16.75 8.125C16.75 3.63769 13.1123 0 8.625 0C4.13769 0 0.5 3.63769 0.5 8.125C0.5 12.6123 4.13769 16.25 8.625 16.25C10.4232 16.25 12.085 15.6658 13.4309 14.6769L13.4299 14.6777C13.4667 14.7277 13.5078 14.7756 13.553 14.8208L18.3661 19.6339C18.8543 20.122 19.6457 20.122 20.1339 19.6339C20.622 19.1457 20.622 18.3543 20.1339 17.8661L15.3208 13.053C15.2756 13.0078 15.2277 12.9667 15.1777 12.9299ZM15.5 8.125C15.5 11.922 12.422 15 8.625 15C4.82804 15 1.75 11.922 1.75 8.125C1.75 4.32804 4.82804 1.25 8.625 1.25C12.422 1.25 15.5 4.32804 15.5 8.125Z' fill='%23667085'/%3E%3C/svg%3E%0A");
+        background-position: left 8px center;
+        background-repeat: no-repeat;
+        padding: 8px 12px 8px 36px;
+        @include shadow--xs();
+      }
+      .filters__line {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .filters__list {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+          overflow-x: scroll;
+          margin: 0 -1rem;
+          padding: 0 1rem;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          .filter__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            .filter--square {
+              height: 17vw;
+              width: 17vw;
+              min-height: 4rem;
+              min-width: 4rem;
+              max-width: 8rem;
+              max-height: 8rem;
+              border: 1px solid $color--grey--200;
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              @include shadow--xs();
+              transition: background-color 0.2s ease-in-out;
+
+              &.active{
+                background-color: $color--primary--500;
+              }
+
+              img {
+                height: 9vw;
+                width: 9vw;
+                min-width: 2.25rem;
+                min-height: 2.25rem;
+                max-width: 5rem;
+                max-height: 5rem;
+                object-fit: cover;
+              }
+            }
+            p {
+              @extend .text--xs;
+              text-align: center;
+            }
+          }
+        }
+        button.see-more{
+          @extend %action-button;
+          @extend %action-button--lg;
+          @extend %action-button--grey--solid;
+        }
+      }
+      p {
+        @extend .text--sm;
+        color: $color--grey--700;
+        font-weight: 500;
+      }
+    }
+
+    .buttons-line {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      position: sticky;
+      border-top: 1px solid $color--grey--200;
+      padding: 1rem;
+      background-color: $color--white;
+      .search {
+        @extend %action-button;
+        @extend %action-button--xl;
+        @extend %action-button--primary--solid;
+        width: 100%;
+        flex-grow: 2;
+      }
+      .reset {
+        flex-shrink: 0;
+        @extend %action-button;
+        @extend %action-button--xl;
+        @extend %action-button--primary--border;
+      }
+    }
+  }
+}

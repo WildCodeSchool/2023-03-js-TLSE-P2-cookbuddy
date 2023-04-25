@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/App.scss";
 import "../styles/components/DishTypes.scss";
 import CategoryButton from "./CategoryButton";
-import categoryButtons from "../utils";
+import { categoryButtons } from "../utils";
 
 export default function DishTypes() {
   return (

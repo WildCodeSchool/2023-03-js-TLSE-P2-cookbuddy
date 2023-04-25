@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 
 import "../styles/Home.scss";
 import NavBar from "../components/NavBar";
+import Filters from "../components/Filters";
 
 export default function Home() {
   const [recipesData, setRecipesData] = useState([]);
@@ -72,6 +73,7 @@ export default function Home() {
         </div>
       </main>
       <Footer />
+      <Filters />
     </>
   );
 }
