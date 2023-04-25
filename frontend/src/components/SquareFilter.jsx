@@ -1,10 +1,17 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export default function SquareFilter({ data }) {
+export default function SquareFilter({ data, setFiltersList }) {
   const [isActive, setIsActive] = useState(false);
+  const activateFilter = () => {
+    setIsActive(!isActive);
+    setFiltersList((prevState) => ({
+      ...prevState,
+      [data.filter]: !isActive,
+    }));
+  };
   return (
-    <div className="filter__item" onClick={() => setIsActive(!isActive)}>
+    <li className="filter__item" onClick={activateFilter} aria-hidden>
       <div className={`filter--square${isActive ? " active" : ""}`}>
         <img
           src={isActive ? data.src_white : data.src_green}
@@ -12,13 +19,15 @@ export default function SquareFilter({ data }) {
         />
       </div>
       <p>{data.name}</p>
-    </div>
+    </li>
   );
 }
 SquareFilter.propTypes = {
+  setFiltersList: PropTypes.func.isRequired,
   data: PropTypes.shape({
     name: PropTypes.string.isRequired,
     src_green: PropTypes.string.isRequired,
     src_white: PropTypes.string.isRequired,
+    filter: PropTypes.string.isRequired,
   }).isRequired,
 };

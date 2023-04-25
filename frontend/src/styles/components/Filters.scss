@@ -95,7 +95,7 @@
               @include shadow--xs();
               transition: background-color 0.2s ease-in-out;
 
-              &.active{
+              &.active {
                 background-color: $color--primary--500;
               }
 
@@ -115,7 +115,7 @@
             }
           }
         }
-        button.see-more{
+        button.see-more {
           @extend %action-button;
           @extend %action-button--lg;
           @extend %action-button--grey--solid;

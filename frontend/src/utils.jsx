@@ -33,6 +33,7 @@ export const dietsFilters = [
     src_white: "./assets/icons/fish-white.svg",
     src_green: "./assets/icons/fish-green.svg",
     search: "pescatarian",
+    filter: "pescatarian",
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ export const dietsFilters = [
     src_white: "./assets/icons/carrot-white.svg",
     src_green: "./assets/icons/carrot-green.svg",
     search: "vegetarian",
+    filter: "vegetarian",
   },
   {
     id: 3,
@@ -47,6 +49,7 @@ export const dietsFilters = [
     src_white: "./assets/icons/leaf-white.svg",
     src_green: "./assets/icons/leaf-green.svg",
     search: "vegan",
+    filter: "vegan",
   },
   {
     id: 4,
@@ -54,6 +57,7 @@ export const dietsFilters = [
     src_white: "./assets/icons/pork-white.svg",
     src_green: "./assets/icons/pork-green.svg",
     search: "pork-free",
+    filter: "porkFree",
   },
   {
     id: 5,
@@ -61,6 +65,7 @@ export const dietsFilters = [
     src_white: "./assets/icons/wine-white.svg",
     src_green: "./assets/icons/wine-green.svg",
     search: "alcohol-free",
+    filter: "alcoholFree",
   },
 ];
 
@@ -71,6 +76,7 @@ export const allergiesFilters = [
     src_white: "./assets/icons/wheat-white.svg",
     src_green: "./assets/icons/wheat-green.svg",
     search: "gluten-free",
+    filter: "glutenFree",
   },
   {
     id: 2,
@@ -78,6 +84,7 @@ export const allergiesFilters = [
     src_white: "./assets/icons/milk-white.svg",
     src_green: "./assets/icons/milk-green.svg",
     search: "dairy-free",
+    filter: "dairyFree",
   },
   {
     id: 3,
@@ -85,6 +92,7 @@ export const allergiesFilters = [
     src_white: "./assets/icons/egg-white.svg",
     src_green: "./assets/icons/egg-green.svg",
     search: "eggs-free",
+    filter: "eggsFree",
   },
   {
     id: 4,
@@ -92,6 +100,7 @@ export const allergiesFilters = [
     src_white: "./assets/icons/peanut-white.svg",
     src_green: "./assets/icons/peanut-green.svg",
     search: "peanut-free",
+    filter: "peanutFree",
   },
   {
     id: 5,
@@ -99,5 +108,6 @@ export const allergiesFilters = [
     src_white: "./assets/icons/shrimp-white.svg",
     src_green: "./assets/icons/shrimp-green.svg",
     search: "	crustacean-free",
+    filter: "	crustaceanFree",
   },
 ];
