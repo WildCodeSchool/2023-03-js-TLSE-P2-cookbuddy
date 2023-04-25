@@ -1,6 +1,5 @@
 import "../styles/App.scss";
 import "../styles/components/NavBar.scss";
-import logo from "../assets/logo-color-full.svg";
 
 export default function NavBar() {
   return (
