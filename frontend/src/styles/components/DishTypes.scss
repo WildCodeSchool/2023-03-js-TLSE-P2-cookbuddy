@@ -26,9 +26,10 @@
     display: flex;
     overflow-x: scroll;
     gap: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     &::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
+      display: none;
     }
   }
 }
