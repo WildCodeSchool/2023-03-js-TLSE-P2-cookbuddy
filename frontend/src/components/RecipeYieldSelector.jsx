@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 function RecipeYieldSelector({ selectedYield, setSelectedYield }) {
   function handleChange(event) {
     const value = parseInt(event.target.value, 10);
-    setSelectedYield(value >= 1 ? value : 1);
+    setSelectedYield(value >= 1 ? value : "");
   }
 
   function handleIncrement() {
-    setSelectedYield(selectedYield + 1);
+    setSelectedYield((selectedYield === "" ? 0 : selectedYield) + 1);
   }
 
   function handleDecrement() {
     if (selectedYield <= 1) return;
-    setSelectedYield(selectedYield - 1);
+    setSelectedYield((selectedYield === "" ? 0 : selectedYield) - 1);
   }
   return (
     <div className="yield-selector">

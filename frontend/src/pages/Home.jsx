@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import RecipeDetails from "../components/RecipeDetails";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
