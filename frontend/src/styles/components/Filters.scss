@@ -142,11 +142,31 @@
             }
           }
         }
-        button.see-more {
-          @extend %action-button;
-          @extend %action-button--lg;
-          @extend %action-button--grey--solid;
+        .filters__list--inputs{
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 0.5rem;
+          .input-field{
+            flex:1;
+            input{
+              width: 100%;
+            }
+          }
         }
+      }
+      .more-filters.visible {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .more-filters.hidden {
+        display: none;
+      }
+      button.see-more {
+        @extend %action-button;
+        @extend %action-button--lg;
+        @extend %action-button--grey--border;
       }
       p {
         @extend .text--sm;

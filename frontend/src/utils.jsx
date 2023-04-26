@@ -61,7 +61,7 @@ export const dietsFilters = [
     name: "Pork free",
     src_white: "./assets/icons/pork-white.svg",
     src_green: "./assets/icons/pork-green.svg",
-    searchQuery: "porkFree",
+    searchQuery: "pork-free",
     category: "health",
   },
   {
@@ -69,7 +69,7 @@ export const dietsFilters = [
     name: "Alcohol free",
     src_white: "./assets/icons/wine-white.svg",
     src_green: "./assets/icons/wine-green.svg",
-    searchQuery: "alcoholFree",
+    searchQuery: "alcohol-free",
     category: "health",
   },
 ];
@@ -80,7 +80,7 @@ export const allergiesFilters = [
     name: "Gluten",
     src_white: "./assets/icons/wheat-white.svg",
     src_green: "./assets/icons/wheat-green.svg",
-    searchQuery: "glutenFree",
+    searchQuery: "gluten-free",
     category: "health",
   },
   {
@@ -88,7 +88,7 @@ export const allergiesFilters = [
     name: "Dairy",
     src_white: "./assets/icons/milk-white.svg",
     src_green: "./assets/icons/milk-green.svg",
-    searchQuery: "dairyFree",
+    searchQuery: "dairy-free",
     category: "health",
   },
   {
@@ -96,7 +96,7 @@ export const allergiesFilters = [
     name: "Eggs",
     src_white: "./assets/icons/egg-white.svg",
     src_green: "./assets/icons/egg-green.svg",
-    searchQuery: "eggsFree",
+    searchQuery: "egg-free",
     category: "health",
   },
   {
@@ -104,7 +104,7 @@ export const allergiesFilters = [
     name: "Peanuts",
     src_white: "./assets/icons/peanut-white.svg",
     src_green: "./assets/icons/peanut-green.svg",
-    searchQuery: "peanutFree",
+    searchQuery: "peanut-free",
     category: "health",
   },
   {
@@ -112,7 +112,7 @@ export const allergiesFilters = [
     name: "Crustacean",
     src_white: "./assets/icons/shrimp-white.svg",
     src_green: "./assets/icons/shrimp-green.svg",
-    searchQuery: "crustaceanFree",
+    searchQuery: "crustacean-free",
     category: "health",
   },
 ];
