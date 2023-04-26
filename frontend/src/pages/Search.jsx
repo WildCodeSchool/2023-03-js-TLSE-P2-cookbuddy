@@ -11,31 +11,25 @@ export default function Search() {
   const apiURLtable = [
     "https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true",
   ];
-  apiURLtable.push(
-    searchParams.get("q") ? `q=${searchParams.get("q")} ` : null
-  );
+  if (searchParams.get("q")) {
+    apiURLtable.push(`q=${searchParams.get("q")}`);
+  }
   apiURLtable.push(`app_id=${import.meta.env.VITE_APP_ID_CF}`);
   apiURLtable.push(`app_key=${import.meta.env.VITE_APP_KEY_CF}`);
+  if (searchParams.get("health")) {
+    apiURLtable.push(`health=${searchParams.get("health")}`);
+  }
+  if (searchParams.get("cuisineType")) {
+    apiURLtable.push(`cuisineType=${searchParams.get("cuisineType")}`);
+  }
+  if (searchParams.get("mealType")) {
+    apiURLtable.push(`mealType=${searchParams.get("mealType")}`);
+  }
   apiURLtable.push(
-    searchParams.get("health") ? `health=${searchParams.get("health")} ` : null
-  );
-  apiURLtable.push(
-    searchParams.get("cuisineType")
-      ? `cuisineType=${searchParams.get("cuisineType")}`
-      : null
-  );
-  apiURLtable.push(
-    searchParams.get("mealType")
-      ? `mealType=${searchParams.get("mealType")}`
-      : null
-  );
-  apiURLtable.push(
-    searchParams.get("time")
-      ? ` time=${searchParams.get("time")} `
-      : "time=1%2B"
+    searchParams.get("time") ? `time=${searchParams.get("time")}` : "time=1%2B"
   );
 
-  const apiURL = apiURLtable.filter((x) => x).join("&");
+  const apiURL = apiURLtable.join("&");
 
   useEffect(() => {
     const getRecipesData = () => {
