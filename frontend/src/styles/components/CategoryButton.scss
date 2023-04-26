@@ -1,6 +1,9 @@
 @import "../App.scss";
 
 .dish-container {
+  a {
+    text-decoration: none;
+  }
   button {
     display: flex;
     flex-direction: row;
