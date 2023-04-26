@@ -1,7 +1,8 @@
 import "../styles/App.scss";
 import "../styles/components/NavBar.scss";
+import PropTypes from "prop-types";
 
-export default function NavBar() {
+export default function NavBar({ setAreFiltersVisible }) {
   return (
     <>
       <div className="header-container">
@@ -17,7 +18,11 @@ export default function NavBar() {
           </button>
         </div>
       </div>
-      <div className="search-container">
+      <div
+        className="search-container"
+        onClick={() => setAreFiltersVisible(true)}
+        aria-hidden
+      >
         <input
           className="input--search-bar"
           type="text"
@@ -27,3 +32,7 @@ export default function NavBar() {
     </>
   );
 }
+
+NavBar.propTypes = {
+  setAreFiltersVisible: PropTypes.func.isRequired,
+};

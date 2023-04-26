@@ -2,23 +2,83 @@ import { Link } from "react-router-dom";
 import "../styles/components/Filters.scss";
 import "../styles/App.scss";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-import { dietsFilters, allergiesFilters } from "../utils";
+import {
+  dietsFilters,
+  allergiesFilters,
+  mealTypesFilters,
+  cuisineTypesFilters,
+} from "../utils";
 import SquareFilter from "./SquareFilter";
+import RoundFilter from "./RoundFilter";
 
-export default function Filters() {
+export default function Filters({ setAreFiltersVisible }) {
+  const [isCleared, setIsCleared] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchQuery = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   const [filtersList, setFiltersList] = useState(() => {
     const initialFilters = {};
 
-    [...dietsFilters, ...allergiesFilters].forEach((filter) => {
-      initialFilters[filter.filter] = false;
+    [
+      ...dietsFilters,
+      ...allergiesFilters,
+      ...mealTypesFilters,
+      ...cuisineTypesFilters,
+    ].forEach((filter) => {
+      initialFilters[filter.searchQuery] = {
+        isActive: false,
+        category: filter.category,
+      };
     });
 
     return initialFilters;
   });
+  let searchQueryUrl = [];
+  if (searchQuery) {
+    searchQueryUrl.push(`q=${searchQuery}`);
+  }
+
+  let key = null;
+  for (key in filtersList) {
+    if (filtersList[key].isActive) {
+      searchQueryUrl.push(`${filtersList[key].category}=${key}`);
+    }
+  }
+  searchQueryUrl = searchQueryUrl.join("&");
+
+  const handleClearFilters = () => {
+    setSearchQuery("");
+    setIsCleared(true);
+    setFiltersList(() => {
+      const initialFilters = {};
+
+      [
+        ...dietsFilters,
+        ...allergiesFilters,
+        ...mealTypesFilters,
+        ...cuisineTypesFilters,
+      ].forEach((filter) => {
+        initialFilters[filter.searchQuery] = {
+          isActive: false,
+          category: filter.category,
+        };
+      });
+
+      return initialFilters;
+    });
+  };
   return (
     <div className="modal">
-      <div className="modal__filter" />
+      <div
+        className="modal__filter"
+        onClick={() => setAreFiltersVisible(false)}
+        aria-hidden
+      />
       <div className="modal__container">
         <div className="mobile-drag" />
         <div className="filters__container">
@@ -28,6 +88,8 @@ export default function Filters() {
                 type="text"
                 className="input--search-bar"
                 placeholder="Enter ingredients or recipe"
+                onChange={handleSearchQuery}
+                value={searchQuery}
               />
             </div>
           </div>
@@ -39,7 +101,8 @@ export default function Filters() {
                   data={filter}
                   key={filter.id}
                   setFiltersList={setFiltersList}
-                  filtersList={filtersList}
+                  setIsCleared={setIsCleared}
+                  isCleared={isCleared}
                 />
               ))}
             </div>
@@ -52,6 +115,8 @@ export default function Filters() {
                   data={filter}
                   key={filter.id}
                   setFiltersList={setFiltersList}
+                  setIsCleared={setIsCleared}
+                  isCleared={isCleared}
                 />
               ))}
             </ul>
@@ -64,16 +129,38 @@ export default function Filters() {
           </div>
           <div className="filters__line">
             <p>Dish types</p>
+            <ul className="filters__list--wrap">
+              {mealTypesFilters.map((filter) => (
+                <RoundFilter
+                  data={filter}
+                  key={filter.id}
+                  setFiltersList={setFiltersList}
+                  setIsCleared={setIsCleared}
+                  isCleared={isCleared}
+                />
+              ))}
+            </ul>
           </div>
           <div className="filters__line">
-            <p>Cuisines types</p>
+            <p>Cuisine types</p>
+            <ul className="filters__list--wrap">
+              {cuisineTypesFilters.map((filter) => (
+                <RoundFilter
+                  data={filter}
+                  key={filter.id}
+                  setFiltersList={setFiltersList}
+                  setIsCleared={setIsCleared}
+                  isCleared={isCleared}
+                />
+              ))}
+            </ul>
           </div>
         </div>
         <div className="buttons-line">
-          <button className="reset" type="button">
+          <button className="reset" type="button" onClick={handleClearFilters}>
             Clear all
           </button>
-          <Link to="/search" className="search">
+          <Link to={`/search?${searchQueryUrl}`} className="search">
             Search
             <i className="bi bi-chevron-right" />
           </Link>
@@ -82,3 +169,7 @@ export default function Filters() {
     </div>
   );
 }
+
+Filters.propTypes = {
+  setAreFiltersVisible: PropTypes.func.isRequired,
+};

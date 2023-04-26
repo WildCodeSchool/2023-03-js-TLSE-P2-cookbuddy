@@ -26,13 +26,18 @@
     width: 100%;
     background-color: $color--grey--900;
     opacity: 0.3;
-    z-index: -1;
+    animation: modal-mobile-show-filter 0.5s ease-in-out;
   }
 
   .modal__container {
     background-color: $color--white;
     width: 100%;
     border-radius: 1rem 1rem 0 0;
+    animation: modal-mobile-show-container 0.5s ease-out;
+    z-index: 20;
+    overflow-y: scroll;
+    margin-bottom: 83px;
+    max-height: 80vh;
     .mobile-drag {
       display: flex;
       align-items: center;
@@ -112,6 +117,28 @@
             p {
               @extend .text--xs;
               text-align: center;
+              color: $color--grey--700;
+            }
+          }
+        }
+        .filters__list--wrap {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          .filter--round {
+            padding: 0.5rem 1rem;
+
+            @extend .text--sm;
+            border: 1px solid $color--grey--200;
+            @include shadow--xs();
+            border-radius: 50px;
+            color: $color--grey--600;
+            transition: background-color 0.2s ease-in-out;
+
+            &.active {
+              background-color: $color--primary--500;
+              color: $color--white;
             }
           }
         }
@@ -132,9 +159,11 @@
       display: flex;
       flex-direction: row;
       gap: 8px;
-      position: sticky;
+      position: fixed;
       border-top: 1px solid $color--grey--200;
       padding: 1rem;
+      bottom: 0;
+      width: 100%;
       background-color: $color--white;
       .search {
         @extend %action-button;
@@ -150,5 +179,24 @@
         @extend %action-button--primary--border;
       }
     }
+  }
+}
+
+@keyframes modal-mobile-show-container {
+  from {
+    transform: translateY(+100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes modal-mobile-show-filter {
+  from {
+    opacity: 0;
+    background-color: transparent;
+  }
+  to {
+    opacity: 0.3;
+    background-color: $color--grey--900;
   }
 }

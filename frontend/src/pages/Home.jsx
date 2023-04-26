@@ -54,10 +54,11 @@ export default function Home() {
     getRecipesData();
   }, []);
 
+  const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar setAreFiltersVisible={setAreFiltersVisible} />
       </header>
       <main>
         <div className="container">
@@ -73,7 +74,9 @@ export default function Home() {
         </div>
       </main>
       <Footer />
-      <Filters />
+      {areFiltersVisible && (
+        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+      )}
     </>
   );
 }
