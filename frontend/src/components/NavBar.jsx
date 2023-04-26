@@ -1,7 +1,8 @@
 import "../styles/App.scss";
 import "../styles/components/NavBar.scss";
+import DarkModeToggle from "./DarkModeToggle";
 
-export default function NavBar() {
+export default function NavBar({ theme, setTheme }) {
   return (
     <>
       <div className="header-container">
@@ -11,10 +12,7 @@ export default function NavBar() {
             src="assets/logo/logo-color-full.svg"
             alt="logo Cook Buddy"
           />
-
-          <button className="dark-mode" type="button">
-            <i className="bi bi-moon-fill" />
-          </button>
+          <DarkModeToggle theme={theme} setTheme={setTheme} />
         </div>
       </div>
       <div className="search-container">

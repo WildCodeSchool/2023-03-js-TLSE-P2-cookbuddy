@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import "../styles/Home.scss";
 import NavBar from "../components/NavBar";
 
-export default function Home() {
+export default function Home({ theme, setTheme }) {
   const [recipesData, setRecipesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar theme={theme} setTheme={setTheme} />
       </header>
       <main>
         <div className="container">
