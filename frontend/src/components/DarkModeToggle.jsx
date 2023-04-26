@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/App.scss";
 import "../styles/components/DarkModeToggle.scss";
 
-export default function DarkModeToggle({theme, setTheme}) {
+export default function DarkModeToggle() {
   const [darkMode, setDarkMode] = useState(false);
   const [isActive, setIsActive] = useState(false);
   function handleClick() {
