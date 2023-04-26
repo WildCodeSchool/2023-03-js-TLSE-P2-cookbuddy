@@ -52,7 +52,6 @@ export default function Home() {
     };
     getRecipesData();
   }, []);
-
   return (
     <>
       <header>
