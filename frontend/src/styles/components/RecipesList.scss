@@ -1,0 +1,24 @@
+@import "../App.scss";
+
+.recipe-list {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+  > * {
+    // flex-basis: calc(50% - 6px);
+    flex-basis: 100%;
+  }
+}
+@media screen and (min-width: 576px) {
+  .recipe-list > * {
+    flex-basis: calc(50% - 6px);
+  }
+}
+
+@media screen and (min-width: 992px) {
+    .recipe-list > * {
+        flex-basis: calc(100% / 3 - (24px / 3));
+      }
+}
+

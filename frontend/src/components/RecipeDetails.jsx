@@ -1,15 +1,24 @@
 import "../styles/components/RecipeDetails.scss";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import IngredientListItem from "./IngredientListItem";
 import RecipeNutrient from "./RecipeNutrient";
 import RecipePageButton from "./RecipePageButton";
 import RecipeInfos from "./RecipeInfos";
+import RecipeYieldSelector from "./RecipeYieldSelector";
 
-function RecipeDetails({ data }) {
+function RecipeDetails({ data, setAreRecipeDetailsVisible }) {
+  const [selectedYield, setSelectedYield] = useState(data.yield);
+  const handleButtonClick = () => setAreRecipeDetailsVisible(false);
   return (
     <div className="recipe-container">
+      <div
+        className="recipe-details-filter"
+        onClick={handleButtonClick}
+        aria-hidden
+      />
       <div className="recipe-details">
-        <button className="close" type="button">
+        <button className="close" type="button" onClick={handleButtonClick}>
           <i className="bi bi-x-lg" />
         </button>
         <div className="thumbnail">
@@ -34,19 +43,19 @@ function RecipeDetails({ data }) {
           </div>
           <div className="ingredients-header">
             <h2 className="ingredients-title">Ingredients</h2>
-            <div className="yield-selector">
-              <button type="button" className="remove">
-                <i className="bi bi-dash-lg" />
-              </button>
-              <input type="number" value={data.yield} />
-              <button type="button" className="add">
-                <i className="bi bi-plus-lg" />
-              </button>
-            </div>
+            <RecipeYieldSelector
+              selectedYield={selectedYield}
+              setSelectedYield={setSelectedYield}
+            />
           </div>
           <ul className="ingredients-list">
             {data.ingredients.map((ingredient) => (
-              <IngredientListItem key={ingredient.id} ingredient={ingredient} />
+              <IngredientListItem
+                key={ingredient.id}
+                ingredient={ingredient}
+                initialYield={data.yield}
+                selectedYield={selectedYield}
+              />
             ))}
           </ul>
           <RecipePageButton data={data.url} />
@@ -94,5 +103,6 @@ RecipeDetails.propTypes = {
     yield: PropTypes.number.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
+  setAreRecipeDetailsVisible: PropTypes.func.isRequired,
 };
 export default RecipeDetails;

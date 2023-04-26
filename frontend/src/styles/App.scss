@@ -90,6 +90,7 @@ body {
   font-family: $font-family--main;
   color: $color--grey--900;
   box-sizing: border-box !important;
+  background-color: $color--white;
 }
 
 * {
@@ -401,13 +402,13 @@ BUTTONS
 // BUTTON PRIMARY
 
 %action-button--primary--solid {
-  color: #fff;
+  color: $color--white;
   background-color: $color--primary--600;
   text-decoration: none;
   border: 1px solid $color--primary--600;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--primary--700;
   }
 
@@ -429,7 +430,7 @@ BUTTONS
   background-color: transparent;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--primary--500;
   }
   &:disabled {
@@ -453,14 +454,14 @@ BUTTONS
 // BUTTON GREY
 
 %action-button--grey--solid {
-  color: #fff;
+  color: $color--white;
   background-color: $color--grey--600;
   text-decoration: none;
 
   border: 1px solid $color--grey--600;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--grey--700;
   }
 
@@ -511,13 +512,13 @@ BUTTONS
 // BUTTON ERROR
 
 %action-button--error--solid {
-  color: #fff;
+  color: $color--white;
   background-color: $color--error--600;
   text-decoration: none;
   border: none;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--error--700;
   }
 
@@ -540,7 +541,7 @@ BUTTONS
   background-color: transparent;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--error--500;
   }
 
@@ -571,14 +572,14 @@ BUTTONS
 // BUTTON SUCCESS
 
 %action-button--success--solid {
-  color: #fff;
+  color: $color--white;
   background-color: $color--success--600;
   text-decoration: none;
 
   border: 1px solid $color--success--600;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--success--700;
   }
 
@@ -601,7 +602,7 @@ BUTTONS
   background-color: transparent;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--success--500;
   }
   &:focus {
@@ -631,13 +632,13 @@ BUTTONS
 // BUTTON BLACK
 
 %action-button--black--solid {
-  color: #fff;
+  color: $color--white;
   background-color: $color--grey--900;
   text-decoration: none;
   border: none;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--grey--800;
   }
   &:disabled {
@@ -652,7 +653,7 @@ BUTTONS
   background-color: transparent;
 
   &:hover {
-    color: #fff;
+    color: $color--white;
     background-color: $color--grey--900;
   }
   &:disabled {
@@ -677,7 +678,7 @@ BUTTONS
 
 %action-button--white--solid {
   color: $color--grey--900;
-  background-color: #fff;
+  background-color: $color--white;
   text-decoration: none;
   border: none;
 
@@ -691,14 +692,14 @@ BUTTONS
 }
 
 %action-button--white--border {
-  color: #fff;
+  color: $color--white;
   text-decoration: none;
-  border: 1px solid #fff;
+  border: 1px solid $color--white;
   background-color: transparent;
 
   &:hover {
     color: $color--grey--900;
-    background-color: #fff;
+    background-color: $color--white;
   }
   &:disabled {
     border-color: $color--grey--500;
@@ -706,7 +707,7 @@ BUTTONS
 }
 
 %action-link--white {
-  color: #fff;
+  color: $color--white;
   text-decoration: none;
   background-color: transparent;
 

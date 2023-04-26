@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function IngredientListItem({ ingredient }) {
+function IngredientListItem({ ingredient, initialYield, selectedYield }) {
   function truncateNumber(num) {
     return Number.isInteger(num) ? num.toString() : num.toFixed(2);
   }
@@ -15,7 +15,9 @@ function IngredientListItem({ ingredient }) {
             name={ingredient.food}
           />
           <div className="checkbox" />
-          {truncateNumber(ingredient.quantity)}{" "}
+          {truncateNumber(
+            (ingredient.quantity / initialYield) * selectedYield
+          )}{" "}
           {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
           {ingredient.food}
         </label>
