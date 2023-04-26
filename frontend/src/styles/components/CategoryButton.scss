@@ -1,6 +1,9 @@
 @import "../App.scss";
 
 .dish-container {
+  a {
+    text-decoration: none;
+  }
   button {
     display: flex;
     flex-direction: row;
@@ -43,12 +46,12 @@
       }
     }
     .btntxt {
-        flex: 1;
+      flex: 1;
       .dsktxt {
         color: $color--white;
       }
-      .mbltxt{
-          display: none;
+      .mbltxt {
+        display: none;
       }
     }
     button {

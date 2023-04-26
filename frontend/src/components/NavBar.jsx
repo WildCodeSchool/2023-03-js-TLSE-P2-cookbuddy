@@ -23,9 +23,6 @@ export default function NavBar() {
           type="text"
           placeholder="Enter ingredients or recipe"
         />
-        <button className="filter" type="button">
-          <i className="bi bi-sliders" />
-        </button>
       </div>
     </>
   );
