@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
@@ -75,3 +76,8 @@ export default function Home({ darkmode, toggleDarkmode }) {
     </>
   );
 }
+
+Home.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+};

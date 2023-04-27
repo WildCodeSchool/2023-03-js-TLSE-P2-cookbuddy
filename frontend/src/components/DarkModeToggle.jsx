@@ -1,5 +1,6 @@
 import "../styles/App.scss";
 import "../styles/components/DarkModeToggle.scss";
+import PropTypes from "prop-types";
 
 export default function DarkModeToggle({ darkmode, toggleDarkmode }) {
   return (
@@ -14,3 +15,8 @@ export default function DarkModeToggle({ darkmode, toggleDarkmode }) {
     </div>
   );
 }
+
+DarkModeToggle.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+};

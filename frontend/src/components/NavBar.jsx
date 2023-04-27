@@ -1,8 +1,9 @@
 import "../styles/App.scss";
 import "../styles/components/NavBar.scss";
+import PropTypes from "prop-types";
 import DarkModeToggle from "./DarkModeToggle";
 
-export default function NavBar({darkmode, toggleDarkmode}) {
+export default function NavBar({ darkmode, toggleDarkmode }) {
   return (
     <>
       <div className="header-container">
@@ -12,7 +13,7 @@ export default function NavBar({darkmode, toggleDarkmode}) {
             src="assets/logo/logo-color-full.svg"
             alt="logo Cook Buddy"
           />
-          <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode}/>
+          <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
         </div>
       </div>
       <div className="search-container">
@@ -25,3 +26,8 @@ export default function NavBar({darkmode, toggleDarkmode}) {
     </>
   );
 }
+
+NavBar.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+};
