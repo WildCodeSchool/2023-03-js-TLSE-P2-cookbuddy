@@ -1,32 +1,40 @@
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "../styles/App.scss";
 import "../styles/components/SearchPageNavBar.scss";
 
-function SearchPageNavBar() {
+function SearchPageNavBar({ setAreFiltersVisible }) {
   return (
     <div className="navbar-container">
-      <div className="navbar">
-        <img
-          className="logo"
-          src="assets/logo/logo-color-full.svg"
-          alt="logo Cook Buddy"
-        />
-        <div className="search-page-container">
-          <button
-            className="action-button--md action-button action-button--grey--border arrow"
-            type="button"
-          >
-            <i className="bi bi-arrow-left" />
-          </button>
+      <div className="navbar-search-page">
+        <Link to="/" className="logo">
+          <img
+            className="logo"
+            src="assets/logo/logo-color-full.svg"
+            alt="logo CookBuddy"
+          />
+        </Link>
+        <Link
+          to="/"
+          className="action-button--md action-button action-button--grey--border arrow"
+        >
+          <i className="bi bi-arrow-left" />
+        </Link>
+        <div
+          className="search-page-container"
+          onClick={() => setAreFiltersVisible(true)}
+          aria-hidden
+        >
           <input
             className="input--search-bar"
             type="text"
             placeholder="Enter ingredients or recipe"
+            disabled
           />
-          <button className="action-button--md search" type="button">
-            Search
-            <i className="bi bi-chevron-right" />
-          </button>
-          <button className="dark-mode" type="button">
+          <button
+            className="action-button--md action-button action-button--grey--border filters"
+            type="button"
+          >
             <i className="bi bi-sliders" />
           </button>
         </div>
@@ -37,5 +45,9 @@ function SearchPageNavBar() {
     </div>
   );
 }
+
+SearchPageNavBar.propTypes = {
+  setAreFiltersVisible: PropTypes.func.isRequired,
+};
 
 export default SearchPageNavBar;
