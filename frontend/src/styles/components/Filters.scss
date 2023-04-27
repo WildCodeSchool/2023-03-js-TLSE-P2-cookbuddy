@@ -249,11 +249,11 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1rem;
-        .filters__line{
+        .filters__line {
           padding: 1rem;
           border-radius: 1rem;
           border: 1px solid $color--grey--200;
-          .filters__list{
+          .filters__list {
             flex-wrap: wrap;
             // gap: 1rem;
             row-gap: 0.5rem;

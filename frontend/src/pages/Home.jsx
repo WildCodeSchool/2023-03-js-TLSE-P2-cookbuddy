@@ -59,7 +59,11 @@ export default function Home({ darkmode, toggleDarkmode }) {
   return (
     <>
       <header>
-        <NavBar darkmode={darkmode} toggleDarkmode={toggleDarkmode} setAreFiltersVisible={setAreFiltersVisible} />
+        <NavBar
+          darkmode={darkmode}
+          toggleDarkmode={toggleDarkmode}
+          setAreFiltersVisible={setAreFiltersVisible}
+        />
       </header>
       <main>
         <div className="container">

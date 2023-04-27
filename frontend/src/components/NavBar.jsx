@@ -3,8 +3,11 @@ import "../styles/components/NavBar.scss";
 import PropTypes from "prop-types";
 import DarkModeToggle from "./DarkModeToggle";
 
-
-export default function NavBar({ darkmode, toggleDarkmode, setAreFiltersVisible }) {
+export default function NavBar({
+  darkmode,
+  toggleDarkmode,
+  setAreFiltersVisible,
+}) {
   return (
     <>
       <div className="header-container">
