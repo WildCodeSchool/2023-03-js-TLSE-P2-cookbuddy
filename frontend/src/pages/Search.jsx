@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
 import RecipesList from "../components/RecipesList";
+import "../styles/Search.scss";
 
 export default function Search() {
   const [recipesData, setRecipesData] = useState();
@@ -45,9 +47,9 @@ export default function Search() {
   return (
     <>
       <nav>
-        <p>CookBuddy</p>
+        <SearchPageNavBar />
       </nav>
-      <main>
+      <main className="has-navbar">
         <div className="container">
           {isLoaded ? (
             <RecipesList data={recipesData} listClass="home" />
