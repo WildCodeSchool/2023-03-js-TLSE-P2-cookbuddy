@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 
 import "../styles/Home.scss";
 import NavBar from "../components/NavBar";
+import Filters from "../components/Filters";
 
 export default function Home({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState([]);
@@ -54,10 +55,11 @@ export default function Home({ darkmode, toggleDarkmode }) {
     getRecipesData();
   }, []);
 
+  const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   return (
     <>
       <header>
-        <NavBar darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
+        <NavBar darkmode={darkmode} toggleDarkmode={toggleDarkmode} setAreFiltersVisible={setAreFiltersVisible} />
       </header>
       <main>
         <div className="container">
@@ -73,6 +75,9 @@ export default function Home({ darkmode, toggleDarkmode }) {
         </div>
       </main>
       <Footer />
+      {areFiltersVisible && (
+        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+      )}
     </>
   );
 }

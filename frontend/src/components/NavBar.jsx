@@ -3,7 +3,8 @@ import "../styles/components/NavBar.scss";
 import PropTypes from "prop-types";
 import DarkModeToggle from "./DarkModeToggle";
 
-export default function NavBar({ darkmode, toggleDarkmode }) {
+
+export default function NavBar({ darkmode, toggleDarkmode, setAreFiltersVisible }) {
   return (
     <>
       <div className="header-container">
@@ -25,11 +26,16 @@ export default function NavBar({ darkmode, toggleDarkmode }) {
           <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
         </div>
       </div>
-      <div className="search-container">
+      <div
+        className="search-container"
+        onClick={() => setAreFiltersVisible(true)}
+        aria-hidden
+      >
         <input
           className="input--search-bar"
           type="text"
           placeholder="Enter ingredients or recipe"
+          disabled
         />
       </div>
     </>
@@ -39,4 +45,9 @@ export default function NavBar({ darkmode, toggleDarkmode }) {
 NavBar.propTypes = {
   darkmode: PropTypes.bool.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
+  setAreFiltersVisible: PropTypes.func.isRequired,
+};
+
+NavBar.propTypes = {
+  setAreFiltersVisible: PropTypes.func.isRequired,
 };
