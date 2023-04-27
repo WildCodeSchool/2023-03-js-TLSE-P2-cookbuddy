@@ -75,6 +75,8 @@ export default function Filters({ setAreFiltersVisible }) {
 
   const handleClearFilters = () => {
     setSearchQuery("");
+    setMinCookingTime("");
+    setMaxCookingTime("");
     setIsCleared(true);
     setFiltersList(() => {
       const initialFilters = {};
@@ -104,7 +106,7 @@ export default function Filters({ setAreFiltersVisible }) {
       <div className="modal__container">
         <div className="mobile-drag" />
         <div className="filters__container">
-          <div className="input-line">
+          <div className="input-line search">
             <div className="input-field">
               <input
                 type="text"
@@ -169,7 +171,7 @@ export default function Filters({ setAreFiltersVisible }) {
               areMoreFiltersVisible ? "visible" : "hidden"
             }`}
           >
-            <div className="filters__line">
+            <div className="filters__line cooking-time">
               <p>Cooking time</p>
               <div className="filters__list--inputs">
                 <div className="input-field">
