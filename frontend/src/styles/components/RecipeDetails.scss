@@ -16,6 +16,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  animation: modal-mobile-show-container 0.5s ease-out;
   button.close {
     @extend %action-button--lg;
     @extend %action-button--grey--border;
@@ -27,6 +28,7 @@
     background-color: $color--white;
     @include shadow--xs();
     z-index: 21;
+
   }
   .thumbnail {
     width: 100%;
@@ -286,5 +288,14 @@
         letter-spacing: 0em;
       }
     }
+  }
+}
+
+@keyframes modal-mobile-show-container {
+  from {
+    transform: translateY(+100vh);
+  }
+  to {
+    transform: translateY(0);
   }
 }

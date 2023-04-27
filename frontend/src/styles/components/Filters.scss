@@ -190,6 +190,7 @@
       bottom: 0;
       width: 100%;
       background-color: $color--white;
+      z-index: 20;
       .search {
         @extend %action-button;
         @extend %action-button--xl;
@@ -229,6 +230,7 @@
     overflow: hidden;
     .modal__container {
       max-width: 60%;
+      min-width: 700px;
       border-radius: 1rem;
       animation: modal-mobile-show-container 0.5s ease-out;
       z-index: 20;
