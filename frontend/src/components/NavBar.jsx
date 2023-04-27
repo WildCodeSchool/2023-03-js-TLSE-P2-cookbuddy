@@ -8,11 +8,20 @@ export default function NavBar({ darkmode, toggleDarkmode }) {
     <>
       <div className="header-container">
         <div className="navbar">
-          <img
-            className="logo"
-            src="assets/logo/logo-color-full.svg"
-            alt="logo Cook Buddy"
-          />
+          {darkmode ? (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-dark-mode.svg"
+              alt="logo Cook Buddy"
+            />
+          ) : (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-full.svg"
+              alt="logo Cook Buddy"
+            />
+          )}
+
           <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
         </div>
       </div>
