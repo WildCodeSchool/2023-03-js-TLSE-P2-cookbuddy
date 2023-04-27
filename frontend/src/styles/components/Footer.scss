@@ -26,7 +26,11 @@ footer {
     background-repeat: no-repeat;
   }
 }
-
+body.dark-theme{
+  footer{
+    background-color: $color--grey--800;
+  }
+}
 @media screen and (min-width: 576px) {
   .footer-container {
     max-width: 540px;

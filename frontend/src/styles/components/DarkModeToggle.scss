@@ -1,14 +1,9 @@
 @import "../App.scss";
 
-body.dark {
-  background-color: $color--grey--700;
-}
-
-button.dark-mode-off {
+.dark-mode {
   @extend %action-button;
   @extend %action-button--sm;
   @extend %action-button--grey--border;
-  background-color: $color--white;
   &:hover {
     color: #fff;
     background-color: $color--grey--700;
@@ -19,7 +14,5 @@ button.dark-mode-off {
   padding: 0px;
   width: 40px;
   height: 40px;
-}
 
-.dark-mode-on {
 }

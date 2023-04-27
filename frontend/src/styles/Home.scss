@@ -12,3 +12,12 @@
     color: $color--grey--700;
   }
 }
+
+body.dark-theme {
+  #chef-suggestion{
+    h2{
+      color: $color--grey--200;
+    }
+  }
+  
+}

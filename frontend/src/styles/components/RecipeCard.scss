@@ -80,6 +80,18 @@
     }
   }
 }
+body.dark-theme {
+  .recipe-card {
+    border: 1px solid $color--grey--500;
+
+    h3 {
+      color: $color--grey--200;
+    }
+    .recipe-infos {
+      color: $color--grey--200;
+      }
+  }
+}
 
 @media screen and (min-width: 768px) {
   .recipe-list.home {
