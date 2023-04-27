@@ -27,6 +27,7 @@ export default function NavBar({ setAreFiltersVisible }) {
           className="input--search-bar"
           type="text"
           placeholder="Enter ingredients or recipe"
+          disabled
         />
       </div>
     </>
