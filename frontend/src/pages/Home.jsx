@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 
 import "../styles/Home.scss";
 import NavBar from "../components/NavBar";
+import Filters from "../components/Filters";
 
 export default function Home() {
   const [recipesData, setRecipesData] = useState([]);
@@ -52,10 +53,12 @@ export default function Home() {
     };
     getRecipesData();
   }, []);
+
+  const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar setAreFiltersVisible={setAreFiltersVisible} />
       </header>
       <main>
         <div className="container">
@@ -71,6 +74,9 @@ export default function Home() {
         </div>
       </main>
       <Footer />
+      {areFiltersVisible && (
+        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+      )}
     </>
   );
 }
