@@ -26,8 +26,6 @@ export default function Search() {
     }
   }
 
-  // const totalParams = params.length;
-
   if (!hasTime) {
     params.push(["time", "1%2B"]);
   }
