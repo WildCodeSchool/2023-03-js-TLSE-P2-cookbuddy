@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
+import Filters from "../components/Filters";
 import RecipesList from "../components/RecipesList";
 import "../styles/Search.scss";
 
@@ -10,6 +11,8 @@ export default function Search() {
   const [recipesData, setRecipesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [areFiltersVisible, setAreFiltersVisible] = useState(false);
+  const [isSearched, setIsSearched] = useState(false);
   const apiURLtable = [
     "https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true",
   ];
@@ -47,15 +50,17 @@ export default function Search() {
         setRecipesData(response.data.hits);
         setSearchParams(searchParams);
         setIsLoaded(true);
+        setIsSearched(false);
+        setAreFiltersVisible(false);
       });
     };
     getRecipesData();
-  }, []);
+  }, [isSearched]);
 
   return (
     <>
       <nav>
-        <SearchPageNavBar />
+        <SearchPageNavBar setAreFiltersVisible={setAreFiltersVisible} />
       </nav>
       <main className="has-navbar">
         <div className="container">
@@ -67,6 +72,12 @@ export default function Search() {
         </div>
       </main>
       <Footer />
+      {areFiltersVisible && (
+        <Filters
+          setAreFiltersVisible={setAreFiltersVisible}
+          setIsSearched={setIsSearched}
+        />
+      )}
     </>
   );
 }

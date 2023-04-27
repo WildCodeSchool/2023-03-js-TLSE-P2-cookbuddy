@@ -1,5 +1,11 @@
 @import "./App.scss";
 
 main.has-navbar {
-  margin-top: 7rem;
+  margin-top: 4.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  main.has-navbar {
+    margin-top: 7rem;
+  }
 }

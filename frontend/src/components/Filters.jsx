@@ -13,7 +13,7 @@ import {
 import SquareFilter from "./SquareFilter";
 import RoundFilter from "./RoundFilter";
 
-export default function Filters({ setAreFiltersVisible }) {
+export default function Filters({ setAreFiltersVisible, setIsSearched }) {
   const [isCleared, setIsCleared] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [minCookingTime, setMinCookingTime] = useState("");
@@ -131,7 +131,11 @@ export default function Filters({ setAreFiltersVisible }) {
               >
                 Clear all
               </button>
-              <Link to={`/search?${searchQueryUrl}`} className="search">
+              <Link
+                to={`/search?${searchQueryUrl}`}
+                className="search"
+                onClick={() => setIsSearched(true)}
+              >
                 Search
                 <i className="bi bi-chevron-right" />
               </Link>
@@ -248,7 +252,11 @@ export default function Filters({ setAreFiltersVisible }) {
           <button className="reset" type="button" onClick={handleClearFilters}>
             Clear all
           </button>
-          <Link to={`/search?${searchQueryUrl}`} className="search">
+          <Link
+            to={`/search?${searchQueryUrl}`}
+            className="search"
+            onClick={() => setIsSearched(true)}
+          >
             Search
             <i className="bi bi-chevron-right" />
           </Link>
@@ -260,4 +268,5 @@ export default function Filters({ setAreFiltersVisible }) {
 
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  setIsSearched: PropTypes.func.isRequired,
 };
