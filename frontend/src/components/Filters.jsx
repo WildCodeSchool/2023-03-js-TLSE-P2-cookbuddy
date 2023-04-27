@@ -131,7 +131,11 @@ export default function Filters({ setAreFiltersVisible, setIsSearched }) {
               >
                 Clear all
               </button>
-              <Link to={`/search?${searchQueryUrl}`} className="search">
+              <Link
+                to={`/search?${searchQueryUrl}`}
+                className="search"
+                onClick={() => setIsSearched(true)}
+              >
                 Search
                 <i className="bi bi-chevron-right" />
               </Link>

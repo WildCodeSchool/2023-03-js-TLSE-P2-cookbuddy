@@ -51,6 +51,7 @@ export default function Search() {
         setSearchParams(searchParams);
         setIsLoaded(true);
         setIsSearched(false);
+        setAreFiltersVisible(false);
       });
     };
     getRecipesData();
