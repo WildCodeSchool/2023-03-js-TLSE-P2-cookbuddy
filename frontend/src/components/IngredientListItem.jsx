@@ -15,9 +15,11 @@ function IngredientListItem({ ingredient, initialYield, selectedYield }) {
             name={ingredient.food}
           />
           <div className="checkbox" />
-          {truncateNumber(
-            (ingredient.quantity / initialYield) * selectedYield
-          )}{" "}
+          {ingredient.quantity === 0
+            ? ""
+            : truncateNumber(
+                (ingredient.quantity / initialYield) * selectedYield
+              )}{" "}
           {ingredient.measure !== "<unit>" ? ingredient.measure : ""}{" "}
           {ingredient.food}
         </label>
