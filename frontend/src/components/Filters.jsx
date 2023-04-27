@@ -106,15 +106,30 @@ export default function Filters({ setAreFiltersVisible }) {
       <div className="modal__container">
         <div className="mobile-drag" />
         <div className="filters__container">
-          <div className="input-line search">
-            <div className="input-field">
-              <input
-                type="text"
-                className="input--search-bar"
-                placeholder="Enter ingredients or recipe"
-                onChange={handleSearchQuery}
-                value={searchQuery}
-              />
+          <div className="filters__header">
+            <div className="input-line search">
+              <div className="input-field">
+                <input
+                  type="text"
+                  className="input--search-bar"
+                  placeholder="Enter ingredients or recipe"
+                  onChange={handleSearchQuery}
+                  value={searchQuery}
+                />
+              </div>
+            </div>
+            <div className="buttons">
+              <button
+                className="reset"
+                type="button"
+                onClick={handleClearFilters}
+              >
+                Clear all
+              </button>
+              <Link to={`/search?${searchQueryUrl}`} className="search">
+                Search
+                <i className="bi bi-chevron-right" />
+              </Link>
             </div>
           </div>
           <div className="filters__line">
