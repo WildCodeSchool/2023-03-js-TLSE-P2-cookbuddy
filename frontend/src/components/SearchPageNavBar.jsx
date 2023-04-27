@@ -3,7 +3,7 @@ import "../styles/components/SearchPageNavBar.scss";
 
 function SearchPageNavBar() {
   return (
-    <div>
+    <div className="navbar-container">
       <div className="navbar">
         <img
           className="logo"
@@ -11,12 +11,18 @@ function SearchPageNavBar() {
           alt="logo Cook Buddy"
         />
         <div className="search-page-container">
+          <button
+            className="action-button--md action-button action-button--grey--border arrow"
+            type="button"
+          >
+            <i className="bi bi-arrow-left" />
+          </button>
           <input
             className="input--search-bar"
             type="text"
             placeholder="Enter ingredients or recipe"
           />
-          <button className="action-button--md" type="button">
+          <button className="action-button--md search" type="button">
             Search
             <i className="bi bi-chevron-right" />
           </button>
