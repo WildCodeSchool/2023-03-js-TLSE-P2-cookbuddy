@@ -96,6 +96,7 @@ export default function Filters({ setAreFiltersVisible }) {
       return initialFilters;
     });
   };
+
   return (
     <div className="modal">
       <div
@@ -104,7 +105,11 @@ export default function Filters({ setAreFiltersVisible }) {
         aria-hidden
       />
       <div className="modal__container">
-        <div className="mobile-drag" />
+        <div
+          className="mobile-drag"
+          onClick={() => setAreFiltersVisible(false)}
+          aria-hidden
+        />
         <div className="filters__container">
           <div className="filters__header">
             <div className="input-line search">
