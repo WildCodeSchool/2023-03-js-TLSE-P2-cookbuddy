@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 1rem;
   margin-top: 2rem;
-  h2 {
+  & > h2 {
     @extend %title--xs;
     font-weight: 500;
     font-family: $font-family--accent;
