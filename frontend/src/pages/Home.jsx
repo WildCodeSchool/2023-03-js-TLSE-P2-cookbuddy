@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import MetabolismCalculator from "../components/MetabolismCalculator";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
@@ -59,6 +60,7 @@ export default function Home() {
     <>
       <header>
         <NavBar setAreFiltersVisible={setAreFiltersVisible} />
+        <MetabolismCalculator />
       </header>
       <main>
         <div className="container">
