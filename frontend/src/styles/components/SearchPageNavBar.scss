@@ -26,14 +26,30 @@
     gap: 8px;
     width: 100%;
 
-    .filter {
-      @extend %action-button;
-      @extend %action-button--sm;
-      @extend %action-button--grey--border;
+    .filters {
       background-color: $color--white;
       z-index: 1;
+      position: relative;
 
-      @include shadow--xl();
+      width: 40px;
+      height: 40px;
+
+      @include shadow--sm();
+
+      span {
+        position: absolute;
+        background-color: $color--grey--900;
+        top: -0.6rem;
+        right: -0.6rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        @extend %text--xs;
+        border-radius: 2rem;
+        color: $color--white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     .input--search-bar {
@@ -70,10 +86,6 @@
       &::-ms-expand {
         display: none;
       }
-    }
-    .filters {
-      width: 40px;
-      height: 40px;
     }
   }
   img.logo {
@@ -128,15 +140,6 @@ body.dark-theme {
       gap: 8px;
       width: 50%;
 
-      .filter {
-        @extend %action-button;
-        @extend %action-button--sm;
-        @extend %action-button--grey--border;
-        background-color: $color--white;
-        z-index: 1;
-
-        @include shadow--xl();
-      }
 
       .input--search-bar {
         display: flex;
@@ -148,7 +151,6 @@ body.dark-theme {
         border: 1px solid $color--grey--300;
         border-radius: 50px;
         outline: none;
-        @extend .text--md;
         color: $color--grey--500;
         text-indent: 1px;
         text-overflow: "";
@@ -173,10 +175,6 @@ body.dark-theme {
           display: none;
         }
       }
-      .filters {
-        width: 40px;
-        height: 40px;
-      }
     }
 
     img.logo {
@@ -186,9 +184,6 @@ body.dark-theme {
     }
 
     button.dark-mode {
-      @extend %action-button;
-      @extend %action-button--sm;
-      @extend %action-button--grey--border;
       background-color: $color--white;
       &:hover {
         color: #fff;

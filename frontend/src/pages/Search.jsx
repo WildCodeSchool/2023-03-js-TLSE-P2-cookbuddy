@@ -33,6 +33,8 @@ export default function Search({ darkmode, toggleDarkmode }) {
     }
   }
 
+  const totalActiveFilters = params.length;
+
   if (!hasTime) {
     params.push(["time", "1%2B"]);
   }
@@ -45,6 +47,8 @@ export default function Search({ darkmode, toggleDarkmode }) {
   apiURLtable.push(`${paramsList.join("&")}`);
 
   const apiURL = apiURLtable.join("&");
+
+  const searchQueryText = searchParams.get("q");
 
   useEffect(() => {
     const getRecipesData = () => {
@@ -66,6 +70,8 @@ export default function Search({ darkmode, toggleDarkmode }) {
           setAreFiltersVisible={setAreFiltersVisible}
           darkmode={darkmode}
           toggleDarkmode={toggleDarkmode}
+          totalActiveFilters={totalActiveFilters}
+          searchQueryText={searchQueryText}
         />
       </nav>
       <main className="has-navbar">
@@ -82,6 +88,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
         <Filters
           setAreFiltersVisible={setAreFiltersVisible}
           setIsSearched={setIsSearched}
+          searchQueryText={searchQueryText}
         />
       )}
     </>

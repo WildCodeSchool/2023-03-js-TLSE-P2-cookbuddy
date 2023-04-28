@@ -101,6 +101,7 @@
               display: flex;
               align-items: center;
               justify-content: center;
+              cursor: pointer;
               @include shadow--xs();
               transition: background-color 0.2s ease-in-out;
 
@@ -132,6 +133,7 @@
           flex-wrap: wrap;
           .filter--round {
             padding: 0.5rem 1rem;
+            cursor: pointer;
 
             @extend .text--sm;
             border: 1px solid $color--grey--200;
