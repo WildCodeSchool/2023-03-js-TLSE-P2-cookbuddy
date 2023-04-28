@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../styles/components/Filters.scss";
-import "../styles/App.scss";
 import { useState } from "react";
 import PropTypes from "prop-types";
 

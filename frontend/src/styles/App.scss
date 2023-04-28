@@ -1178,7 +1178,6 @@ BUTTONS
 
 body.dark-theme {
   background-color: $color--grey--900;
-
   /*
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 TEXT
@@ -2118,7 +2117,7 @@ BUTTONS
       gap: 8px;
       cursor: pointer;
       @extend .text--sm;
-      color: $color--grey--700;
+      color: $color--white;
       font-weight: 500;
     }
     input[type="checkbox"] {

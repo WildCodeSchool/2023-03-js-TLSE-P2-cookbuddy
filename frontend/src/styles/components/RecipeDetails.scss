@@ -188,6 +188,21 @@
     }
   }
 }
+body.dark-theme {
+  .recipe-details {
+    .recipe-description {
+      background-color: $color--grey--900;
+      h2.recipe-label {
+        color: $color--white;
+      }
+      .recipe-infos {
+        p {
+          color: $color--white;
+        }
+      }
+    }
+  }
+}
 
 @media screen and (min-width: 768px) {
   .recipe-container {

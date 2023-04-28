@@ -1,19 +1,27 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
-import "../styles/App.scss";
+
 import "../styles/components/SearchPageNavBar.scss";
 
-function SearchPageNavBar({ setAreFiltersVisible }) {
+function SearchPageNavBar({ setAreFiltersVisible, darkmode, toggleDarkmode }) {
   return (
     <div className="navbar-container">
       <div className="navbar-search-page">
         <Link to="/" className="logo">
-          <img
-            className="logo"
-            src="assets/logo/logo-color-full.svg"
-            alt="logo CookBuddy"
-          />
+          {darkmode ? (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-dark-mode.svg"
+              alt="logo Cook Buddy"
+            />
+          ) : (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-full.svg"
+              alt="logo Cook Buddy"
+            />
+          )}
         </Link>
         <Link
           to="/"
@@ -39,7 +47,7 @@ function SearchPageNavBar({ setAreFiltersVisible }) {
             <i className="bi bi-sliders" />
           </button>
         </div>
-        <DarkModeToggle />
+        <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
       </div>
     </div>
   );
@@ -47,6 +55,8 @@ function SearchPageNavBar({ setAreFiltersVisible }) {
 
 SearchPageNavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
 };
 
 export default SearchPageNavBar;

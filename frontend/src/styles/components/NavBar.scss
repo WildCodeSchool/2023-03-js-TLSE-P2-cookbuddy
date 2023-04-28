@@ -1,5 +1,4 @@
 @import "../App.scss";
-
 /*mobile */
 .header-container {
   background: linear-gradient(
@@ -58,7 +57,7 @@ img.logo {
     align-items: center;
     padding: 8px 12px 8px 36px;
     gap: 8px;
-    background: $color--white;
+    background-color: $color--white;
     border: 1px solid $color--grey--300;
     border-radius: 50px;
     outline: none;
@@ -80,7 +79,7 @@ img.logo {
       border-radius: 50px;
     }
     &:disabled {
-      background-color: $color--grey--50;
+      background-color: $color--white !important;
     }
     &::-ms-expand {
       display: none;

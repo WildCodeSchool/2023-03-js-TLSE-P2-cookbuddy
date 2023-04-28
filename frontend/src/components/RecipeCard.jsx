@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/components/RecipeCard.scss";
-import "../styles/App.scss";
 import RecipeDetails from "./RecipeDetails";
 
 export default function RecipeCard({ data }) {

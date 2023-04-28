@@ -1,4 +1,3 @@
-import "../styles/App.scss";
 import "../styles/components/DarkModeToggle.scss";
 import PropTypes from "prop-types";
 

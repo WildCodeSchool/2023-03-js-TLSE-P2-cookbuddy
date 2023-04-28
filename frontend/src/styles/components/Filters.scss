@@ -1,5 +1,4 @@
 @import "../App.scss";
-
 .modal {
   position: fixed;
   top: 0;
@@ -310,7 +309,7 @@
         }
 
         button.see-more {
-          display: none;
+          display: none !important;
         }
       }
     }

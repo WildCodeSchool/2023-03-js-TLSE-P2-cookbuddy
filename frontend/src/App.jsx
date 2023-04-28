@@ -20,7 +20,12 @@ function App() {
           path="/"
           element={<Home darkmode={darkmode} toggleDarkmode={toggleDarkmode} />}
         />
-        <Route path="/search/*" element={<Search />} />
+        <Route
+          path="/search/*"
+          element={
+            <Search darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
+          }
+        />
       </Routes>
     </Router>
   );
