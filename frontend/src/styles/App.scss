@@ -2117,7 +2117,7 @@ BUTTONS
       gap: 8px;
       cursor: pointer;
       @extend .text--sm;
-      color: $color--white;
+      color: $color--grey--300;
       font-weight: 500;
     }
     input[type="checkbox"] {
@@ -2130,8 +2130,8 @@ BUTTONS
     }
 
     .checkbox {
-      background-color: $color--white;
-      border: 1px solid $color--grey--200;
+      background-color: $color--grey--900;
+      border: 1px solid $color--grey--500;
       position: relative;
       cursor: pointer;
       transition: background 0.25s ease-out;
@@ -2185,7 +2185,6 @@ BUTTONS
       }
     }
   }
-
   .container {
     max-width: 100%;
     margin-left: auto;

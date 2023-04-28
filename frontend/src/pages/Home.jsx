@@ -82,6 +82,9 @@ export default function Home({ darkmode, toggleDarkmode }) {
       {areFiltersVisible && (
         <Filters setAreFiltersVisible={setAreFiltersVisible} />
       )}
+      {areFiltersVisible && (
+        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+      )}
     </>
   );
 }

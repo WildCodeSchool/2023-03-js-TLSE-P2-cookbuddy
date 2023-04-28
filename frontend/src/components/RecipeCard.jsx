@@ -8,6 +8,7 @@ export default function RecipeCard({ data }) {
   const [areRecipeDetailsVisible, setAreRecipeDetailsVisible] = useState(false);
   const openRecipeDetails = () => setAreRecipeDetailsVisible(true);
   const closeRecipeDetails = () => setAreRecipeDetailsVisible(false);
+
   return (
     <>
       <article className="recipe-card" onClick={openRecipeDetails} aria-hidden>
