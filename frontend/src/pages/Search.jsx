@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
 import Filters from "../components/Filters";
 import RecipesList from "../components/RecipesList";
+
 import "../styles/Search.scss";
 
-export default function Search() {
+export default function Search({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,7 +62,11 @@ export default function Search() {
   return (
     <>
       <nav>
-        <SearchPageNavBar setAreFiltersVisible={setAreFiltersVisible} />
+        <SearchPageNavBar
+          setAreFiltersVisible={setAreFiltersVisible}
+          darkmode={darkmode}
+          toggleDarkmode={toggleDarkmode}
+        />
       </nav>
       <main className="has-navbar">
         <div className="container">
@@ -81,3 +87,7 @@ export default function Search() {
     </>
   );
 }
+Search.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+};
