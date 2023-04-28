@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../styles/components/Filters.scss";
-import "../styles/App.scss";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -274,10 +273,11 @@ export default function Filters({
 
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
-  setIsSearched: PropTypes.func.isRequired,
+  setIsSearched: PropTypes.func,
   searchQueryText: PropTypes.string,
 };
 
 Filters.defaultProps = {
   searchQueryText: "",
+  setIsSearched: "",
 };

@@ -1,5 +1,4 @@
 @import "../App.scss";
-
 /*mobile */
 .header-container {
   background: linear-gradient(
@@ -8,7 +7,6 @@
       rgba(255, 255, 255, 0) 100%
     ),
     url("https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3444&q=80");
-  // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -32,23 +30,6 @@
 img.logo {
   width: 160px;
   height: 58px;
-}
-
-button.dark-mode {
-  @extend %action-button;
-  @extend %action-button--sm;
-  @extend %action-button--grey--border;
-  background-color: $color--white;
-  &:hover {
-    color: #fff;
-    background-color: $color--grey--700;
-  }
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  width: 40px;
-  height: 40px;
 }
 
 .search-container {
@@ -76,7 +57,7 @@ button.dark-mode {
     align-items: center;
     padding: 8px 12px 8px 36px;
     gap: 8px;
-    background: $color--white;
+    background-color: $color--white;
     border: 1px solid $color--grey--300;
     border-radius: 50px;
     outline: none;
@@ -98,11 +79,25 @@ button.dark-mode {
       border-radius: 50px;
     }
     &:disabled {
-      background-color: $color--grey--50;
+      background-color: $color--white !important;
     }
     &::-ms-expand {
       display: none;
     }
+  }
+}
+
+body.dark-theme {
+  .header-container {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.904) 9.38%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      url("https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3444&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 

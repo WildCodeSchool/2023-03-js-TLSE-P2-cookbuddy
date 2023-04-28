@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
@@ -8,7 +9,7 @@ import "../styles/Home.scss";
 import NavBar from "../components/NavBar";
 import Filters from "../components/Filters";
 
-export default function Home() {
+export default function Home({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -58,7 +59,11 @@ export default function Home() {
   return (
     <>
       <header>
-        <NavBar setAreFiltersVisible={setAreFiltersVisible} />
+        <NavBar
+          darkmode={darkmode}
+          toggleDarkmode={toggleDarkmode}
+          setAreFiltersVisible={setAreFiltersVisible}
+        />
       </header>
       <main>
         <div className="container">
@@ -77,6 +82,14 @@ export default function Home() {
       {areFiltersVisible && (
         <Filters setAreFiltersVisible={setAreFiltersVisible} />
       )}
+      {areFiltersVisible && (
+        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+      )}
     </>
   );
 }
+
+Home.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+};

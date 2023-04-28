@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "../styles/App.scss";
+import DarkModeToggle from "./DarkModeToggle";
+
 import "../styles/components/SearchPageNavBar.scss";
 
 function SearchPageNavBar({
   setAreFiltersVisible,
+  darkmode,
+  toggleDarkmode,
   totalActiveFilters,
   searchQueryText,
 }) {
@@ -12,11 +15,19 @@ function SearchPageNavBar({
     <div className="navbar-container">
       <div className="navbar-search-page">
         <Link to="/" className="logo">
-          <img
-            className="logo"
-            src="assets/logo/logo-color-full.svg"
-            alt="logo CookBuddy"
-          />
+          {darkmode ? (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-dark-mode.svg"
+              alt="logo Cook Buddy"
+            />
+          ) : (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-full.svg"
+              alt="logo Cook Buddy"
+            />
+          )}
         </Link>
         <Link
           to="/"
@@ -54,9 +65,7 @@ function SearchPageNavBar({
             {totalActiveFilters > 0 && <span>{totalActiveFilters}</span>}
           </button>
         </div>
-        <button className="dark-mode" type="button">
-          <i className="bi bi-moon-fill" />
-        </button>
+        <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
       </div>
     </div>
   );
@@ -64,6 +73,8 @@ function SearchPageNavBar({
 
 SearchPageNavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
   searchQueryText: PropTypes.string,
   totalActiveFilters: PropTypes.number,
 };
