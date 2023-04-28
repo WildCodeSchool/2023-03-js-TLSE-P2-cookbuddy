@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import "../styles/components/RecipesList.scss";
-import "../styles/App.scss";
 import RecipeCard from "./RecipeCard";
 
 export default function RecipesList({ data, listClass = "home" }) {

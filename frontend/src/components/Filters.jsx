@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../styles/components/Filters.scss";
-import "../styles/App.scss";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -13,9 +12,15 @@ import {
 import SquareFilter from "./SquareFilter";
 import RoundFilter from "./RoundFilter";
 
-export default function Filters({ setAreFiltersVisible }) {
+export default function Filters({
+  setAreFiltersVisible,
+  setIsSearched,
+  searchQueryText,
+}) {
   const [isCleared, setIsCleared] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(
+    searchQueryText && searchQueryText
+  );
   const [minCookingTime, setMinCookingTime] = useState("");
   const [maxCookingTime, setMaxCookingTime] = useState("");
   const [areMoreFiltersVisible, setAreMoreFiltersVisible] = useState(false);
@@ -131,7 +136,11 @@ export default function Filters({ setAreFiltersVisible }) {
               >
                 Clear all
               </button>
-              <Link to={`/search?${searchQueryUrl}`} className="search">
+              <Link
+                to={`/search?${searchQueryUrl}`}
+                className="search"
+                onClick={() => setIsSearched(true)}
+              >
                 Search
                 <i className="bi bi-chevron-right" />
               </Link>
@@ -248,7 +257,11 @@ export default function Filters({ setAreFiltersVisible }) {
           <button className="reset" type="button" onClick={handleClearFilters}>
             Clear all
           </button>
-          <Link to={`/search?${searchQueryUrl}`} className="search">
+          <Link
+            to={`/search?${searchQueryUrl}`}
+            className="search"
+            onClick={() => setIsSearched(true)}
+          >
             Search
             <i className="bi bi-chevron-right" />
           </Link>
@@ -260,4 +273,11 @@ export default function Filters({ setAreFiltersVisible }) {
 
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  setIsSearched: PropTypes.func,
+  searchQueryText: PropTypes.string,
+};
+
+Filters.defaultProps = {
+  searchQueryText: "",
+  setIsSearched: "",
 };
