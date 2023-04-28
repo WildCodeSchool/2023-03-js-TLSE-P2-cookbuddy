@@ -31,6 +31,8 @@ export default function Search() {
     }
   }
 
+  const totalActiveFilters = params.length;
+
   if (!hasTime) {
     params.push(["time", "1%2B"]);
   }
@@ -43,6 +45,8 @@ export default function Search() {
   apiURLtable.push(`${paramsList.join("&")}`);
 
   const apiURL = apiURLtable.join("&");
+
+  const searchQueryText = searchParams.get("q");
 
   useEffect(() => {
     const getRecipesData = () => {
@@ -60,7 +64,11 @@ export default function Search() {
   return (
     <>
       <nav>
-        <SearchPageNavBar setAreFiltersVisible={setAreFiltersVisible} />
+        <SearchPageNavBar
+          setAreFiltersVisible={setAreFiltersVisible}
+          totalActiveFilters={totalActiveFilters}
+          searchQueryText={searchQueryText}
+        />
       </nav>
       <main className="has-navbar">
         <div className="container">
@@ -76,6 +84,7 @@ export default function Search() {
         <Filters
           setAreFiltersVisible={setAreFiltersVisible}
           setIsSearched={setIsSearched}
+          searchQueryText={searchQueryText}
         />
       )}
     </>
