@@ -64,7 +64,7 @@ export default function Filters({
         `time=${minCookingTime <= 0 ? 1 : minCookingTime}-${maxCookingTime}`
       );
     } else if (minCookingTime) {
-      searchQueryUrl.push(`time=${minCookingTime <= 0 ? 1 : minCookingTime}`);
+      searchQueryUrl.push(`time=${minCookingTime <= 0 ? 1 : minCookingTime}-`);
     } else if (maxCookingTime) {
       searchQueryUrl.push(`time=1-${maxCookingTime}`);
     }
