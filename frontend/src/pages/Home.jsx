@@ -36,6 +36,8 @@ export default function Home() {
     default:
       mealSearchType = "Lunch";
   }
+  const [isMetabolismCalculatorVisible, setIsMetabolismCalculatorVisible] =
+    useState(true);
 
   useEffect(() => {
     const getRecipesData = () => {
@@ -59,8 +61,15 @@ export default function Home() {
   return (
     <>
       <header>
-        <NavBar setAreFiltersVisible={setAreFiltersVisible} />
-        <MetabolismCalculator />
+        <NavBar
+          setAreFiltersVisible={setAreFiltersVisible}
+          setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
+        />
+        {isMetabolismCalculatorVisible && (
+          <MetabolismCalculator
+            setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
+          />
+        )}
       </header>
       <main>
         <div className="container">

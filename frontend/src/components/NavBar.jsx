@@ -2,7 +2,10 @@ import "../styles/App.scss";
 import "../styles/components/NavBar.scss";
 import PropTypes from "prop-types";
 
-export default function NavBar({ setAreFiltersVisible }) {
+export default function NavBar({
+  setAreFiltersVisible,
+  setIsMetabolismCalculatorVisible,
+}) {
   return (
     <>
       <div className="header-container">
@@ -12,7 +15,13 @@ export default function NavBar({ setAreFiltersVisible }) {
             src="assets/logo/logo-color-full.svg"
             alt="logo Cook Buddy"
           />
-
+          <button
+            className="metabolism-button"
+            type="button"
+            onClick={() => setIsMetabolismCalculatorVisible(true)}
+          >
+            <i className="bi bi-moon-fill" />
+          </button>
           <button className="dark-mode" type="button">
             <i className="bi bi-moon-fill" />
           </button>
@@ -36,4 +45,5 @@ export default function NavBar({ setAreFiltersVisible }) {
 
 NavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
 };

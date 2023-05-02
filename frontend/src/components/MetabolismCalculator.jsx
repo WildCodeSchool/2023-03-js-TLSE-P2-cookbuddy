@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 import "../styles/components/MetabolismCalculator.scss";
+import PropTypes from "prop-types";
 
-function MetabolismCalculator() {
+function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
   const [sex, setSex] = useState("");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
+  const [bmr, setBMR] = useState(0);
+  const handleButtonClick = () => setIsMetabolismCalculatorVisible(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let bmr = 0;
-
     if (sex === "male") {
-      bmr = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+      setBMR(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
     } else if (sex === "female") {
-      bmr = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+      setBMR(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
     }
-
-    alert(`Your BMR is: ${bmr.toFixed(2)} calories`);
   };
 
   return (
     <div className="metabolism-container ">
+      <div
+        className="metabolism-filter"
+        onClick={handleButtonClick}
+        aria-hidden
+      />
       <form className="metabolism-calculator" onSubmit={handleSubmit}>
         <h2>Metabolism Calculator</h2>
         <label className="label-calculator">
@@ -68,10 +72,16 @@ function MetabolismCalculator() {
           />
         </label>
         <br />
-        <button type="submit">Calculate BMR</button>
+        <div className="metabolism-value">
+          <button type="submit">Calculate BMR</button>
+          <p>Your BMR is {bmr.toFixed(2)} calories.</p>
+        </div>
       </form>
     </div>
   );
 }
+MetabolismCalculator.propTypes = {
+  setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
+};
 
 export default MetabolismCalculator;
