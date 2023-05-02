@@ -209,6 +209,7 @@ body.dark-theme {
     display: flex;
     position: fixed;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     top: 0;
     left: 0;
     width: 100%;
@@ -509,6 +510,7 @@ body.dark-theme {
     display: flex;
     position: fixed;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     top: 0;
     left: 0;
     width: 100%;
