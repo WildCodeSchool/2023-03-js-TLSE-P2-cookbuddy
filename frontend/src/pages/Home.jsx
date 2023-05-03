@@ -56,7 +56,6 @@ export default function Home({ darkmode, toggleDarkmode }) {
     };
     getHomeRecipesData();
   }, []);
-
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   return (
     <>

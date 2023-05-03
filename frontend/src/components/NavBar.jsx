@@ -5,27 +5,21 @@ import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({
   setAreFiltersVisible,
-  setIsMetabolismCalculatorVisible,
   darkmode,
+  setIsMetabolismCalculatorVisible,
   toggleDarkmode,
 }) {
   return (
     <>
       <div className="header-container">
         <div className="navbar">
-          {darkmode ? (
-            <img
-              className="logo"
-              src="assets/logo/logo-color-dark-mode.svg"
-              alt="logo Cook Buddy"
-            />
-          ) : (
-            <img
-              className="logo"
-              src="assets/logo/logo-color-full.svg"
-              alt="logo Cook Buddy"
-            />
-          )}
+          <img
+            className="logo"
+            src={`assets/logo/logo-color-${
+              darkmode ? "dark-mode" : "full"
+            }.svg`}
+            alt="logo Cook Buddy"
+          />
           <div className="navbar-buttons">
             <button
               className="metabolism-button"

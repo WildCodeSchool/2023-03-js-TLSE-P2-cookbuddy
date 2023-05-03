@@ -10,7 +10,7 @@
   z-index: 10;
   .navbar-search-page {
     @extend .container;
-    padding: 1rem!important;
+    padding: 1rem !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,9 +123,9 @@ body.dark-theme {
   .navbar-container {
     background-color: $color--white;
     border-bottom: 1px solid $color--grey--200;
-    
+
     .navbar-search-page {
-    padding: 1rem 2rem!important;
+      padding: 1rem 2rem !important;
       .arrow {
         display: none;
       }
@@ -142,6 +142,13 @@ body.dark-theme {
         align-items: center;
         gap: 8px;
         width: 50%;
+
+        .filter {
+          background-color: $color--white;
+          z-index: 1;
+
+          @include shadow--xl();
+        }
 
         .input--search-bar {
           display: flex;
