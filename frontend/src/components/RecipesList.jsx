@@ -42,8 +42,13 @@ export default function RecipesList({ data, listClass = "home" }) {
       {listClass !== "home" && (
         <div className="input-dropdown">
           <label htmlFor="select">Sort by :</label>
-          <select name="select" className="drop-menu" onChange={handleChange}>
-            <option value="default" selected disabled>
+          <select
+            name="select"
+            className="drop-menu"
+            onChange={handleChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled>
               Choose sorting
             </option>
             <option value="kcal-asc">Kcal: Low to High</option>

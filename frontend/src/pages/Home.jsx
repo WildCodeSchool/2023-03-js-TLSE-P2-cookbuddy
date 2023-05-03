@@ -79,6 +79,9 @@ export default function Home({ darkmode, toggleDarkmode }) {
     getHomeRecipesData(appId, appKey);
   }, []);
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
+
+  const [searchQueryText, setSearchQueryText] = useState("");
+
   return (
     <>
       <header>
@@ -109,7 +112,11 @@ export default function Home({ darkmode, toggleDarkmode }) {
       </main>
       <Footer />
       {areFiltersVisible && (
-        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+        <Filters
+          setAreFiltersVisible={setAreFiltersVisible}
+          searchQueryText={searchQueryText}
+          setSearchQueryText={setSearchQueryText}
+        />
       )}
     </>
   );

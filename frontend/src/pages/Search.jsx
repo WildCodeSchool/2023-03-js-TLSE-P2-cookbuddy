@@ -49,7 +49,9 @@ export default function Search({ darkmode, toggleDarkmode }) {
 
   const apiURL = apiURLtable.join("&");
 
-  const searchQueryText = searchParams.get("q");
+  const [searchQueryText, setSearchQueryText] = useState(
+    searchParams.get("q") ? searchParams.get("q") : ""
+  );
 
   const getRecipesData = () => {
     axios.get(apiURL).then((response) => {
@@ -71,6 +73,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
           toggleDarkmode={toggleDarkmode}
           totalActiveFilters={totalActiveFilters}
           searchQueryText={searchQueryText}
+          setSearchQueryText={setSearchQueryText}
         />
       </nav>
       <main className="has-navbar">
@@ -93,6 +96,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
           searchQueryText={searchQueryText}
           getRecipesData={getRecipesData}
           searchParams={searchParams}
+          setSearchQueryText={setSearchQueryText}
         />
       )}
     </>

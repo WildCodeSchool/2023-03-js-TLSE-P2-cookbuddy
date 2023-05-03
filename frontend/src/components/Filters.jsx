@@ -16,17 +16,16 @@ export default function Filters({
   setAreFiltersVisible,
   searchQueryText,
   getRecipesData,
-  searchParams,
+  searchParams = "",
+  setSearchQueryText,
 }) {
   const [isCleared, setIsCleared] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(
-    searchQueryText && searchQueryText
-  );
+
   let minCookingTimeInitial = "";
   let maxCookingTimeInitial = "";
   const zero = 0;
   const one = 1;
-  if (searchParams) {
+  if (searchParams !== "") {
     let entry = null;
     for (entry of searchParams.entries()) {
       if (entry[0] === "time") {
@@ -41,7 +40,7 @@ export default function Filters({
   const [areMoreFiltersVisible, setAreMoreFiltersVisible] = useState(false);
 
   const handleSearchQuery = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQueryText(e.target.value);
   };
 
   const handleMinCookingTime = (e) => {
@@ -61,7 +60,7 @@ export default function Filters({
       ...mealTypesFilters,
       ...cuisineTypesFilters,
     ].forEach((filter) => {
-      initialFilters[filter.searchQuery] = {
+      initialFilters[filter.searchQueryText] = {
         isActive: false,
         category: filter.category,
       };
@@ -69,9 +68,9 @@ export default function Filters({
 
     let entry = null;
 
-    if (searchParams) {
+    if (searchParams !== "") {
       for (entry of searchParams.entries()) {
-        if (entry[0] !== "time") {
+        if (entry[0] !== "time" && entry[0] !== "q") {
           initialFilters[entry[1]] = {
             isActive: true,
             category: entry[0],
@@ -83,9 +82,10 @@ export default function Filters({
   });
 
   let searchQueryUrl = [];
-  if (searchQuery) {
-    searchQueryUrl.push(`q=${searchQuery}`);
+  if (searchQueryText) {
+    searchQueryUrl.push(`q=${searchQueryText}`);
   }
+
   if (minCookingTime || maxCookingTime) {
     if (minCookingTime && maxCookingTime) {
       searchQueryUrl.push(
@@ -107,7 +107,7 @@ export default function Filters({
   searchQueryUrl = searchQueryUrl.join("&");
 
   const handleClearFilters = () => {
-    setSearchQuery("");
+    setSearchQueryText("");
     setMinCookingTime("");
     setMaxCookingTime("");
     setIsCleared(true);
@@ -120,7 +120,7 @@ export default function Filters({
         ...mealTypesFilters,
         ...cuisineTypesFilters,
       ].forEach((filter) => {
-        initialFilters[filter.searchQuery] = {
+        initialFilters[filter.searchQueryText] = {
           isActive: false,
           category: filter.category,
         };
@@ -152,7 +152,7 @@ export default function Filters({
                   className="input--search-bar"
                   placeholder="Enter ingredients or recipe"
                   onChange={handleSearchQuery}
-                  value={searchQuery}
+                  value={searchQueryText}
                 />
               </div>
             </div>
@@ -309,15 +309,19 @@ export default function Filters({
 
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
-  getRecipesData: PropTypes.func,
+  getRecipesData: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   searchQueryText: PropTypes.string,
-  searchParams: PropTypes.shape({
-    entries: PropTypes.shape({}),
-  }),
+  setSearchQueryText: PropTypes.func.isRequired,
+  searchParams: PropTypes.oneOfType([
+    PropTypes.shape({
+      entries: PropTypes.func,
+    }),
+    PropTypes.string,
+  ]),
 };
 
 Filters.defaultProps = {
   searchQueryText: "",
   getRecipesData: "",
-  searchParams: {},
+  searchParams: "",
 };
