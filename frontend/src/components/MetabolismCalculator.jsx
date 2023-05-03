@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import CalculatorInput from "./CalculatorInput";
 
 function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
-  const [sex, setSex] = useState("");
+  const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
@@ -14,9 +14,9 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (sex === "male") {
+    if (gender === "male") {
       setBmr(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
-    } else if (sex === "female") {
+    } else if (gender === "female") {
       setBmr(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
     }
   };
@@ -32,13 +32,15 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
         <div className="mobile-drag" onClick={handleButtonClick} aria-hidden />
         <h2>Metabolism calculator</h2>
         <label className="label-calculator">
-          Sex:
+          Gender:
           <select
             className="input-calculator label-calculator"
-            value={sex}
-            onChange={(e) => setSex(e.target.value)}
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
           >
-            <option value="">Select your sex</option>
+            <option value="" selected disabled>
+              Select your gender
+            </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
@@ -47,24 +49,47 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
           label="Age"
           type="number"
           value={age}
-          onChange={(e) => setAge(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value >= 1) {
+              setAge(e.target.value);
+            } else {
+              setAge("");
+            }
+          }}
         />
         <CalculatorInput
           label="Weight (in kg)"
           type="number"
           value={weight}
-          onChange={(e) => setWeight(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value >= 1) {
+              setWeight(e.target.value);
+            } else {
+              setWeight("");
+            }
+          }}
         />
         <CalculatorInput
           label="Height (in cm)"
           type="number"
           value={height}
-          onChange={(e) => setHeight(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value >= 1) {
+              setHeight(e.target.value);
+            } else {
+              setHeight("");
+            }
+          }}
         />
         <div className="metabolism-value">
           <button type="submit">Calculate BMR</button>
-          <p>Your BMR is {bmr.toFixed(2)} calories.</p>
         </div>
+        {bmr !== 0 && (
+          <p>
+            Your BMR is {bmr.toFixed(2)} calories
+            <i className="bi bi-fire" />
+          </p>
+        )}
       </form>
     </div>
   );
