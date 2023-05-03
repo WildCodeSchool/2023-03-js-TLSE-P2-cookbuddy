@@ -12,12 +12,7 @@ import {
 import SquareFilter from "./SquareFilter";
 import RoundFilter from "./RoundFilter";
 
-export default function Filters({
-  setAreFiltersVisible,
-  setIsSearched,
-  // darkmode,
-  // toggleDarkmode,
-}) {
+export default function Filters({ setAreFiltersVisible, setIsSearched }) {
   const [isCleared, setIsCleared] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [minCookingTime, setMinCookingTime] = useState("");
@@ -273,6 +268,4 @@ export default function Filters({
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
   setIsSearched: PropTypes.func.isRequired,
-  // darkmode: PropTypes.bool.isRequired,
-  // toggleDarkmode: PropTypes.func.isRequired,
 };
