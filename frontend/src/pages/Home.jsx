@@ -83,7 +83,7 @@ export default function Home({ darkmode, toggleDarkmode }) {
           setIsLoaded(true);
         })
         .catch((error) => {
-          if (error.response.status === 401) {
+          if (error.response.status === 429) {
             const newKeys = getAnotherKeys(appId, appKey);
             getHomeRecipesData(newKeys.appId, newKeys.appKey);
           } else {
