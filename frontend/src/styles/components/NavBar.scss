@@ -34,6 +34,13 @@ img.logo {
   height: 58px;
 }
 
+.navbar-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
 button.dark-mode {
   @extend %action-button;
   @extend %action-button--sm;
@@ -49,6 +56,20 @@ button.dark-mode {
   padding: 0px;
   width: 40px;
   height: 40px;
+}
+.metabolism-button {
+  @extend %action-button;
+  @extend %action-button--sm;
+  @extend %action-button--grey--border;
+  background-color: $color--white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  height: 40px;
+  span {
+    display: none;
+  }
 }
 
 .search-container {
@@ -125,6 +146,11 @@ button.dark-mode {
     border-radius: 0px 0px 16px 16px;
     height: 50vh;
     position: relative;
+  }
+  .metabolism-button {
+    span {
+      display: flex;
+    }
   }
 
   .search-container {

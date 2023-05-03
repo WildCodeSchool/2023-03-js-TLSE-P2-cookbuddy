@@ -28,7 +28,8 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
         aria-hidden
       />
       <form className="metabolism-calculator" onSubmit={handleSubmit}>
-        <h2>Metabolism Calculator</h2>
+        <div className="mobile-drag" onClick={handleButtonClick} aria-hidden />
+        <h2>Metabolism calculator</h2>
         <label className="label-calculator">
           Sex:
           <select

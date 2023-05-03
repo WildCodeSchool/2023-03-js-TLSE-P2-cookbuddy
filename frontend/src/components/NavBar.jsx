@@ -15,16 +15,19 @@ export default function NavBar({
             src="assets/logo/logo-color-full.svg"
             alt="logo Cook Buddy"
           />
-          <button
-            className="metabolism-button"
-            type="button"
-            onClick={() => setIsMetabolismCalculatorVisible(true)}
-          >
-            <i className="bi bi-moon-fill" />
-          </button>
-          <button className="dark-mode" type="button">
-            <i className="bi bi-moon-fill" />
-          </button>
+          <div className="navbar-buttons">
+            <button
+              className="metabolism-button"
+              type="button"
+              onClick={() => setIsMetabolismCalculatorVisible(true)}
+            >
+              <i className="bi bi-calculator" />
+              <span>Metabolism calculator</span>
+            </button>
+            <button className="dark-mode" type="button">
+              <i className="bi bi-moon-fill" />
+            </button>
+          </div>
         </div>
       </div>
       <div

@@ -1,54 +1,88 @@
 @import "../App.scss";
-
-form {
+.metabolism-container {
   display: flex;
-  flex-direction: column;
+  position: fixed;
+  backdrop-filter: blur(10px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
   justify-content: center;
-  align-items: flex-start;
-  h2 {
-    @extend %title--xs;
-    font-family: $font-family--accent;
-    margin-bottom: 1rem;
+  .metabolism-filter {
+    background-color: $color--grey--900;
+    opacity: 0.3;
+    position: absolute;
+    height: 100%;
+    width: 100%;
   }
-  .label-calculator {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 70vw;
-    @extend %text--md;
-    font-family: $font-family--main;
+  .metabolism-calculator {
+    animation: modal-mobile-show-container 0.5s ease-out;
+    .mobile-drag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 0.875rem 0;
+      &::after {
+        content: "";
+        height: 6px;
+        width: 100px;
+        display: block;
+        background-color: $color--grey--200;
+        border-radius: 5px;
+      }
+    }
+    background-color: $color--white;
+    padding: 1rem;
+    width: 100%;
+    position: absolute;
+    border-radius: 20px;
   }
-  .input-calculator {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 8px 8px 8px;
-    gap: 8px;
-    background: $color--white;
-    border: 1px solid $color--grey--300;
-    border-radius: 50px;
-    outline: none;
-    @extend .text--md;
-    color: $color--grey--500;
-    text-indent: 1px;
-    text-overflow: "";
-    width: 50%;
-    max-width: 500px;
-    position: relative;
-    @include shadow--sm();
+    h2 {
+      @extend %title--xs;
+      font-family: $font-family--accent;
+      margin-bottom: 1rem;
+    }
+    .label-calculator {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @extend %text--md;
+      font-family: $font-family--main;
+    }
+    .input-calculator {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 8px 8px 8px 8px;
+      gap: 8px;
+      background: $color--white;
+      border: 1px solid $color--grey--300;
+      border-radius: 50px;
+      outline: none;
+      color: $color--grey--500;
+      text-indent: 1px;
+      text-overflow: "";
+      width: 60%;
+      position: relative;
+      @include shadow--sm();
+    }
+    .metabolism-value {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        text-align: end
+      }
+    }
+    button {
+      @extend %action-button--md;
+      @extend %action-button--primary--solid;
+    }
   }
-  .metabolism-value {
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  button {
-    @extend %action-button--md;
-    @extend %action-button--primary--solid;
-  }
-}
+
 @media screen and (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -75,12 +109,15 @@ form {
       width: 100%;
     }
     .metabolism-calculator {
-        background-color: $color--white;
-        padding: 2rem;
-        position: absolute;
-        width: 80%;
-        border-radius: 20px;
+      background-color: $color--white;
+      padding: 2rem;
+      position: absolute;
+      width: 80%;
+      border-radius: 20px;
+      .mobile-drag {
+        display: none;
       }
+    }
     .input-calculator {
       display: flex;
       flex-direction: row;

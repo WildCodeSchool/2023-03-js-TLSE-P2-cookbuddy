@@ -37,7 +37,7 @@ export default function Home() {
       mealSearchType = "Lunch";
   }
   const [isMetabolismCalculatorVisible, setIsMetabolismCalculatorVisible] =
-    useState(true);
+    useState(false);
 
   useEffect(() => {
     const getRecipesData = () => {
