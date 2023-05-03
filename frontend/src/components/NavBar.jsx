@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({
+  setAreFiltersVisible,
+  setIsMetabolismCalculatorVisible,
   darkmode,
   toggleDarkmode,
-  setAreFiltersVisible,
 }) {
   return (
     <>
@@ -25,8 +26,20 @@ export default function NavBar({
               alt="logo Cook Buddy"
             />
           )}
-
-          <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
+          <div className="navbar-buttons">
+            <button
+              className="metabolism-button"
+              type="button"
+              onClick={() => setIsMetabolismCalculatorVisible(true)}
+            >
+              <i className="bi bi-calculator" />
+              <span>Metabolism calculator</span>
+            </button>
+            <DarkModeToggle
+              darkmode={darkmode}
+              toggleDarkmode={toggleDarkmode}
+            />
+          </div>
         </div>
       </div>
       <div
@@ -53,4 +66,5 @@ NavBar.propTypes = {
 
 NavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
 };
