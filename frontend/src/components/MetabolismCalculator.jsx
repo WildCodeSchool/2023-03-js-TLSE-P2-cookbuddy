@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import CalculatorInput from "./CalculatorInput";
 
 function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
-  const [sex, setSex] = useState("");
+  const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
@@ -14,9 +14,9 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (sex === "male") {
+    if (gender === "male") {
       setBmr(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
-    } else if (sex === "female") {
+    } else if (gender === "female") {
       setBmr(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
     }
   };
@@ -32,14 +32,14 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
         <div className="mobile-drag" onClick={handleButtonClick} aria-hidden />
         <h2>Metabolism calculator</h2>
         <label className="label-calculator">
-          Sex:
+          Gender:
           <select
             className="input-calculator label-calculator"
-            value={sex}
-            onChange={(e) => setSex(e.target.value)}
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
           >
             <option value="" selected disabled>
-              Select your sex
+              Select your gender
             </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
