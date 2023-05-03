@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({
+  setAreFiltersVisible,
+  setIsMetabolismCalculatorVisible,
   darkmode,
   toggleDarkmode,
-  setAreFiltersVisible,
 }) {
   return (
     <>
@@ -47,4 +48,5 @@ NavBar.propTypes = {
 
 NavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
+  setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
 };

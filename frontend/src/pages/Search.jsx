@@ -12,9 +12,9 @@ import "../styles/Search.scss";
 export default function Search({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
-  const [isSearched, setIsSearched] = useState(false);
   const apiURLtable = [
     "https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true",
   ];
@@ -33,6 +33,8 @@ export default function Search({ darkmode, toggleDarkmode }) {
     }
   }
 
+  const totalActiveFilters = params.length;
+
   if (!hasTime) {
     params.push(["time", "1%2B"]);
   }
@@ -46,18 +48,18 @@ export default function Search({ darkmode, toggleDarkmode }) {
 
   const apiURL = apiURLtable.join("&");
 
+  const searchQueryText = searchParams.get("q");
+
+  const getRecipesData = () => {
+    axios.get(apiURL).then((response) => {
+      setRecipesData(response.data.hits);
+      setIsLoaded(true);
+      setAreFiltersVisible(false);
+    });
+  };
   useEffect(() => {
-    const getRecipesData = () => {
-      axios.get(apiURL).then((response) => {
-        setRecipesData(response.data.hits);
-        setSearchParams(searchParams);
-        setIsLoaded(true);
-        setIsSearched(false);
-        setAreFiltersVisible(false);
-      });
-    };
     getRecipesData();
-  }, [isSearched]);
+  }, [apiURL]);
 
   return (
     <>
@@ -66,12 +68,14 @@ export default function Search({ darkmode, toggleDarkmode }) {
           setAreFiltersVisible={setAreFiltersVisible}
           darkmode={darkmode}
           toggleDarkmode={toggleDarkmode}
+          totalActiveFilters={totalActiveFilters}
+          searchQueryText={searchQueryText}
         />
       </nav>
       <main className="has-navbar">
         <div className="container">
           {isLoaded ? (
-            <RecipesList data={recipesData} listClass="home" />
+            <RecipesList data={recipesData} listClass="search" />
           ) : (
             <p>Loading...</p>
           )}
@@ -81,7 +85,8 @@ export default function Search({ darkmode, toggleDarkmode }) {
       {areFiltersVisible && (
         <Filters
           setAreFiltersVisible={setAreFiltersVisible}
-          setIsSearched={setIsSearched}
+          searchQueryText={searchQueryText}
+          getRecipesData={getRecipesData}
         />
       )}
     </>
