@@ -77,7 +77,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
       <main className="has-navbar">
         <div className="container">
           {isLoaded ? (
-            <RecipesList data={recipesData} listClass="home" />
+            <RecipesList data={recipesData} listClass="search" />
           ) : (
             <p>Loading...</p>
           )}

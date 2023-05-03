@@ -1,18 +1,44 @@
 @import "../App.scss";
 
+.recipe-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2rem;
+  z-index: 1;
+  padding-top: 1rem ;
+  .input-dropdown {
+    width: 100%;
+    z-index: 1;
+  }
+}
 .recipe-list {
   display: flex;
   flex-direction: row;
   gap: 12px;
   flex-wrap: wrap;
   > * {
-    // flex-basis: calc(50% - 6px);
     flex-basis: 100%;
   }
 }
 @media screen and (min-width: 576px) {
   .recipe-list > * {
     flex-basis: calc(50% - 6px);
+  }
+
+  .recipe-list-container {
+    flex-direction: column;
+    align-items: flex-end;
+    .input-dropdown {
+      width: fit-content;
+      label {
+      text-align: right;
+    }}
+  }
+}
+@media screen and (min-width: 768px) {
+  .recipe-list-container {
+    padding-top: 0 ;
   }
 }
 
