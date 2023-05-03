@@ -5,8 +5,8 @@ import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({
   setAreFiltersVisible,
-  setIsMetabolismCalculatorVisible,
   darkmode,
+  setIsMetabolismCalculatorVisible,
   toggleDarkmode,
 }) {
   return (
@@ -20,8 +20,20 @@ export default function NavBar({
             }.svg`}
             alt="logo Cook Buddy"
           />
-
-          <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
+          <div className="navbar-buttons">
+            <button
+              className="metabolism-button"
+              type="button"
+              onClick={() => setIsMetabolismCalculatorVisible(true)}
+            >
+              <i className="bi bi-calculator" />
+              <span>Metabolism calculator</span>
+            </button>
+            <DarkModeToggle
+              darkmode={darkmode}
+              toggleDarkmode={toggleDarkmode}
+            />
+          </div>
         </div>
       </div>
       <div
