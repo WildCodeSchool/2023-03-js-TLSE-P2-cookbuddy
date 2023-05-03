@@ -47,24 +47,47 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
           label="Age"
           type="number"
           value={age}
-          onChange={(e) => setAge(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value >= 1) {
+              setAge(e.target.value);
+            } else {
+              setAge("");
+            }
+          }}
         />
         <CalculatorInput
           label="Weight (in kg)"
           type="number"
           value={weight}
-          onChange={(e) => setWeight(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value >= 1) {
+              setWeight(e.target.value);
+            } else {
+              setWeight("");
+            }
+          }}
         />
         <CalculatorInput
           label="Height (in cm)"
           type="number"
           value={height}
-          onChange={(e) => setHeight(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value >= 1) {
+              setHeight(e.target.value);
+            } else {
+              setHeight("");
+            }
+          }}
         />
         <div className="metabolism-value">
           <button type="submit">Calculate BMR</button>
-          <p>Your BMR is {bmr.toFixed(2)} calories.</p>
         </div>
+        {bmr !== 0 && (
+          <p>
+            Your BMR is {bmr.toFixed(2)} calories
+            <i className="bi bi-fire" />
+          </p>
+        )}
       </form>
     </div>
   );

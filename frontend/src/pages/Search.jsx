@@ -2,6 +2,7 @@ import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import NoSearchResults from "../components/NoSearchResults";
 import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
 import Filters from "../components/Filters";
@@ -73,13 +74,17 @@ export default function Search({ darkmode, toggleDarkmode }) {
         />
       </nav>
       <main className="has-navbar">
-        <div className="container">
-          {isLoaded ? (
-            <RecipesList data={recipesData} listClass="search" />
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+        {isLoaded ? (
+          <div className="container">
+            {!recipesData || recipesData.length === 0 ? (
+              <NoSearchResults />
+            ) : (
+              <RecipesList data={recipesData} listClass="search" />
+            )}
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
       </main>
       <Footer />
       {areFiltersVisible && (

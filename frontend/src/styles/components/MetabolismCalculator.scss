@@ -3,6 +3,7 @@
   display: flex;
   position: fixed;
   backdrop-filter: blur(10px);
+  z-index: 20;
   top: 0;
   left: 0;
   width: 100%;
@@ -72,19 +73,35 @@
     }
     .metabolism-value {
       width: 100%;
+      padding: 2rem 0rem 1rem 0rem;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      p {
-        text-align: end
-      }
     }
     button {
       @extend %action-button--md;
       @extend %action-button--primary--solid;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+    }
+    p {
+      text-align: center;
+      align-self: center;
+      background-color: $color--primary--100;
+      padding: 1rem;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      border: solid 1px $color--primary--600;
+      color: $color--primary--800;
+      i{
+        margin-left: 0.3rem;
+      }
     }
   }
+
 
 @media screen and (min-width: 576px) {
   .container {
@@ -115,7 +132,8 @@
       background-color: $color--white;
       padding: 2rem;
       position: absolute;
-      width: 80%;
+      width: 50%;
+      max-width: 720px;
       border-radius: 20px;
       .mobile-drag {
         display: none;
@@ -134,10 +152,31 @@
       color: $color--grey--500;
       text-indent: 1px;
       text-overflow: "";
-      width: 70%;
+      width: 50%;
       max-width: 500px;
       position: relative;
       @include shadow--sm();
+    }
+    button {
+      @extend %action-button--md;
+      @extend %action-button--primary--solid;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+    }
+    p {
+      text-align: center;
+      align-self: center;
+      background-color: $color--primary--100;
+      padding: 1rem;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      border: solid 1px $color--primary--600;
+      color: $color--primary--800;
+      i{
+        margin-left: 0.3rem;
+      }
     }
   }
 }
