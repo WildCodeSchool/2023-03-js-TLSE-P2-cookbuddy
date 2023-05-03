@@ -200,3 +200,22 @@ export const cuisineTypesFilters = [
     category: "cuisineType",
   },
 ];
+
+export const keys = [
+  {
+    appId: import.meta.env.VITE_APP_ID_CF,
+    appKey: import.meta.env.VITE_APP_KEY_CF,
+  },
+  {
+    appId: import.meta.env.VITE_APP_ID_JC,
+    appKey: import.meta.env.VITE_APP_KEY_JC,
+  },
+  {
+    appId: import.meta.env.VITE_APP_ID_AC,
+    appKey: import.meta.env.VITE_APP_KEY_AC,
+  },
+  {
+    appId: import.meta.env.VITE_APP_ID_JB,
+    appKey: import.meta.env.VITE_APP_KEY_JB,
+  },
+];
