@@ -34,6 +34,14 @@
   }
 }
 
+body.dark-theme {
+  .dish-container {
+    h2 {
+      color: $color--grey--200;
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
   .dish-container {
     .dish-types-container {

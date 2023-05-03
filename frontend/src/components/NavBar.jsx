@@ -1,20 +1,31 @@
 import "../styles/App.scss";
 import "../styles/components/NavBar.scss";
 import PropTypes from "prop-types";
+import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({
   setAreFiltersVisible,
   setIsMetabolismCalculatorVisible,
+  darkmode,
+  toggleDarkmode,
 }) {
   return (
     <>
       <div className="header-container">
         <div className="navbar">
-          <img
-            className="logo"
-            src="assets/logo/logo-color-full.svg"
-            alt="logo Cook Buddy"
-          />
+          {darkmode ? (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-dark-mode.svg"
+              alt="logo Cook Buddy"
+            />
+          ) : (
+            <img
+              className="logo"
+              src="assets/logo/logo-color-full.svg"
+              alt="logo Cook Buddy"
+            />
+          )}
           <div className="navbar-buttons">
             <button
               className="metabolism-button"
@@ -24,9 +35,10 @@ export default function NavBar({
               <i className="bi bi-calculator" />
               <span>Metabolism calculator</span>
             </button>
-            <button className="dark-mode" type="button">
-              <i className="bi bi-moon-fill" />
-            </button>
+            <DarkModeToggle
+              darkmode={darkmode}
+              toggleDarkmode={toggleDarkmode}
+            />
           </div>
         </div>
       </div>
@@ -45,6 +57,12 @@ export default function NavBar({
     </>
   );
 }
+
+NavBar.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+  setAreFiltersVisible: PropTypes.func.isRequired,
+};
 
 NavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,

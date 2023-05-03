@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/components/RecipeCard.scss";
-import "../styles/App.scss";
 import RecipeDetails from "./RecipeDetails";
 
 export default function RecipeCard({ data }) {
@@ -9,6 +8,7 @@ export default function RecipeCard({ data }) {
   const [areRecipeDetailsVisible, setAreRecipeDetailsVisible] = useState(false);
   const openRecipeDetails = () => setAreRecipeDetailsVisible(true);
   const closeRecipeDetails = () => setAreRecipeDetailsVisible(false);
+
   return (
     <>
       <article className="recipe-card" onClick={openRecipeDetails} aria-hidden>

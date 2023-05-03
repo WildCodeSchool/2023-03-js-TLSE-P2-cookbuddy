@@ -1,18 +1,20 @@
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
 import Filters from "../components/Filters";
 import RecipesList from "../components/RecipesList";
+
 import "../styles/Search.scss";
 
-export default function Search() {
+export default function Search({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
-  const [isSearched, setIsSearched] = useState(false);
   const apiURLtable = [
     "https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true",
   ];
@@ -31,6 +33,8 @@ export default function Search() {
     }
   }
 
+  const totalActiveFilters = params.length;
+
   if (!hasTime) {
     params.push(["time", "1%2B"]);
   }
@@ -44,23 +48,29 @@ export default function Search() {
 
   const apiURL = apiURLtable.join("&");
 
+  const searchQueryText = searchParams.get("q");
+
+  const getRecipesData = () => {
+    axios.get(apiURL).then((response) => {
+      setRecipesData(response.data.hits);
+      setIsLoaded(true);
+      setAreFiltersVisible(false);
+    });
+  };
   useEffect(() => {
-    const getRecipesData = () => {
-      axios.get(apiURL).then((response) => {
-        setRecipesData(response.data.hits);
-        setSearchParams(searchParams);
-        setIsLoaded(true);
-        setIsSearched(false);
-        setAreFiltersVisible(false);
-      });
-    };
     getRecipesData();
-  }, [isSearched]);
+  }, [apiURL]);
 
   return (
     <>
       <nav>
-        <SearchPageNavBar setAreFiltersVisible={setAreFiltersVisible} />
+        <SearchPageNavBar
+          setAreFiltersVisible={setAreFiltersVisible}
+          darkmode={darkmode}
+          toggleDarkmode={toggleDarkmode}
+          totalActiveFilters={totalActiveFilters}
+          searchQueryText={searchQueryText}
+        />
       </nav>
       <main className="has-navbar">
         <div className="container">
@@ -75,9 +85,14 @@ export default function Search() {
       {areFiltersVisible && (
         <Filters
           setAreFiltersVisible={setAreFiltersVisible}
-          setIsSearched={setIsSearched}
+          searchQueryText={searchQueryText}
+          getRecipesData={getRecipesData}
         />
       )}
     </>
   );
 }
+Search.propTypes = {
+  darkmode: PropTypes.bool.isRequired,
+  toggleDarkmode: PropTypes.func.isRequired,
+};
