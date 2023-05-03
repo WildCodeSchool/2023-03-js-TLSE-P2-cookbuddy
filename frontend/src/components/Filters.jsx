@@ -153,6 +153,8 @@ export default function Filters({
                   placeholder="Enter ingredients or recipe"
                   onChange={handleSearchQuery}
                   value={searchQueryText}
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
+                  autoFocus
                 />
               </div>
             </div>
@@ -241,6 +243,8 @@ export default function Filters({
                     placeholder="minimum"
                     onChange={handleMinCookingTime}
                     value={minCookingTime}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                   />
                 </div>
                 <p>to</p>
@@ -250,6 +254,8 @@ export default function Filters({
                     placeholder="maximum"
                     onChange={handleMaxCookingTime}
                     value={maxCookingTime}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                   />
                 </div>
                 <p>mins</p>
