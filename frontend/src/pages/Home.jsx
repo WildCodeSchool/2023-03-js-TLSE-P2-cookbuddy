@@ -8,6 +8,7 @@ import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
 import "../styles/Home.scss";
+import { keys } from "../utils";
 
 export default function Home({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState([]);
@@ -40,26 +41,6 @@ export default function Home({ darkmode, toggleDarkmode }) {
     useState(false);
 
   useEffect(() => {
-    // List of app IDs and app keys
-    const keys = [
-      {
-        appId: import.meta.env.VITE_APP_ID_CF,
-        appKey: import.meta.env.VITE_APP_KEY_CF,
-      },
-      {
-        appId: import.meta.env.VITE_APP_ID_JC,
-        appKey: import.meta.env.VITE_APP_KEY_JC,
-      },
-      {
-        appId: import.meta.env.VITE_APP_ID_AC,
-        appKey: import.meta.env.VITE_APP_KEY_AC,
-      },
-      {
-        appId: import.meta.env.VITE_APP_ID_JB,
-        appKey: import.meta.env.VITE_APP_KEY_JB,
-      },
-    ];
-
     const { appId, appKey } = keys[Math.floor(Math.random() * keys.length)];
     const getAnotherKeys = (currentAppId, currentAppKey) => {
       const availableKeys = keys.filter(
