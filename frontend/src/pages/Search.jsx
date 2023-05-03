@@ -87,6 +87,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
           setAreFiltersVisible={setAreFiltersVisible}
           searchQueryText={searchQueryText}
           getRecipesData={getRecipesData}
+          searchParams={searchParams}
         />
       )}
     </>

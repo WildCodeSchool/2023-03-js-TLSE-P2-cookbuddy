@@ -16,13 +16,28 @@ export default function Filters({
   setAreFiltersVisible,
   searchQueryText,
   getRecipesData,
+  searchParams,
 }) {
   const [isCleared, setIsCleared] = useState(false);
   const [searchQuery, setSearchQuery] = useState(
     searchQueryText && searchQueryText
   );
-  const [minCookingTime, setMinCookingTime] = useState("");
-  const [maxCookingTime, setMaxCookingTime] = useState("");
+  let minCookingTimeInitial = "";
+  let maxCookingTimeInitial = "";
+  const zero = 0;
+  const one = 1;
+  if (searchParams) {
+    let entry = null;
+    for (entry of searchParams.entries()) {
+      if (entry[0] === "time") {
+        const cookingTime = entry[1].split("-");
+        minCookingTimeInitial = cookingTime[zero];
+        maxCookingTimeInitial = cookingTime[one];
+      }
+    }
+  }
+  const [minCookingTime, setMinCookingTime] = useState(minCookingTimeInitial);
+  const [maxCookingTime, setMaxCookingTime] = useState(maxCookingTimeInitial);
   const [areMoreFiltersVisible, setAreMoreFiltersVisible] = useState(false);
 
   const handleSearchQuery = (e) => {
@@ -52,8 +67,21 @@ export default function Filters({
       };
     });
 
+    let entry = null;
+
+    if (searchParams) {
+      for (entry of searchParams.entries()) {
+        if (entry[0] !== "time") {
+          initialFilters[entry[1]] = {
+            isActive: true,
+            category: entry[0],
+          };
+        }
+      }
+    }
     return initialFilters;
   });
+
   let searchQueryUrl = [];
   if (searchQuery) {
     searchQueryUrl.push(`q=${searchQuery}`);
@@ -157,6 +185,7 @@ export default function Filters({
                   key={filter.id}
                   setFiltersList={setFiltersList}
                   setIsCleared={setIsCleared}
+                  filtersList={filtersList}
                   isCleared={isCleared}
                 />
               ))}
@@ -171,6 +200,7 @@ export default function Filters({
                   key={filter.id}
                   setFiltersList={setFiltersList}
                   setIsCleared={setIsCleared}
+                  filtersList={filtersList}
                   isCleared={isCleared}
                 />
               ))}
@@ -233,6 +263,7 @@ export default function Filters({
                     data={filter}
                     key={filter.id}
                     setFiltersList={setFiltersList}
+                    filtersList={filtersList}
                     setIsCleared={setIsCleared}
                     isCleared={isCleared}
                   />
@@ -247,6 +278,7 @@ export default function Filters({
                     data={filter}
                     key={filter.id}
                     setFiltersList={setFiltersList}
+                    filtersList={filtersList}
                     setIsCleared={setIsCleared}
                     isCleared={isCleared}
                   />
@@ -279,9 +311,13 @@ Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
   getRecipesData: PropTypes.func,
   searchQueryText: PropTypes.string,
+  searchParams: PropTypes.shape({
+    entries: PropTypes.shape({}),
+  }),
 };
 
 Filters.defaultProps = {
   searchQueryText: "",
   getRecipesData: "",
+  searchParams: {},
 };
