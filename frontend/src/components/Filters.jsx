@@ -15,8 +15,8 @@ import RoundFilter from "./RoundFilter";
 export default function Filters({
   setAreFiltersVisible,
   setIsSearched,
-  darkmode,
-  toggleDarkmode,
+  // darkmode,
+  // toggleDarkmode,
 }) {
   const [isCleared, setIsCleared] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -273,6 +273,6 @@ export default function Filters({
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
   setIsSearched: PropTypes.func.isRequired,
-  darkmode: PropTypes.bool.isRequired,
-  toggleDarkmode: PropTypes.func.isRequired,
+  // darkmode: PropTypes.bool.isRequired,
+  // toggleDarkmode: PropTypes.func.isRequired,
 };
