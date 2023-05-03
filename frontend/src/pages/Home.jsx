@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
-
 import "../styles/Home.scss";
 import NavBar from "../components/NavBar";
 import Filters from "../components/Filters";
@@ -38,21 +37,62 @@ export default function Home({ darkmode, toggleDarkmode }) {
   }
 
   useEffect(() => {
-    const getHomeRecipesData = () => {
+    // List of app IDs and app keys
+    const keys = [
+      {
+        appId: import.meta.env.VITE_APP_ID_CF,
+        appKey: import.meta.env.VITE_APP_KEY_CF,
+      },
+      {
+        appId: import.meta.env.VITE_APP_ID_JC,
+        appKey: import.meta.env.VITE_APP_KEY_JC,
+      },
+      {
+        appId: import.meta.env.VITE_APP_ID_AC,
+        appKey: import.meta.env.VITE_APP_KEY_AC,
+      },
+      {
+        appId: import.meta.env.VITE_APP_ID_JB,
+        appKey: import.meta.env.VITE_APP_KEY_JB,
+      },
+    ];
+
+    const { appId, appKey } = keys[Math.floor(Math.random() * keys.length)];
+    const getAnotherKeys = (currentAppId, currentAppKey) => {
+      const availableKeys = keys.filter(
+        (newKeys) =>
+          newKeys.appId !== currentAppId || newKeys.appKey !== currentAppKey
+      );
+
+      const newKeys =
+        availableKeys[Math.floor(Math.random() * availableKeys.length)];
+
+      if (newKeys) {
+        return newKeys;
+      }
+      return { appId: currentAppId, appKey: currentAppKey };
+    };
+    // eslint-disable-next-line no-shadow
+    const getHomeRecipesData = (appId, appKey) => {
       axios
         .get(
-          `https://api.edamam.com/api/recipes/v2?type=public&app_id=${
-            import.meta.env.VITE_APP_ID_CF
-          }&app_key=${
-            import.meta.env.VITE_APP_KEY_CF
-          }&mealType=${mealSearchType}&time=1%2B&imageSize=LARGE&random=true`
+          `https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&mealType=${mealSearchType}&time=1%2B&imageSize=LARGE&random=true`
         )
         .then((response) => {
           setRecipesData(response.data.hits.splice(0, 6));
           setIsLoaded(true);
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            const newKeys = getAnotherKeys(appId, appKey);
+            getHomeRecipesData(newKeys.appId, newKeys.appKey);
+          } else {
+            console.error(error);
+          }
         });
     };
-    getHomeRecipesData();
+
+    getHomeRecipesData(appId, appKey);
   }, []);
 
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
