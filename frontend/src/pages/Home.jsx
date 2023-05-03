@@ -38,7 +38,7 @@ export default function Home({ darkmode, toggleDarkmode }) {
   }
 
   useEffect(() => {
-    const getRecipesData = () => {
+    const getHomeRecipesData = () => {
       axios
         .get(
           `https://api.edamam.com/api/recipes/v2?type=public&app_id=${
@@ -52,7 +52,7 @@ export default function Home({ darkmode, toggleDarkmode }) {
           setIsLoaded(true);
         });
     };
-    getRecipesData();
+    getHomeRecipesData();
   }, []);
 
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);

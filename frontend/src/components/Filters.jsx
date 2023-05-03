@@ -14,8 +14,8 @@ import RoundFilter from "./RoundFilter";
 
 export default function Filters({
   setAreFiltersVisible,
-  setIsSearched,
   searchQueryText,
+  getRecipesData,
 }) {
   const [isCleared, setIsCleared] = useState(false);
   const [searchQuery, setSearchQuery] = useState(
@@ -139,7 +139,9 @@ export default function Filters({
               <Link
                 to={`/search?${searchQueryUrl}`}
                 className="search"
-                onClick={() => setIsSearched(true)}
+                onClick={() =>
+                  typeof getRecipesData === "function" && getRecipesData()
+                }
               >
                 Search
                 <i className="bi bi-chevron-right" />
@@ -260,7 +262,9 @@ export default function Filters({
           <Link
             to={`/search?${searchQueryUrl}`}
             className="search"
-            onClick={() => setIsSearched(true)}
+            onClick={() =>
+              typeof getRecipesData === "function" && getRecipesData()
+            }
           >
             Search
             <i className="bi bi-chevron-right" />
@@ -273,11 +277,11 @@ export default function Filters({
 
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
-  setIsSearched: PropTypes.func,
+  getRecipesData: PropTypes.func,
   searchQueryText: PropTypes.string,
 };
 
 Filters.defaultProps = {
   searchQueryText: "",
-  setIsSearched: "",
+  getRecipesData: "",
 };
