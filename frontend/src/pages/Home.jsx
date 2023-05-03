@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import NavBar from "../components/NavBar";
+import Filters from "../components/Filters";
+import MetabolismCalculator from "../components/MetabolismCalculator";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
 import "../styles/Home.scss";
-import NavBar from "../components/NavBar";
-import Filters from "../components/Filters";
 
 export default function Home({ darkmode, toggleDarkmode }) {
   const [recipesData, setRecipesData] = useState([]);
@@ -35,6 +36,8 @@ export default function Home({ darkmode, toggleDarkmode }) {
     default:
       mealSearchType = "Lunch";
   }
+  const [isMetabolismCalculatorVisible, setIsMetabolismCalculatorVisible] =
+    useState(false);
 
   useEffect(() => {
     // List of app IDs and app keys
@@ -94,16 +97,21 @@ export default function Home({ darkmode, toggleDarkmode }) {
 
     getHomeRecipesData(appId, appKey);
   }, []);
-
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   return (
     <>
       <header>
         <NavBar
+          setAreFiltersVisible={setAreFiltersVisible}
+          setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
           darkmode={darkmode}
           toggleDarkmode={toggleDarkmode}
-          setAreFiltersVisible={setAreFiltersVisible}
         />
+        {isMetabolismCalculatorVisible && (
+          <MetabolismCalculator
+            setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
+          />
+        )}
       </header>
       <main>
         <div className="container">

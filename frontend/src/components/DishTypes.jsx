@@ -6,7 +6,7 @@ import { categoryButtons } from "../utils";
 export default function DishTypes() {
   return (
     <div className="dish-container">
-      <h2>Dish Types</h2>
+      <h2>Dish types</h2>
       <div className="dish-types-container">
         <div className="dish-types">
           {categoryButtons.map((button) => (

@@ -944,7 +944,7 @@ BUTTONS
       align-items: center;
       padding: 8px 40px 8px 12px;
       gap: 8px;
-      background: $color--white;
+      background-color: $color--white;
       border: 1px solid $color--grey--300;
       @include shadow--xs();
       border-radius: 50px;
@@ -1993,7 +1993,7 @@ BUTTONS
       align-items: center;
       padding: 8px 40px 8px 12px;
       gap: 8px;
-      background: $color--white;
+      background-color: $color--white !important;
       border: 1px solid $color--grey--300;
       @include shadow--xs();
       border-radius: 50px;
@@ -2025,7 +2025,7 @@ BUTTONS
     }
     label {
       @extend .text--sm;
-      color: $color--grey--700;
+      color: $color--grey--200;
       font-weight: 500;
     }
   }
