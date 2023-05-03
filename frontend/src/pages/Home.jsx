@@ -36,7 +36,6 @@ export default function Home({ darkmode, toggleDarkmode }) {
     default:
       mealSearchType = "Lunch";
   }
-
   useEffect(() => {
     const getRecipesData = () => {
       axios
@@ -54,7 +53,6 @@ export default function Home({ darkmode, toggleDarkmode }) {
     };
     getRecipesData();
   }, []);
-
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   return (
     <>
@@ -79,9 +77,6 @@ export default function Home({ darkmode, toggleDarkmode }) {
         </div>
       </main>
       <Footer />
-      {areFiltersVisible && (
-        <Filters setAreFiltersVisible={setAreFiltersVisible} />
-      )}
       {areFiltersVisible && (
         <Filters setAreFiltersVisible={setAreFiltersVisible} />
       )}
