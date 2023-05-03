@@ -6,7 +6,7 @@
   align-items: flex-end;
   gap: 2rem;
   z-index: 1;
-  padding-top: 1rem ;
+  padding-top: 1rem;
   .input-dropdown {
     width: 100%;
     z-index: 1;
@@ -32,13 +32,14 @@
     .input-dropdown {
       width: fit-content;
       label {
-      text-align: right;
-    }}
+        text-align: right;
+      }
+    }
   }
 }
 @media screen and (min-width: 768px) {
   .recipe-list-container {
-    padding-top: 0 ;
+    padding-top: 0;
   }
 }
 

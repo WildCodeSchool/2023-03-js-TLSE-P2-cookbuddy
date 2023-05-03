@@ -42,66 +42,70 @@
     position: absolute;
     border-radius: 20px;
   }
-    h2 {
-      @extend %title--xs;
-      font-family: $font-family--accent;
-      margin-bottom: 1rem;
-    }
-    .label-calculator {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      @extend %text--md;
-      font-family: $font-family--main;
-    }
-    .input-calculator {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: 8px 8px 8px 8px;
-      gap: 8px;
-      background: $color--white;
-      border: 1px solid $color--grey--300;
-      border-radius: 50px;
-      outline: none;
-      color: $color--grey--500;
-      text-indent: 1px;
-      text-overflow: "";
-      width: 60%;
-      position: relative;
-      @include shadow--sm();
-    }
-    .metabolism-value {
-      width: 100%;
-      padding: 2rem 0rem 1rem 0rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-    button {
-      @extend %action-button--md;
-      @extend %action-button--primary--solid;
-      width: 100%;
-      max-width: 400px;
-      display: flex;
-    }
-    p {
-      text-align: center;
-      align-self: center;
-      background-color: $color--primary--100;
-      padding: 1rem;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 10px;
-      border: solid 1px $color--primary--600;
-      color: $color--primary--800;
-      i{
-        margin-left: 0.3rem;
-      }
+  h2 {
+    @extend %title--xs;
+    font-family: $font-family--accent;
+    margin-bottom: 1rem;
+  }
+  .label-calculator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @extend %text--md;
+    font-family: $font-family--main;
+  }
+  .input-calculator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 8px 8px 8px;
+    gap: 8px;
+    background: $color--white;
+    border: 1px solid $color--grey--300;
+    border-radius: 50px;
+    outline: none;
+    color: $color--grey--500;
+    text-indent: 1px;
+    text-overflow: "";
+    width: 60%;
+    position: relative;
+    @include shadow--sm();
+  }
+  .metabolism-value {
+    width: 100%;
+    padding: 2rem 0rem 1rem 0rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  button {
+    @extend %action-button--md;
+    @extend %action-button--primary--solid;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+  }
+  p {
+    text-align: center;
+    align-self: center;
+    background-color: $color--primary--100;
+    padding: 1rem;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    border: solid 1px $color--primary--600;
+    color: $color--primary--800;
+    i {
+      margin-left: 0.3rem;
     }
   }
 
+  button {
+    @extend %action-button--md;
+    @extend %action-button--primary--solid;
+  }
+}
 
 @media screen and (min-width: 576px) {
   .container {
@@ -174,7 +178,7 @@
       border-radius: 10px;
       border: solid 1px $color--primary--600;
       color: $color--primary--800;
-      i{
+      i {
         margin-left: 0.3rem;
       }
     }

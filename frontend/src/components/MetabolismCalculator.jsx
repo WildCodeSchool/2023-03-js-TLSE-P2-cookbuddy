@@ -38,7 +38,9 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
             value={sex}
             onChange={(e) => setSex(e.target.value)}
           >
-            <option value="">Select your sex</option>
+            <option value="" selected disabled>
+              Select your sex
+            </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
