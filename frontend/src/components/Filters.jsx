@@ -153,8 +153,6 @@ export default function Filters({
                   placeholder="Enter ingredients or recipe"
                   onChange={handleSearchQuery}
                   value={searchQueryText}
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus
                 />
               </div>
             </div>
