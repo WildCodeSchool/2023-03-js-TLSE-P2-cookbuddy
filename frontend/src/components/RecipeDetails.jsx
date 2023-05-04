@@ -7,9 +7,16 @@ import RecipePageButton from "./RecipePageButton";
 import RecipeInfos from "./RecipeInfos";
 import RecipeYieldSelector from "./RecipeYieldSelector";
 
-function RecipeDetails({ data, setAreRecipeDetailsVisible }) {
+function RecipeDetails({
+  data,
+  setAreRecipeDetailsVisible,
+  setIsBodyScrollable,
+}) {
   const [selectedYield, setSelectedYield] = useState(data.yield);
-  const handleButtonClick = () => setAreRecipeDetailsVisible(false);
+  const handleButtonClick = () => {
+    setAreRecipeDetailsVisible(false);
+    setIsBodyScrollable(true);
+  };
   return (
     <div className="recipe-container">
       <div
@@ -104,5 +111,6 @@ RecipeDetails.propTypes = {
     ingredients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
   setAreRecipeDetailsVisible: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };
 export default RecipeDetails;

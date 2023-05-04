@@ -8,6 +8,7 @@ export default function NavBar({
   darkmode,
   setIsMetabolismCalculatorVisible,
   toggleDarkmode,
+  setIsBodyScrollable,
 }) {
   return (
     <>
@@ -38,7 +39,10 @@ export default function NavBar({
       </div>
       <div
         className="search-container"
-        onClick={() => setAreFiltersVisible(true)}
+        onClick={() => {
+          setAreFiltersVisible(true);
+          setIsBodyScrollable(false);
+        }}
         aria-hidden
       >
         <input
@@ -56,9 +60,6 @@ NavBar.propTypes = {
   darkmode: PropTypes.bool.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
   setAreFiltersVisible: PropTypes.func.isRequired,
-};
-
-NavBar.propTypes = {
-  setAreFiltersVisible: PropTypes.func.isRequired,
   setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };

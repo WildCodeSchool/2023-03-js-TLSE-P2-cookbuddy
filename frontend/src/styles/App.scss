@@ -933,6 +933,15 @@ BUTTONS
     }
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   .input-dropdown {
     display: flex;
     flex-direction: column;
@@ -2226,4 +2235,8 @@ BUTTONS
       padding: 2rem;
     }
   }
+}
+
+body.not-scrollable {
+  overflow: hidden;
 }

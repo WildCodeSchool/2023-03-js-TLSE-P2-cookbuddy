@@ -3,11 +3,17 @@ import PropTypes from "prop-types";
 import "../styles/components/RecipeCard.scss";
 import RecipeDetails from "./RecipeDetails";
 
-export default function RecipeCard({ data }) {
+export default function RecipeCard({ data, setIsBodyScrollable }) {
   const caloriesRounded = Math.round(data.calories);
   const [areRecipeDetailsVisible, setAreRecipeDetailsVisible] = useState(false);
-  const openRecipeDetails = () => setAreRecipeDetailsVisible(true);
-  const closeRecipeDetails = () => setAreRecipeDetailsVisible(false);
+  const openRecipeDetails = () => {
+    setAreRecipeDetailsVisible(true);
+    setIsBodyScrollable(false);
+  };
+  const closeRecipeDetails = () => {
+    setAreRecipeDetailsVisible(false);
+    setIsBodyScrollable(true);
+  };
 
   return (
     <>
@@ -40,6 +46,7 @@ export default function RecipeCard({ data }) {
         <RecipeDetails
           data={data}
           setAreRecipeDetailsVisible={closeRecipeDetails}
+          setIsBodyScrollable={setIsBodyScrollable}
         />
       ) : (
         ""
@@ -48,6 +55,7 @@ export default function RecipeCard({ data }) {
   );
 }
 RecipeCard.propTypes = {
+  setIsBodyScrollable: PropTypes.func.isRequired,
   data: PropTypes.shape({
     label: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,

@@ -3,13 +3,20 @@ import "../styles/components/MetabolismCalculator.scss";
 import PropTypes from "prop-types";
 import CalculatorInput from "./CalculatorInput";
 
-function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
+function MetabolismCalculator({
+  setIsMetabolismCalculatorVisible,
+  setIsBodyScrollable,
+}) {
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [bmr, setBmr] = useState(0);
-  const handleButtonClick = () => setIsMetabolismCalculatorVisible(false);
+  const handleButtonClick = () => {
+    setIsMetabolismCalculatorVisible(false);
+    setIsBodyScrollable(true);
+  };
+  setIsBodyScrollable(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,6 +103,7 @@ function MetabolismCalculator({ setIsMetabolismCalculatorVisible }) {
 }
 MetabolismCalculator.propTypes = {
   setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };
 
 export default MetabolismCalculator;

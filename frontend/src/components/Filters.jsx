@@ -18,6 +18,7 @@ export default function Filters({
   getRecipesData,
   searchParams = "",
   setSearchQueryText,
+  setIsBodyScrollable,
 }) {
   const [isCleared, setIsCleared] = useState(false);
 
@@ -136,6 +137,7 @@ export default function Filters({
       if (e.key === "Escape") {
         e.preventDefault();
         setAreFiltersVisible(false);
+        setIsBodyScrollable(true);
       }
       if (e.key === "Enter") {
         navigate(`/search?${searchQueryUrl}`);
@@ -151,13 +153,19 @@ export default function Filters({
     <div className="modal">
       <div
         className="modal__filter"
-        onClick={() => setAreFiltersVisible(false)}
+        onClick={() => {
+          setAreFiltersVisible(false);
+          setIsBodyScrollable(true);
+        }}
         aria-hidden
       />
       <div className="modal__container">
         <div
           className="mobile-drag"
-          onClick={() => setAreFiltersVisible(false)}
+          onClick={() => {
+            setAreFiltersVisible(false);
+            setIsBodyScrollable(true);
+          }}
           aria-hidden
         />
         <div className="filters__container">
@@ -333,6 +341,7 @@ Filters.propTypes = {
   getRecipesData: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   searchQueryText: PropTypes.string,
   setSearchQueryText: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
   searchParams: PropTypes.oneOfType([
     PropTypes.shape({
       entries: PropTypes.func,
