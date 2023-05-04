@@ -1,7 +1,8 @@
 @import "../App.scss";
 
+
 .no-search-results {
-    padding: 2rem;
+  padding: 2rem;
   border-radius: 20px;
   min-height: 50vh;
   display: flex;
@@ -15,8 +16,8 @@
   }
   h2 {
     @extend %title--md;
-        font-family: $font-family--accent;
-        color: $color--grey--500;
+    font-family: $font-family--accent;
+    color: $color--grey--500;
   }
   p {
     padding: 0.5rem;
@@ -27,3 +28,10 @@
     color: $color--grey--400;
   }
 }
+
+body.dark-theme {
+  .no-search-results {
+    background-color: $color--grey--800;
+  }
+}
+
