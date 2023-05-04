@@ -178,6 +178,7 @@ export default function Filters({
                   placeholder="Enter ingredients or recipe"
                   onChange={handleSearchQuery}
                   value={searchQueryText}
+                  enterKeyHint="search"
                 />
               </div>
             </div>
