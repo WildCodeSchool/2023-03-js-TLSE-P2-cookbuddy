@@ -4,7 +4,7 @@
 .no-search-results {
   padding: 2rem;
   border-radius: 20px;
-  min-height: 50vh;
+  min-height: calc(100vh - 7rem - 4rem - 80px - 2rem);
   display: flex;
   flex-direction: column;
   align-items: center;

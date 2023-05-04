@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/components/Filters.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -129,6 +129,23 @@ export default function Filters({
       return initialFilters;
     });
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const keyDownHandler = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setAreFiltersVisible(false);
+      }
+      if (e.key === "Enter") {
+        navigate(`/search?${searchQueryUrl}`);
+      }
+    };
+    document.addEventListener("keydown", keyDownHandler);
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, [searchQueryUrl]);
 
   return (
     <div className="modal">
