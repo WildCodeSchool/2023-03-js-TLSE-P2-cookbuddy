@@ -1962,7 +1962,7 @@ BUTTONS
       border-radius: 50px;
       outline: none;
       @extend .text--md;
-      color: red;
+      color: $color--grey--100;
       &::placeholder{
         color: $color--grey--100;
       }
