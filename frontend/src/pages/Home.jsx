@@ -7,6 +7,7 @@ import MetabolismCalculator from "../components/MetabolismCalculator";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
+import LoadingScreen from "../components/LoadingScreen";
 import "../styles/Home.scss";
 import { keys } from "../utils";
 
@@ -105,7 +106,7 @@ export default function Home({ darkmode, toggleDarkmode }) {
             {isLoaded ? (
               <RecipesList data={recipesData} listClass="home" />
             ) : (
-              <p>Loading...</p>
+              <LoadingScreen />
             )}
           </section>
         </div>

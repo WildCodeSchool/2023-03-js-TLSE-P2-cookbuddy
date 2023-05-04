@@ -1,0 +1,51 @@
+@import "../App.scss";
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  height: calc(100vh - 91px - 80px - 2rem);
+  width: 100%;
+
+  border-radius: 20px;
+  gap: 1rem;
+
+  .image {
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  h2 {
+    @extend .text--xl;
+    font-weight: 600 !important;
+  }
+
+  p {
+    @extend .text--md;
+    max-width: 300px;
+    text-align: center;
+  }
+}
+body.light-theme {
+  .loading-screen {
+    color: $color--grey--900;
+    background-color: $color--grey--200;
+    .image {
+      background-image: url("assets/loading-black.gif");
+    }
+  }
+}
+body.dark-theme {
+  .loading-screen {
+    color: $color--grey--100;
+    background-color: $color--grey--800;
+    .image {
+      background-image: url("assets/loading-white.gif");
+    }
+  }
+}

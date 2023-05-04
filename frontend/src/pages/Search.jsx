@@ -7,6 +7,7 @@ import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
 import Filters from "../components/Filters";
 import RecipesList from "../components/RecipesList";
+import LoadingScreen from "../components/LoadingScreen";
 
 import "../styles/Search.scss";
 
@@ -86,7 +87,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
             )}
           </div>
         ) : (
-          <p>Loading...</p>
+          <LoadingScreen />
         )}
       </main>
       <Footer />
