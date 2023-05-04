@@ -223,6 +223,7 @@ body.dark-theme {
 
 @media screen and (min-width: 768px) {
   .recipe-container {
+    overflow: hidden!important;
     display: flex;
     position: fixed;
     backdrop-filter: blur(10px);
