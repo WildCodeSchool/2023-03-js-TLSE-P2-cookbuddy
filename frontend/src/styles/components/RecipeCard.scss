@@ -44,7 +44,7 @@
       @extend %action-button;
       @extend %action-button--sm;
       @extend %action-button--primary--solid;
-      display: none;
+      display: none!important;
     }
   }
 }
