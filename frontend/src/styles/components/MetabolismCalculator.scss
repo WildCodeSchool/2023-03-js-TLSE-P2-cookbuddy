@@ -106,6 +106,19 @@
     @extend %action-button--primary--solid;
   }
 }
+body.dark-theme {
+  .metabolism-container{
+    .metabolism-calculator{
+      background-color: $color--grey--800;
+    }
+    h2{
+      color: $color--grey--100;
+    }
+  }
+  .label-calculator{
+    color: $color--grey--100;
+  }
+}
 
 @media screen and (min-width: 576px) {
   .container {
