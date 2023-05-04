@@ -109,10 +109,13 @@
 body.dark-theme {
   .metabolism-container{
     .metabolism-calculator{
-      background-color: $color--grey--800;
+      background-color: $color--grey--900;
     }
     h2{
       color: $color--grey--100;
+    }
+    .input-calculator{
+      background-color: $color--grey--800;
     }
   }
   .label-calculator{
