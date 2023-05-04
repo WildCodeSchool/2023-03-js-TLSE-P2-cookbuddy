@@ -43,6 +43,9 @@
     margin-top: 2rem;
   }
   .recipe-description {
+    &::-webkit-scrollbar-track {
+      border: none;
+    }    
     padding: 2rem 1rem 1rem 1rem;
     background-color: $color--white;
     border-radius: 20px;
@@ -192,8 +195,22 @@ body.dark-theme {
   .recipe-details {
     .recipe-description {
       background-color: $color--grey--900;
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: $color--grey--900;
+        border: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: $color--grey--600;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: $color--grey--500;
+      }
       h2 {
-        color: $color--white!important;
+        color: $color--white !important;
       }
       .recipe-infos {
         p {
@@ -206,6 +223,7 @@ body.dark-theme {
 
 @media screen and (min-width: 768px) {
   .recipe-container {
+    overflow: hidden!important;
     display: flex;
     position: fixed;
     backdrop-filter: blur(10px);

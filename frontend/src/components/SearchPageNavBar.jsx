@@ -10,6 +10,7 @@ function SearchPageNavBar({
   toggleDarkmode,
   totalActiveFilters,
   searchQueryText,
+  setIsBodyScrollable,
 }) {
   return (
     <div className="navbar-container">
@@ -37,25 +38,19 @@ function SearchPageNavBar({
         </Link>
         <div
           className="search-page-container"
-          onClick={() => setAreFiltersVisible(true)}
+          onClick={() => {
+            setAreFiltersVisible(true);
+            setIsBodyScrollable(false);
+          }}
           aria-hidden
         >
-          {searchQueryText !== "" ? (
-            <input
-              type="text"
-              className="input--search-bar"
-              placeholder="Enter ingredients or recipe"
-              value={searchQueryText}
-              disabled
-            />
-          ) : (
-            <input
-              className="input--search-bar"
-              type="text"
-              placeholder="Enter ingredients or recipe"
-              disabled
-            />
-          )}
+          <input
+            type="text"
+            className="input--search-bar"
+            placeholder="Enter ingredients or recipe"
+            value={searchQueryText}
+            disabled
+          />
 
           <button
             className="action-button--md action-button action-button--grey--border filters"
@@ -74,6 +69,7 @@ function SearchPageNavBar({
 SearchPageNavBar.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
   darkmode: PropTypes.bool.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
   searchQueryText: PropTypes.string,
   totalActiveFilters: PropTypes.number,

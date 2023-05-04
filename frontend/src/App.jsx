@@ -10,20 +10,55 @@ function App() {
   const toggleDarkmode = () => {
     setDarkmode(!darkmode);
   };
+  const [isBodyScrollable, setIsBodyScrollable] = useState(true);
+
   useEffect(() => {
-    document.body.className = darkmode ? "dark-theme" : "light-theme";
-  }, [darkmode]);
+    const darkModeMediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    const listener = (e) => {
+      setDarkmode(e.matches);
+    };
+
+    darkModeMediaQuery.addEventListener("change", listener);
+    setDarkmode(darkModeMediaQuery.matches);
+
+    return () => {
+      darkModeMediaQuery.removeEventListener("change", listener);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isBodyScrollable) {
+      document.body.className = darkmode
+        ? "dark-theme not-scrollable"
+        : "light-theme not-scrollable";
+    } else {
+      document.body.className = darkmode ? "dark-theme" : "light-theme";
+    }
+  }, [darkmode, isBodyScrollable]);
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
-          element={<Home darkmode={darkmode} toggleDarkmode={toggleDarkmode} />}
+          element={
+            <Home
+              darkmode={darkmode}
+              toggleDarkmode={toggleDarkmode}
+              setIsBodyScrollable={setIsBodyScrollable}
+            />
+          }
         />
         <Route
           path="/search/*"
           element={
-            <Search darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
+            <Search
+              darkmode={darkmode}
+              toggleDarkmode={toggleDarkmode}
+              setIsBodyScrollable={setIsBodyScrollable}
+            />
           }
         />
       </Routes>

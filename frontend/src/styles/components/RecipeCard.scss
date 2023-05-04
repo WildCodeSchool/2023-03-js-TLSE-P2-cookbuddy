@@ -44,7 +44,7 @@
       @extend %action-button;
       @extend %action-button--sm;
       @extend %action-button--primary--solid;
-      display: none;
+      display: none!important;
     }
   }
 }
@@ -94,6 +94,7 @@ body.dark-theme {
   }
 }
 
+
 @media screen and (min-width: 768px) {
   .recipe-list.home {
     .recipe-card {
@@ -109,7 +110,7 @@ body.dark-theme {
           flex-direction: column;
         }
         button {
-          display: inline-flex;
+          display: inline-flex !important;
           justify-self: end;
         }
       }
@@ -118,7 +119,6 @@ body.dark-theme {
   .recipe-list.search {
     .recipe-card {
       display: inline;
-      // flex-direction: column;
 
       .thumbnail {
         flex-basis: inherit;
@@ -130,7 +130,7 @@ body.dark-theme {
           flex-direction: column;
         }
         button {
-          display: inline-flex;
+          display: inline-flex!important;
           justify-self: end;
         }
       }

@@ -1,15 +1,21 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import NavBar from "../components/NavBar";
+import Filters from "../components/Filters";
+import MetabolismCalculator from "../components/MetabolismCalculator";
 import DishTypes from "../components/DishTypes";
 import RecipesList from "../components/RecipesList";
 import Footer from "../components/Footer";
-
+import LoadingScreen from "../components/LoadingScreen";
 import "../styles/Home.scss";
-import NavBar from "../components/NavBar";
-import Filters from "../components/Filters";
+import { keys } from "../utils";
 
-export default function Home({ darkmode, toggleDarkmode }) {
+export default function Home({
+  darkmode,
+  toggleDarkmode,
+  setIsBodyScrollable,
+}) {
   const [recipesData, setRecipesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -36,34 +42,67 @@ export default function Home({ darkmode, toggleDarkmode }) {
     default:
       mealSearchType = "Lunch";
   }
+  const [isMetabolismCalculatorVisible, setIsMetabolismCalculatorVisible] =
+    useState(false);
 
   useEffect(() => {
-    const getRecipesData = () => {
+    const { appId, appKey } = keys[Math.floor(Math.random() * keys.length)];
+    const getAnotherKeys = (currentAppId, currentAppKey) => {
+      const availableKeys = keys.filter(
+        (newKeys) =>
+          newKeys.appId !== currentAppId || newKeys.appKey !== currentAppKey
+      );
+
+      const newKeys =
+        availableKeys[Math.floor(Math.random() * availableKeys.length)];
+
+      if (newKeys) {
+        return newKeys;
+      }
+      return { appId: currentAppId, appKey: currentAppKey };
+    };
+    // eslint-disable-next-line no-shadow
+    const getHomeRecipesData = (appId, appKey) => {
       axios
         .get(
-          `https://api.edamam.com/api/recipes/v2?type=public&app_id=${
-            import.meta.env.VITE_APP_ID_CF
-          }&app_key=${
-            import.meta.env.VITE_APP_KEY_CF
-          }&mealType=${mealSearchType}&time=1%2B&imageSize=LARGE&random=true`
+          `https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&mealType=${mealSearchType}&time=1%2B&imageSize=LARGE&random=true`
         )
         .then((response) => {
           setRecipesData(response.data.hits.splice(0, 6));
           setIsLoaded(true);
+        })
+        .catch((error) => {
+          if (error.response.status === 429) {
+            const newKeys = getAnotherKeys(appId, appKey);
+            getHomeRecipesData(newKeys.appId, newKeys.appKey);
+          } else {
+            console.error(error);
+          }
         });
     };
-    getRecipesData();
-  }, []);
 
+    getHomeRecipesData(appId, appKey);
+  }, []);
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
+
+  const [searchQueryText, setSearchQueryText] = useState("");
+
   return (
     <>
       <header>
         <NavBar
+          setAreFiltersVisible={setAreFiltersVisible}
+          setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
           darkmode={darkmode}
           toggleDarkmode={toggleDarkmode}
-          setAreFiltersVisible={setAreFiltersVisible}
+          setIsBodyScrollable={setIsBodyScrollable}
         />
+        {isMetabolismCalculatorVisible && (
+          <MetabolismCalculator
+            setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
+            setIsBodyScrollable={setIsBodyScrollable}
+          />
+        )}
       </header>
       <main>
         <div className="container">
@@ -71,16 +110,25 @@ export default function Home({ darkmode, toggleDarkmode }) {
           <section id="chef-suggestion">
             <h2>Chef's suggestions</h2>
             {isLoaded ? (
-              <RecipesList data={recipesData} listClass="home" />
+              <RecipesList
+                data={recipesData}
+                listClass="home"
+                setIsBodyScrollable={setIsBodyScrollable}
+              />
             ) : (
-              <p>Loading...</p>
+              <LoadingScreen />
             )}
           </section>
         </div>
       </main>
       <Footer />
       {areFiltersVisible && (
-        <Filters setAreFiltersVisible={setAreFiltersVisible} />
+        <Filters
+          setAreFiltersVisible={setAreFiltersVisible}
+          searchQueryText={searchQueryText}
+          setSearchQueryText={setSearchQueryText}
+          setIsBodyScrollable={setIsBodyScrollable}
+        />
       )}
     </>
   );
@@ -89,4 +137,5 @@ export default function Home({ darkmode, toggleDarkmode }) {
 Home.propTypes = {
   darkmode: PropTypes.bool.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };

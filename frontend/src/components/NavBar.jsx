@@ -4,34 +4,45 @@ import PropTypes from "prop-types";
 import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({
-  darkmode,
-  toggleDarkmode,
   setAreFiltersVisible,
+  darkmode,
+  setIsMetabolismCalculatorVisible,
+  toggleDarkmode,
+  setIsBodyScrollable,
 }) {
   return (
     <>
       <div className="header-container">
         <div className="navbar">
-          {darkmode ? (
-            <img
-              className="logo"
-              src="assets/logo/logo-color-dark-mode.svg"
-              alt="logo Cook Buddy"
+          <img
+            className="logo"
+            src={`assets/logo/logo-color-${
+              darkmode ? "dark-mode" : "full"
+            }.svg`}
+            alt="logo Cook Buddy"
+          />
+          <div className="navbar-buttons">
+            <button
+              className="metabolism-button"
+              type="button"
+              onClick={() => setIsMetabolismCalculatorVisible(true)}
+            >
+              <i className="bi bi-calculator" />
+              <span>Metabolism calculator</span>
+            </button>
+            <DarkModeToggle
+              darkmode={darkmode}
+              toggleDarkmode={toggleDarkmode}
             />
-          ) : (
-            <img
-              className="logo"
-              src="assets/logo/logo-color-full.svg"
-              alt="logo Cook Buddy"
-            />
-          )}
-
-          <DarkModeToggle darkmode={darkmode} toggleDarkmode={toggleDarkmode} />
+          </div>
         </div>
       </div>
       <div
         className="search-container"
-        onClick={() => setAreFiltersVisible(true)}
+        onClick={() => {
+          setAreFiltersVisible(true);
+          setIsBodyScrollable(false);
+        }}
         aria-hidden
       >
         <input
@@ -49,8 +60,6 @@ NavBar.propTypes = {
   darkmode: PropTypes.bool.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
   setAreFiltersVisible: PropTypes.func.isRequired,
-};
-
-NavBar.propTypes = {
-  setAreFiltersVisible: PropTypes.func.isRequired,
+  setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };

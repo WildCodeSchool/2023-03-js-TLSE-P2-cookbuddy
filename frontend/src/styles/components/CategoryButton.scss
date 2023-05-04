@@ -32,7 +32,26 @@
     .mbltxt {
       margin-top: 8px;
       font-size: 12px;
-      color: $color--grey--700;
+      color: $color--grey--800;
+    }
+  }
+}
+body.dark-theme{
+  .dish-container{
+    .btntxt{
+      .mbltxt{
+        color: $color--grey--100;
+
+      }
+    }
+  }
+}
+body.dark-theme {
+  .dish-container {
+    .btntxt {
+      .mbltxt {
+        color: $color--white;
+      }
     }
   }
 }
