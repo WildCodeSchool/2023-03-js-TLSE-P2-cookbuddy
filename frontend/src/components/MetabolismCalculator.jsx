@@ -103,6 +103,7 @@ function MetabolismCalculator({
 }
 MetabolismCalculator.propTypes = {
   setIsMetabolismCalculatorVisible: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };
 
 export default MetabolismCalculator;

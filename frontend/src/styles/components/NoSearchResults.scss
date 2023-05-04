@@ -1,7 +1,7 @@
 @import "../App.scss";
 
 .no-search-results {
-    padding: 2rem;
+  padding: 2rem;
   border-radius: 20px;
   min-height: calc(100vh - 7rem - 4rem - 80px - 2rem);
   display: flex;
@@ -15,8 +15,8 @@
   }
   h2 {
     @extend %title--md;
-        font-family: $font-family--accent;
-        color: $color--grey--500;
+    font-family: $font-family--accent;
+    color: $color--grey--500;
   }
   p {
     padding: 0.5rem;

@@ -89,7 +89,11 @@ export default function Search({
             {!recipesData || recipesData.length === 0 ? (
               <NoSearchResults />
             ) : (
-              <RecipesList data={recipesData} listClass="search" setIsBodyScrollable={setIsBodyScrollable} />
+              <RecipesList
+                data={recipesData}
+                listClass="search"
+                setIsBodyScrollable={setIsBodyScrollable}
+              />
             )}
           </div>
         ) : (

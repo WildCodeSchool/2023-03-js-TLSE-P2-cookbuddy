@@ -11,18 +11,6 @@ function App() {
     setDarkmode(!darkmode);
   };
   const [isBodyScrollable, setIsBodyScrollable] = useState(true);
-  // useEffect(() => {
-  //   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  //     setDarkmode(true);
-  //   }
-  //   if (!isBodyScrollable) {
-  //     document.body.className = darkmode
-  //       ? "dark-theme not-scrollable"
-  //       : "light-theme not-scrollable";
-  //   } else {
-  //     document.body.className = darkmode ? "dark-theme" : "light-theme";
-  //   }
-  // }, [darkmode, isBodyScrollable]);
 
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia(

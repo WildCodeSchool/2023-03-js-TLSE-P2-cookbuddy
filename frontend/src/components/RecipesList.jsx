@@ -64,7 +64,11 @@ export default function RecipesList({
       )}
       <div className={`recipe-list ${listClass}`}>
         {dataSorted.map((recipe) => (
-          <RecipeCard data={recipe.recipe} key={recipe.recipe.url} setIsBodyScrollable={setIsBodyScrollable} />
+          <RecipeCard
+            data={recipe.recipe}
+            key={recipe.recipe.url}
+            setIsBodyScrollable={setIsBodyScrollable}
+          />
         ))}
       </div>
     </div>
