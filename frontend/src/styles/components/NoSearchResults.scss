@@ -1,0 +1,29 @@
+@import "../App.scss";
+
+.no-search-results {
+    padding: 2rem;
+  border-radius: 20px;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $color--grey--50;
+  .logo {
+    height: 20vw;
+    max-height: 200px;
+  }
+  h2 {
+    @extend %title--md;
+        font-family: $font-family--accent;
+        color: $color--grey--500;
+  }
+  p {
+    padding: 0.5rem;
+    width: 50vw;
+    @extend %text--md;
+    font-family: $font-family--accent;
+    text-align: center;
+    color: $color--grey--400;
+  }
+}

@@ -2,10 +2,12 @@ import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import NoSearchResults from "../components/NoSearchResults";
 import SearchPageNavBar from "../components/SearchPageNavBar";
 import Footer from "../components/Footer";
 import Filters from "../components/Filters";
 import RecipesList from "../components/RecipesList";
+import LoadingScreen from "../components/LoadingScreen";
 
 import "../styles/Search.scss";
 
@@ -48,7 +50,9 @@ export default function Search({ darkmode, toggleDarkmode }) {
 
   const apiURL = apiURLtable.join("&");
 
-  const searchQueryText = searchParams.get("q");
+  const [searchQueryText, setSearchQueryText] = useState(
+    searchParams.get("q") ? searchParams.get("q") : ""
+  );
 
   const getRecipesData = () => {
     axios.get(apiURL).then((response) => {
@@ -70,16 +74,21 @@ export default function Search({ darkmode, toggleDarkmode }) {
           toggleDarkmode={toggleDarkmode}
           totalActiveFilters={totalActiveFilters}
           searchQueryText={searchQueryText}
+          setSearchQueryText={setSearchQueryText}
         />
       </nav>
       <main className="has-navbar">
-        <div className="container">
-          {isLoaded ? (
-            <RecipesList data={recipesData} listClass="home" />
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+        {isLoaded ? (
+          <div className="container">
+            {!recipesData || recipesData.length === 0 ? (
+              <NoSearchResults />
+            ) : (
+              <RecipesList data={recipesData} listClass="search" />
+            )}
+          </div>
+        ) : (
+          <LoadingScreen />
+        )}
       </main>
       <Footer />
       {areFiltersVisible && (
@@ -87,6 +96,8 @@ export default function Search({ darkmode, toggleDarkmode }) {
           setAreFiltersVisible={setAreFiltersVisible}
           searchQueryText={searchQueryText}
           getRecipesData={getRecipesData}
+          searchParams={searchParams}
+          setSearchQueryText={setSearchQueryText}
         />
       )}
     </>

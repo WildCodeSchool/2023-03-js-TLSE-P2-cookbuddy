@@ -16,17 +16,31 @@ export default function Filters({
   setAreFiltersVisible,
   searchQueryText,
   getRecipesData,
+  searchParams = "",
+  setSearchQueryText,
 }) {
   const [isCleared, setIsCleared] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(
-    searchQueryText && searchQueryText
-  );
-  const [minCookingTime, setMinCookingTime] = useState("");
-  const [maxCookingTime, setMaxCookingTime] = useState("");
+
+  let minCookingTimeInitial = "";
+  let maxCookingTimeInitial = "";
+  const zero = 0;
+  const one = 1;
+  if (searchParams !== "") {
+    let entry = null;
+    for (entry of searchParams.entries()) {
+      if (entry[0] === "time") {
+        const cookingTime = entry[1].split("-");
+        minCookingTimeInitial = cookingTime[zero];
+        maxCookingTimeInitial = cookingTime[one];
+      }
+    }
+  }
+  const [minCookingTime, setMinCookingTime] = useState(minCookingTimeInitial);
+  const [maxCookingTime, setMaxCookingTime] = useState(maxCookingTimeInitial);
   const [areMoreFiltersVisible, setAreMoreFiltersVisible] = useState(false);
 
   const handleSearchQuery = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQueryText(e.target.value);
   };
 
   const handleMinCookingTime = (e) => {
@@ -46,25 +60,39 @@ export default function Filters({
       ...mealTypesFilters,
       ...cuisineTypesFilters,
     ].forEach((filter) => {
-      initialFilters[filter.searchQuery] = {
+      initialFilters[filter.searchQueryText] = {
         isActive: false,
         category: filter.category,
       };
     });
 
+    let entry = null;
+
+    if (searchParams !== "") {
+      for (entry of searchParams.entries()) {
+        if (entry[0] !== "time" && entry[0] !== "q") {
+          initialFilters[entry[1]] = {
+            isActive: true,
+            category: entry[0],
+          };
+        }
+      }
+    }
     return initialFilters;
   });
+
   let searchQueryUrl = [];
-  if (searchQuery) {
-    searchQueryUrl.push(`q=${searchQuery}`);
+  if (searchQueryText) {
+    searchQueryUrl.push(`q=${searchQueryText}`);
   }
+
   if (minCookingTime || maxCookingTime) {
     if (minCookingTime && maxCookingTime) {
       searchQueryUrl.push(
         `time=${minCookingTime <= 0 ? 1 : minCookingTime}-${maxCookingTime}`
       );
     } else if (minCookingTime) {
-      searchQueryUrl.push(`time=${minCookingTime <= 0 ? 1 : minCookingTime}`);
+      searchQueryUrl.push(`time=${minCookingTime <= 0 ? 1 : minCookingTime}-`);
     } else if (maxCookingTime) {
       searchQueryUrl.push(`time=1-${maxCookingTime}`);
     }
@@ -79,7 +107,7 @@ export default function Filters({
   searchQueryUrl = searchQueryUrl.join("&");
 
   const handleClearFilters = () => {
-    setSearchQuery("");
+    setSearchQueryText("");
     setMinCookingTime("");
     setMaxCookingTime("");
     setIsCleared(true);
@@ -92,7 +120,7 @@ export default function Filters({
         ...mealTypesFilters,
         ...cuisineTypesFilters,
       ].forEach((filter) => {
-        initialFilters[filter.searchQuery] = {
+        initialFilters[filter.searchQueryText] = {
           isActive: false,
           category: filter.category,
         };
@@ -124,7 +152,7 @@ export default function Filters({
                   className="input--search-bar"
                   placeholder="Enter ingredients or recipe"
                   onChange={handleSearchQuery}
-                  value={searchQuery}
+                  value={searchQueryText}
                 />
               </div>
             </div>
@@ -157,6 +185,7 @@ export default function Filters({
                   key={filter.id}
                   setFiltersList={setFiltersList}
                   setIsCleared={setIsCleared}
+                  filtersList={filtersList}
                   isCleared={isCleared}
                 />
               ))}
@@ -171,6 +200,7 @@ export default function Filters({
                   key={filter.id}
                   setFiltersList={setFiltersList}
                   setIsCleared={setIsCleared}
+                  filtersList={filtersList}
                   isCleared={isCleared}
                 />
               ))}
@@ -211,6 +241,8 @@ export default function Filters({
                     placeholder="minimum"
                     onChange={handleMinCookingTime}
                     value={minCookingTime}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                   />
                 </div>
                 <p>to</p>
@@ -220,6 +252,8 @@ export default function Filters({
                     placeholder="maximum"
                     onChange={handleMaxCookingTime}
                     value={maxCookingTime}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                   />
                 </div>
                 <p>mins</p>
@@ -233,6 +267,7 @@ export default function Filters({
                     data={filter}
                     key={filter.id}
                     setFiltersList={setFiltersList}
+                    filtersList={filtersList}
                     setIsCleared={setIsCleared}
                     isCleared={isCleared}
                   />
@@ -247,6 +282,7 @@ export default function Filters({
                     data={filter}
                     key={filter.id}
                     setFiltersList={setFiltersList}
+                    filtersList={filtersList}
                     setIsCleared={setIsCleared}
                     isCleared={isCleared}
                   />
@@ -277,11 +313,19 @@ export default function Filters({
 
 Filters.propTypes = {
   setAreFiltersVisible: PropTypes.func.isRequired,
-  getRecipesData: PropTypes.func,
+  getRecipesData: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   searchQueryText: PropTypes.string,
+  setSearchQueryText: PropTypes.func.isRequired,
+  searchParams: PropTypes.oneOfType([
+    PropTypes.shape({
+      entries: PropTypes.func,
+    }),
+    PropTypes.string,
+  ]),
 };
 
 Filters.defaultProps = {
   searchQueryText: "",
   getRecipesData: "",
+  searchParams: "",
 };
