@@ -40,22 +40,13 @@ function SearchPageNavBar({
           onClick={() => setAreFiltersVisible(true)}
           aria-hidden
         >
-          {searchQueryText !== "" ? (
-            <input
-              type="text"
-              className="input--search-bar"
-              placeholder="Enter ingredients or recipe"
-              value={searchQueryText}
-              disabled
-            />
-          ) : (
-            <input
-              className="input--search-bar"
-              type="text"
-              placeholder="Enter ingredients or recipe"
-              disabled
-            />
-          )}
+          <input
+            type="text"
+            className="input--search-bar"
+            placeholder="Enter ingredients or recipe"
+            value={searchQueryText}
+            disabled
+          />
 
           <button
             className="action-button--md action-button action-button--grey--border filters"

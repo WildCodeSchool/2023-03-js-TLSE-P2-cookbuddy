@@ -38,6 +38,7 @@
     overflow-y: scroll;
     padding-bottom: 83px;
     max-height: 80vh;
+    transition: all 0.5s ease-in-out;
     .mobile-drag {
       display: flex;
       align-items: center;
