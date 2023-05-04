@@ -95,7 +95,7 @@ button.dark-mode {
   }
 
   .input--search-bar {
-    z-index: 2;
+    z-index: 1;
     cursor: pointer;
     padding: 8px 12px 8px 36px !important;
     @include shadow--xl();

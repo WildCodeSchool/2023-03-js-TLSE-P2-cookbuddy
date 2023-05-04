@@ -238,14 +238,14 @@ body.dark-theme {
       }
       .filters__line {
         border: none;
-        background-color: $color--grey--900;
+        background-color: $color--grey--800;
         p {
           color: $color--grey--200;
         }
         .filters__list {
           .filter__item {
             .filter--square {
-              background-color: $color--grey--800;
+              background-color: $color--grey--900;
               border-color: transparent;
             }
             p {
@@ -255,7 +255,7 @@ body.dark-theme {
         }
         .filters__list--wrap {
           .filter--round {
-            background-color: $color--grey--800;
+            background-color: $color--grey--900;
             color: $color--primary--500;
             border: none;
           }
