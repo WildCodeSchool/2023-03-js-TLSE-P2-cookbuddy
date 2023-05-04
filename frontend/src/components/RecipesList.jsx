@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import "../styles/components/RecipesList.scss";
 import RecipeCard from "./RecipeCard";
 
-export default function RecipesList({ data, listClass = "home" }) {
+export default function RecipesList({
+  data,
+  listClass = "home",
+  setIsBodyScrollable,
+}) {
   const [filter, setFilter] = useState("");
 
   const handleChange = (event) => {
@@ -60,7 +64,7 @@ export default function RecipesList({ data, listClass = "home" }) {
       )}
       <div className={`recipe-list ${listClass}`}>
         {dataSorted.map((recipe) => (
-          <RecipeCard data={recipe.recipe} key={recipe.recipe.url} />
+          <RecipeCard data={recipe.recipe} key={recipe.recipe.url} setIsBodyScrollable={setIsBodyScrollable} />
         ))}
       </div>
     </div>
@@ -68,6 +72,7 @@ export default function RecipesList({ data, listClass = "home" }) {
 }
 RecipesList.propTypes = {
   listClass: PropTypes.string,
+  setIsBodyScrollable: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       recipe: PropTypes.shape({

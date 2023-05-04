@@ -11,7 +11,11 @@ import LoadingScreen from "../components/LoadingScreen";
 
 import "../styles/Search.scss";
 
-export default function Search({ darkmode, toggleDarkmode }) {
+export default function Search({
+  darkmode,
+  toggleDarkmode,
+  setIsBodyScrollable,
+}) {
   const [recipesData, setRecipesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -59,6 +63,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
       setRecipesData(response.data.hits);
       setIsLoaded(true);
       setAreFiltersVisible(false);
+      setIsBodyScrollable(true);
     });
   };
   useEffect(() => {
@@ -74,6 +79,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
           toggleDarkmode={toggleDarkmode}
           totalActiveFilters={totalActiveFilters}
           searchQueryText={searchQueryText}
+          setIsBodyScrollable={setIsBodyScrollable}
           setSearchQueryText={setSearchQueryText}
         />
       </nav>
@@ -83,7 +89,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
             {!recipesData || recipesData.length === 0 ? (
               <NoSearchResults />
             ) : (
-              <RecipesList data={recipesData} listClass="search" />
+              <RecipesList data={recipesData} listClass="search" setIsBodyScrollable={setIsBodyScrollable} />
             )}
           </div>
         ) : (
@@ -98,6 +104,7 @@ export default function Search({ darkmode, toggleDarkmode }) {
           getRecipesData={getRecipesData}
           searchParams={searchParams}
           setSearchQueryText={setSearchQueryText}
+          setIsBodyScrollable={setIsBodyScrollable}
         />
       )}
     </>
@@ -106,4 +113,5 @@ export default function Search({ darkmode, toggleDarkmode }) {
 Search.propTypes = {
   darkmode: PropTypes.bool.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };

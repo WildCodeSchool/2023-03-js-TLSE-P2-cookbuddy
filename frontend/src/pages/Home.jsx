@@ -11,7 +11,11 @@ import LoadingScreen from "../components/LoadingScreen";
 import "../styles/Home.scss";
 import { keys } from "../utils";
 
-export default function Home({ darkmode, toggleDarkmode }) {
+export default function Home({
+  darkmode,
+  toggleDarkmode,
+  setIsBodyScrollable,
+}) {
   const [recipesData, setRecipesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -91,10 +95,12 @@ export default function Home({ darkmode, toggleDarkmode }) {
           setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
           darkmode={darkmode}
           toggleDarkmode={toggleDarkmode}
+          setIsBodyScrollable={setIsBodyScrollable}
         />
         {isMetabolismCalculatorVisible && (
           <MetabolismCalculator
             setIsMetabolismCalculatorVisible={setIsMetabolismCalculatorVisible}
+            setIsBodyScrollable={setIsBodyScrollable}
           />
         )}
       </header>
@@ -104,7 +110,11 @@ export default function Home({ darkmode, toggleDarkmode }) {
           <section id="chef-suggestion">
             <h2>Chef's suggestions</h2>
             {isLoaded ? (
-              <RecipesList data={recipesData} listClass="home" />
+              <RecipesList
+                data={recipesData}
+                listClass="home"
+                setIsBodyScrollable={setIsBodyScrollable}
+              />
             ) : (
               <LoadingScreen />
             )}
@@ -117,6 +127,7 @@ export default function Home({ darkmode, toggleDarkmode }) {
           setAreFiltersVisible={setAreFiltersVisible}
           searchQueryText={searchQueryText}
           setSearchQueryText={setSearchQueryText}
+          setIsBodyScrollable={setIsBodyScrollable}
         />
       )}
     </>
@@ -126,4 +137,5 @@ export default function Home({ darkmode, toggleDarkmode }) {
 Home.propTypes = {
   darkmode: PropTypes.bool.isRequired,
   toggleDarkmode: PropTypes.func.isRequired,
+  setIsBodyScrollable: PropTypes.func.isRequired,
 };
