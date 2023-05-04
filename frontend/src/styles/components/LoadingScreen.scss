@@ -21,7 +21,8 @@
   }
 
   h2 {
-    @extend .text--xl;
+    @extend %title--md;
+    font-family: $font-family--accent;
     font-weight: 600 !important;
   }
 
