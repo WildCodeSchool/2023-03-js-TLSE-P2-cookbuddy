@@ -232,20 +232,18 @@ body.dark-theme {
     background-color: $color--grey--900;
 
     .filters__container {
-      width: 100%;
       p {
         color: $color--grey--200;
       }
       .filters__line {
         border: none;
-        background-color: $color--grey--800;
         p {
           color: $color--grey--200;
         }
         .filters__list {
           .filter__item {
             .filter--square {
-              background-color: $color--grey--900;
+              background-color: $color--grey--800;
               border-color: transparent;
             }
             p {
@@ -255,7 +253,7 @@ body.dark-theme {
         }
         .filters__list--wrap {
           .filter--round {
-            background-color: $color--grey--900;
+            background-color: $color--grey--800;
             color: $color--primary--500;
             border: none;
           }
@@ -278,7 +276,6 @@ body.dark-theme {
       background-color: $color--grey--900;
 
       .filters__container {
-        width: 100%;
         p {
           color: $color--grey--200;
         }
