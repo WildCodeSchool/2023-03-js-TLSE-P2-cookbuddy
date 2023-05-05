@@ -95,6 +95,7 @@ button.dark-mode {
   }
 
   .input--search-bar {
+    width: 100%;
     z-index: 1;
     cursor: pointer;
     padding: 8px 12px 8px 36px !important;
@@ -161,7 +162,7 @@ body.dark-theme {
     justify-content: center;
 
     .input--search-bar {
-      width: 30%;
+      max-width: 40%;
     }
   }
 }
@@ -182,5 +183,12 @@ body.dark-theme {
   .navbar {
     max-width: 1320px;
     padding: 2rem;
+  }
+
+  .search-container {
+
+    .input--search-bar {
+      max-width: 40%;
+    }
   }
 }

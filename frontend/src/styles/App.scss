@@ -2008,7 +2008,7 @@ BUTTONS
       gap: 8px;
       background-color: $color--grey--800;
       border: 1px solid $color--grey--500;
-        @include shadow--xs();
+      @include shadow--xs();
       border-radius: 50px;
       outline: none;
       @extend .text--md;
@@ -2037,6 +2037,15 @@ BUTTONS
       &::-ms-expand {
         display: none;
       }
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
     }
     label {
       @extend .text--sm;
@@ -2260,6 +2269,23 @@ body.not-scrollable {
 }
 
 body.dark-theme {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: $color--grey--900;
+    border: 1px solid $color--grey--800;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $color--grey--600;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $color--grey--500;
+  }
+}
+
+body.dark-theme {
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -2275,3 +2301,11 @@ body.dark-theme {
     background: $color--grey--500;
   }
 }
+input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }

@@ -107,21 +107,23 @@ export default function Search({
         />
       </nav>
       <main className="has-navbar">
-        {isLoaded ? (
-          <div className="container">
-            {!recipesData || recipesData.length === 0 ? (
-              <NoSearchResults />
-            ) : (
-              <RecipesList
-                data={recipesData}
-                listClass="search"
-                setIsBodyScrollable={setIsBodyScrollable}
-              />
-            )}
-          </div>
-        ) : (
-          <LoadingScreen />
-        )}
+        <div className="container">
+          {isLoaded ? (
+            <div>
+              {!recipesData || recipesData.length === 0 ? (
+                <NoSearchResults />
+              ) : (
+                <RecipesList
+                  data={recipesData}
+                  listClass="search"
+                  setIsBodyScrollable={setIsBodyScrollable}
+                />
+              )}
+            </div>
+          ) : (
+            <LoadingScreen />
+          )}
+        </div>
       </main>
       <Footer />
       {areFiltersVisible && (

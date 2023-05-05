@@ -3,6 +3,7 @@
   display: flex;
   position: fixed;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 20;
   top: 0;
   left: 0;
@@ -40,7 +41,8 @@
     padding: 1rem;
     width: 100%;
     position: absolute;
-    border-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
   }
   h2 {
     @extend %title--xs;
@@ -110,11 +112,13 @@ body.dark-theme {
   .metabolism-container{
     .metabolism-calculator{
       background-color: $color--grey--900;
+      border: 1px solid $color--grey--700;
     }
     h2{
       color: $color--grey--100;
     }
     .input-calculator{
+      color: $color--grey--300;
       background-color: $color--grey--800;
     }
   }
