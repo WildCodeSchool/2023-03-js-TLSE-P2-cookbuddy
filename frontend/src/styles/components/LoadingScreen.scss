@@ -37,7 +37,7 @@ body.light-theme {
     color: $color--grey--900;
     background-color: $color--grey--200;
     .image {
-      background-image: url("assets/loading-black.gif");
+      background-image: url("../assets/loading-black.gif");
     }
   }
 }
@@ -46,7 +46,7 @@ body.dark-theme {
     color: $color--grey--100;
     background-color: $color--grey--800;
     .image {
-      background-image: url("assets/loading-white.gif");
+      background-image: url("../assets/loading-white.gif");
     }
   }
 }

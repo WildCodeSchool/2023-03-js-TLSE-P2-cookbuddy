@@ -11,6 +11,7 @@ function MetabolismCalculator({
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
+  const [activityLevel, setActivityLevel] = useState("sedentary");
   const [bmr, setBmr] = useState(0);
   const handleButtonClick = () => {
     setIsMetabolismCalculatorVisible(false);
@@ -21,10 +22,38 @@ function MetabolismCalculator({
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    let bmrMultiplier;
+
+    switch (activityLevel) {
+      case "sedentary":
+        bmrMultiplier = 1.2;
+        break;
+      case "lightlyActive":
+        bmrMultiplier = 1.375;
+        break;
+      case "moderatelyActive":
+        bmrMultiplier = 1.55;
+        break;
+      case "veryActive":
+        bmrMultiplier = 1.725;
+        break;
+      case "extremelyActive":
+        bmrMultiplier = 1.9;
+        break;
+      default:
+        bmrMultiplier = 1;
+        break;
+    }
+
     if (gender === "male") {
-      setBmr(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
+      setBmr(
+        (88.362 + 13.397 * weight + 4.799 * height - 5.677 * age) *
+          bmrMultiplier
+      );
     } else if (gender === "female") {
-      setBmr(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
+      setBmr(
+        (447.593 + 9.247 * weight + 3.098 * height - 4.33 * age) * bmrMultiplier
+      );
     }
   };
 
@@ -88,12 +117,26 @@ function MetabolismCalculator({
             }
           }}
         />
+        <label className="label-calculator">
+          Activity level:
+          <select
+            className="input-calculator label-calculator"
+            value={activityLevel}
+            onChange={(e) => setActivityLevel(e.target.value)}
+          >
+            <option value="sedentary">Sedentary</option>
+            <option value="lightlyActive">Lightly active</option>
+            <option value="moderatelyActive">Moderately active</option>
+            <option value="veryActive">Very active</option>
+            <option value="extremelyActive">Extremely active</option>
+          </select>
+        </label>
         <div className="metabolism-value">
           <button type="submit">Calculate BMR</button>
         </div>
         {bmr !== 0 && (
           <p>
-            Your BMR is {bmr.toFixed(2)} calories
+            Your BMR is {bmr.toFixed(0)} calories
             <i className="bi bi-fire" />
           </p>
         )}

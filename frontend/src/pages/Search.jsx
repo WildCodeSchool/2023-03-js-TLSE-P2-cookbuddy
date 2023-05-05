@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import Filters from "../components/Filters";
 import RecipesList from "../components/RecipesList";
 import LoadingScreen from "../components/LoadingScreen";
+import { keys } from "../utils";
 
 import "../styles/Search.scss";
 
@@ -21,11 +22,22 @@ export default function Search({
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
-  const apiURLtable = [
-    "https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true",
-  ];
-  apiURLtable.push(`app_id=${import.meta.env.VITE_APP_ID_CF}`);
-  apiURLtable.push(`app_key=${import.meta.env.VITE_APP_KEY_CF}`);
+
+  const { appId, appKey } = keys[Math.floor(Math.random() * keys.length)];
+  const getAnotherKeys = (currentAppId, currentAppKey) => {
+    const availableKeys = keys.filter(
+      (newKeys) =>
+        newKeys.appId !== currentAppId || newKeys.appKey !== currentAppKey
+    );
+
+    const newKeys =
+      availableKeys[Math.floor(Math.random() * availableKeys.length)];
+
+    if (newKeys) {
+      return newKeys;
+    }
+    return { appId: currentAppId, appKey: currentAppKey };
+  };
 
   const params = [];
   let entry = null;
@@ -50,25 +62,36 @@ export default function Search({
   for (let i = 0; i < params.length; i += 1) {
     paramsList.push(params[i].join("="));
   }
-  apiURLtable.push(`${paramsList.join("&")}`);
 
-  const apiURL = apiURLtable.join("&");
+  const apiParamsListURL = paramsList.join("&");
 
   const [searchQueryText, setSearchQueryText] = useState(
     searchParams.get("q") ? searchParams.get("q") : ""
   );
 
-  const getRecipesData = () => {
-    axios.get(apiURL).then((response) => {
-      setRecipesData(response.data.hits);
-      setIsLoaded(true);
-      setAreFiltersVisible(false);
-      setIsBodyScrollable(true);
-    });
+  const getRecipesData = (apiParamsListURLFunc, appIdFunc, appKeyFunc) => {
+    axios
+      .get(
+        `https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true&app_id=${appIdFunc}&app_key=${appKeyFunc}&${apiParamsListURLFunc}`
+      )
+      .then((response) => {
+        setRecipesData(response.data.hits);
+        setIsLoaded(true);
+        setAreFiltersVisible(false);
+        setIsBodyScrollable(true);
+      })
+      .catch((error) => {
+        if (error.response.status === 429) {
+          const newKeys = getAnotherKeys(appIdFunc, appKeyFunc);
+          getRecipesData(newKeys.appId, newKeys.appKey, apiParamsListURLFunc);
+        } else {
+          console.error(error);
+        }
+      });
   };
   useEffect(() => {
-    getRecipesData();
-  }, [apiURL]);
+    getRecipesData(apiParamsListURL, appId, appKey);
+  }, [apiParamsListURL]);
 
   return (
     <>
@@ -84,21 +107,23 @@ export default function Search({
         />
       </nav>
       <main className="has-navbar">
-        {isLoaded ? (
-          <div className="container">
-            {!recipesData || recipesData.length === 0 ? (
-              <NoSearchResults />
-            ) : (
-              <RecipesList
-                data={recipesData}
-                listClass="search"
-                setIsBodyScrollable={setIsBodyScrollable}
-              />
-            )}
-          </div>
-        ) : (
-          <LoadingScreen />
-        )}
+        <div className="container">
+          {isLoaded ? (
+            <div>
+              {!recipesData || recipesData.length === 0 ? (
+                <NoSearchResults />
+              ) : (
+                <RecipesList
+                  data={recipesData}
+                  listClass="search"
+                  setIsBodyScrollable={setIsBodyScrollable}
+                />
+              )}
+            </div>
+          ) : (
+            <LoadingScreen />
+          )}
+        </div>
       </main>
       <Footer />
       {areFiltersVisible && (
