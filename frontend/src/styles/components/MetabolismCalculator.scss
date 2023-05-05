@@ -110,6 +110,7 @@ body.dark-theme {
   .metabolism-container{
     .metabolism-calculator{
       background-color: $color--grey--900;
+      border: 1px solid $color--grey--700;
     }
     h2{
       color: $color--grey--100;

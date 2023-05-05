@@ -230,6 +230,7 @@
 body.dark-theme {
   .modal__container {
     background-color: $color--grey--900;
+    border: 1px solid $color--grey--800;
 
     .filters__container {
       width: 100%;
