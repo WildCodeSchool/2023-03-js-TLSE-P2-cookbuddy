@@ -69,10 +69,10 @@ export default function Search({
     searchParams.get("q") ? searchParams.get("q") : ""
   );
 
-  const getRecipesData = (apiParamsListURL, appId, appKey) => {
+  const getRecipesData = (apiParamsListURLFunc, appIdFunc, appKeyFunc) => {
     axios
       .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true&app_id=${appId}&app_key=${appKey}&${apiParamsListURL}`
+        `https://api.edamam.com/api/recipes/v2?type=public&imageSize=LARGE&random=true&app_id=${appIdFunc}&app_key=${appKeyFunc}&${apiParamsListURLFunc}`
       )
       .then((response) => {
         setRecipesData(response.data.hits);
@@ -82,8 +82,8 @@ export default function Search({
       })
       .catch((error) => {
         if (error.response.status === 429) {
-          const newKeys = getAnotherKeys(appId, appKey);
-          getRecipesData(newKeys.appId, newKeys.appKey, apiParamsListURL);
+          const newKeys = getAnotherKeys(appIdFunc, appKeyFunc);
+          getRecipesData(newKeys.appId, newKeys.appKey, apiParamsListURLFunc);
         } else {
           console.error(error);
         }
