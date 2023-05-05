@@ -158,7 +158,7 @@
         button {
           @extend %action-button--sm;
           color: $color--grey--700;
-          text-decoration: none;
+          text-decoration: none!important;
           border: none;
           border-right: 1px solid $color--grey--300;
           background-color: $color--white;
@@ -320,6 +320,13 @@ body.dark-theme {
         line-height: 1.25rem;
         letter-spacing: 0em;
       }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  body.dark-theme {
+    .recipe-details {
+      border: 1px solid $color--grey--700;
     }
   }
 }
